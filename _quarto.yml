@@ -10,8 +10,8 @@ website:
         text: Home
       - href: edu.qmd
         text: Education
-    #  - href: basics.qmd
-    #    text: Basics
+      - href: doing.qmd
+        text: Progressing
     #  - href: onelayernn.qmd
     #    text: Machine Learning Methods 
 format: 
