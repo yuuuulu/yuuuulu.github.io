@@ -26,3 +26,12 @@ output:
 -   [R in action](https://github.com/Rkabacoff/RiA3)
 
 -   [Statitical Inference(Casella, George and Berger, Roger)](https://github.com/yuuuulu/stat-inference/blob/main/stat%20inference.qmd)
+
+
+-   [Stack overflow](https://stackoverflow.com/users/27016089/yu-lu)
+
+
+-   [Cross Validated](https://stats.stackexchange.com/users/427866/yu-lu)
+
+
+-   [MATHEMATICS](https://math.stackexchange.com/users/1243804/yu-lu)
