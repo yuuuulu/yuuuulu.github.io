@@ -1,0 +1,18 @@
+---
+title: "Teaching"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+---
+
+
+## Youth 
+
++ "Youth means a temperamental predominance of courage over timidity of the appetite, for adventure over the love of ease.
+
+
+
+
+

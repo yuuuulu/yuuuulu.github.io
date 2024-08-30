@@ -1,9 +1,0 @@
----
-title: "Progressing"
-format: html
-editor: visual
----
-
-## Youth means...
-
-"Youth means a temperamental predominance of courage over timidity of the appetite, for adventure over the love of ease."

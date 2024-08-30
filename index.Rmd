@@ -1,0 +1,48 @@
+---
+title: ""
+classoption:
+- twocolumn
+output:
+  html_document:
+    toc: false
+---
+
+::: columns
+::: {.column width="70%"}
+$~$
+
+Yu Lu, an Applied Statistics student focusing on biostatistics learning in School of Mathematics and Physics at Xi'an Jiaotong-Liverpool University. I am interested in
+:::
+
+::: {.column width="30%"}
+![](){width="100%"}
+
+![](images/b3d73bd4d633122ed5e42a745b45f13.jpg)
+:::
+:::
+
+### Current Progresses
+
+Keep going for being "a person who can coax treasure out of messy, unstructured data" especially biological data.
+
+$~$
+
+$~$
+
++----------------------------------------+--------------------------------------+
+| Contact Information:                   |                                      |
++:=======================================+======================================+
+| XJTLU                                  | Tel: ...                             |
++----------------------------------------+--------------------------------------+
+| Department of Foundational Mathematics | Applied Statistics                   |
+|                                        |                                      |
+|                                        | (Biological Statistics)              |
++----------------------------------------+--------------------------------------+
+| Xi'an Jiaotong-Liverpool University    | Email: Yu.Lu23\@student.xjtlu.edu.cn |
++----------------------------------------+--------------------------------------+
+| Suzhou, JiangSu, China                 | Hometown: Hebei                      |
++----------------------------------------+--------------------------------------+
+
+$~$
+
+![](images/dd18f2c44c78cde66a8a30479395ffb.jpg)

@@ -1,0 +1,22 @@
+---
+title: ""
+output: html_document
+---
+
+## edu
+
+Thanks to - [NO.2 Middle School of Shijiazhuang.](https://www.sjzez.com/) I met many charismatic teachers here. Not only have my high school instilled in me the idea of active learning, but also provided a very comfortable learning environment. I really like the philosophy of my high school:
+
+> 坚毅勤奋诚朴健美 Perseverance Diligence Integrity Fitness
+>
+> ![](images/clipboard-39742314.png)
+
+Thanks to - [Xi'an Jiaotong-Liverpool University](https://www.xjtlu.edu.cn/), I am trying to follow this philosophy with our university students under the guidance of kind and sophisticated teachers:
+
+> To be lifelong learners and global citizens.
+>
+> ![](images/clipboard-4071579033.png)
+
+## My...
+
+-   [Github](https://github.com/yuuuulu)

@@ -1,8 +1,0 @@
----
-title: "ed"
-format: html
-editor: visual
----
-
-## Experience
-Learning Biostatistics in XJTLU with happiness...... 

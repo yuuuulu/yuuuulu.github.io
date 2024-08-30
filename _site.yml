@@ -1,0 +1,21 @@
+name: "Yu Lu(Yu.Lu23 at XJTLU)"
+output_dir: "docs"
+navbar:
+  title: "Homepage"
+  right:
+    - text: "About"
+      href: hello.html
+    - text: "Reading"
+      href: teaching.html
+   # - text: "Supervison"
+    #  href: super.html
+    - text: "Foundation Mathematical Learning"
+      href: https://yuuuulu.github.io/Math-s-interesting-things/
+    - text: "Progress Everyday"
+      href: resource.html
+output:
+  html_document:
+    theme: bootstrap
+
+
+

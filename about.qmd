@@ -1,0 +1,21 @@
+---
+title: "About"
+image: proabout.jpg
+about:
+  template: jolla
+  links:
+   # - icon: instagram
+  #    text: Instagram
+  #    href: https://www.instagram.com/muuu9312/
+    - icon: github
+      text: Github
+      href: https://github.com/yuuuulu
+---
+
+Thanks to NO.2 Middle School of Shijiazhuang. I meet many charismatic teachers here. Not only have my high school instilled in me the idea of active learning, but also a very comfortable learning environment. I really like the philosophy in my high school:
+
+> 坚毅勤奋诚朴健美 Perseverance Diligence Integrity Fitness
+
+Thanks to Xi'an Jiaotong-Liverpool University, I am trying to follow philosophy here with our university students and under kind and sophisticated teachers:
+
+> To be lifelong learners and global citizens.
