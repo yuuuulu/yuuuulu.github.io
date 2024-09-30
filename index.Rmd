@@ -34,7 +34,7 @@ $~$
 +:=======================================+======================================+
 | XJTLU                                  | Tel: ...                             |
 +----------------------------------------+--------------------------------------+
-| Department of Foundational Mathematics | Applied Statistics                   |
+| Department of Mathematics and Physics  | Applied Statistics                   |
 |                                        |                                      |
 |                                        | (Biological Statistics)              |
 +----------------------------------------+--------------------------------------+
