@@ -1,5 +1,5 @@
 ---
-title: "Mark thinking of ..."
+title: "Books save me a lot"
 output:
   html_document:
     toc: true
@@ -7,6 +7,19 @@ output:
     toc_depth: 4
 ---
 
+Books give me power.
+
+Teachers who recommend books to me give me power to read books and keep going.
+
+## TEN GREAT IDEAS ABOUT CHANCE
+ 
+ Written by PERSI DIACONIS & BRAIN SKYRMS
+
+### Measurement
+
+Nov.1st
+
+### Judegement
 
 ## Good Quotes with My Feeling (relavent to my understanding of my major)
 
@@ -37,7 +50,9 @@ output:
 
   - Gain experience beyond immediate theoretical boundaries—to immerse themselves in the problems of biology, economics, medicine, and more. By doing so, they expand their understanding and ensure their work remains benefit.
                   
-            
++ "Once a science becomes solidly groundly, it proceeds more or less independently"
+
+  - In this case, the philosophy meaning of bioststistics still stands well.
 
 
 
