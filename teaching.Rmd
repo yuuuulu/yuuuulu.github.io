@@ -7,12 +7,74 @@ output:
     toc_depth: 4
 ---
 
-Books give me power.
-
-Teachers who recommend books to me give me power to read books and keep going.
-
 
 ## The Lady Tasting Tea：How Statistics Revolutionized Science in the Twentieth Century
+
+### Motivation
+
+- To understand God's thoughts, we must study statistics, for these are the measure of his purpose.     ---Florence Nightingale
+
+
+### Error function
+
+Laplace did not need God in his formulation, he did need something he called the "error function".
+
+--Predictions do not fit observations exactly (eg. planets and comets predicted by formulas due to perturbations in the earth's atmosphere/ human error)
+
+--use error function to account for slight discrepancies between the observed and the predicted
+
+--early 19th-century science was in the grip of philosophical determinism--the belief that everything that happens is determined in advance by the initial conditions of the universe and the mathematical formulas that describe its motions
+
+
+--more precise measurement not exactly leads to less error----instead inversely. Newton and Laplace had used were proving to be only rough approximations.
+
+---new paradigm: statistical model of reality
+
+--by the end of the 20th century almost all of science had shifted to using statistical models.
+
+
+ideas and expression have drifted into the popular vocabulary
+
+--profound shift in philosophical view: what are these statistical models? How did they come about? What do they mean in real life?
+
+
+
+### 3 mathematical ideas
+
+#### randomness
+
+- past: unpredictablity: one cannot go searching for something which is found at random
+
+- morden scientists: **probability distribution**: allows us to put constraints on this randomness and gives us a limited ability to predict future but random events.----randomness have a structure that can be described mathematically.
+
+#### probability
+
+
+From Aristotle:"it is the nature of probability that improbable things will happen"
+
+
+19th century: consisted primarily of sophisticated tricks but lacked a sold theoretical foundation
+
+Bernoullis --Fermat De Moivre(insert Calculus) discern some deep fundabemtal theorems--"laws of large numbers"
+
+Pascal
+
+games of chance, counting equally probable events
+
+
+
+#### statistics
+
+statistical distribution
+
+distribution function used to examine the question, like Laplace's error function but much more complicated, using probability theory to describe what might be expected from future data taken at random from the same population of people
+
+## 《心理统计(日常生活中的统计推理原书第3版)》(作者杰弗里O.贝内特、威廉L.布里格斯、马里奥F.特里奥拉)(Psychostatistics (The Original Book of Statistical Reasoning in Everyday Life, 3rd Edition) by Jeffrey O. Bennett, William L. Briggs, Mario F. Triola))
+
+Reading this kind of books to cultivate my ability of telling story, which help me understand statistics knowledge in a deeper depth.
+
+
+
 
 
 ## TEN GREAT IDEAS ABOUT CHANCE
@@ -26,6 +88,12 @@ Nov.1st
 ### Judegement
 
 ## Good Quotes with My Feeling (relavent to my understanding of my major)
+
+### "It can scarcely be denied that the supreme goal of all theory is to make the irreducible basic elements as simple and as few as possible without having to surrender the adequate representation of a single datum of experience."
+
+不应否认，任何理论的终极目标都是尽可能让不可简化的基本元素变得更加简单且更少，但也不能放弃对任何一个单一经验数据的充分解释。---Thanks to the book "The Model Thinker" written by Scott Page to let me know this sentence.
+
+“It can scarcely be denied that the supreme goal of all theory is to make the irreducible basic elements as simple and as few as possible without having to surrender the adequate representation of a single datum of experience.” Einstein’s words have given me the ultimate goal in mastering a field of study (for me, statistics), constantly reminding me to keep moving forward. This is also an example of the power that books bring to me.---Thanks to the book "The Model Thinker" written by Scott Page to let me know this sentence.
 
 + "Youth means a temperamental predominance of courage over timidity of the appetite, for adventure over the love of ease."
 
@@ -59,6 +127,43 @@ Nov.1st
   - In this case, the philosophy meaning of bioststistics still stands well.
 
 
+## words
+
+definitive 最终的
+
+divine intervention
+
+dazzle 使惊叹
+
+stance观点 立场
+
+crumble 瓦解
+
+resistance反对
+
+celestial bodies
+
+
+discrepancy
+
+
+in the grip of 被控制
+
+Books give me power.
+
+Teachers who recommend books to me give me power to read books and keep going.
+
+
+mount--be mounted增加/ 爬山/ 组织开展
+
+cropped up
+
+aphorism(GRE)
+
+
+new paradigm
+
+habitually drink
 
 
 
