@@ -69,6 +69,10 @@ statistical distribution
 
 distribution function used to examine the question, like Laplace's error function but much more complicated, using probability theory to describe what might be expected from future data taken at random from the same population of people
 
+## 
+
+
+
 ## 《心理统计(日常生活中的统计推理原书第3版)》(作者杰弗里O.贝内特、威廉L.布里格斯、马里奥F.特里奥拉)(Psychostatistics (The Original Book of Statistical Reasoning in Everyday Life, 3rd Edition) by Jeffrey O. Bennett, William L. Briggs, Mario F. Triola))
 
 Reading this kind of books to cultivate my ability of telling story, which help me understand statistics knowledge in a deeper depth.
