@@ -14,6 +14,8 @@ output:
 
 - To understand God's thoughts, we must study statistics, for these are the measure of his purpose.     ---Florence Nightingale
 
+She used statistical methods to improve healthcare during the Crimean War, demonstrating the power of data visualization.
+
 
 ### Error function
 
@@ -54,6 +56,12 @@ From Aristotle:"it is the nature of probability that improbable things will happ
 
 
 19th century: consisted primarily of sophisticated tricks but lacked a sold theoretical foundation
+
+Early 20th Century: Ronald A. Fisher revolutionized statistics with his work on experimental design, MLE and analysis of variance (ANOVA). Jerzy Neyman and Egon Pearson developed hypothesis testing and confidence intervals.
+
+
+Mid-20th Century: the development of computers in the 1950s and 1960s enabled more complex data analysis
+
 
 Bernoullis --Fermat De Moivre(insert Calculus) discern some deep fundabemtal theorems--"laws of large numbers"
 
