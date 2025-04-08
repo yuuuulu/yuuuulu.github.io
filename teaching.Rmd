@@ -49,10 +49,11 @@ ideas and expression have drifted into the popular vocabulary
 
 - morden scientists: **probability distribution**: allows us to put constraints on this randomness and gives us a limited ability to predict future but random events.----randomness have a structure that can be described mathematically.
 
-#### probability
+#### Probability
 
 
 From Aristotle:"it is the nature of probability that improbable things will happen"
+
 
 
 19th century: consisted primarily of sophisticated tricks but lacked a sold theoretical foundation
