@@ -86,6 +86,16 @@ Nov.1st
 
 [@casella2024] likes Sir Arthur Conan Doyle and Sherlock Holmes, and I also like them (an old memory..). Finding some stories in a theory book is a good way to make the book more interesting. I also like the way they use examples to explain theorems, which makes it easier to understand. I think this is a good way to learn statistics.Sir Arthur Conan Doyle and Sherlock Holmes are indeed timeless classics.    Using their stories to explain statistical theories is like adding a dollop of intrigue to your math.    Image Holmes cracking a case with Bayesian inference or predicting the next crime using regression analysis.    It s like transforming a dry textbook into a thrilling adventure!    But yeah, this book is definitely not a walk in the park.  It s more like a marathon through a maze of numbers and theorems. —yes, often really difficult for me. Just remember, even Holmes had his tough cases, but he always figured them out in the end.    So, keep at it, and maybe one day you ll be the Sherlock of statistics, solving the most baffling statistical mysteries
 
+
+
+## Differential Equations With Applications And historical Notes by George. F Simmons
+
+
+### Preface really attracts me a lot (since the author loves bell curve very much!!!)
+
+- how the differential equation for this curve ariases from very simple considerations and can be solved to obtain the equation of the curve itself
+
+
 ## Good Quotes with My Feeling (relavent to my understanding of my major)
 
 ### "It can scarcely be denied that the supreme goal of all theory is to make the irreducible basic elements as simple and as few as possible without having to surrender the adequate representation of a single datum of experience."
