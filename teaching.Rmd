@@ -5,17 +5,16 @@ output:
     toc: true
     toc_float: true
     toc_depth: 4
+bibliography: references.bib
 ---
-
 
 ## The Lady Tasting Tea：How Statistics Revolutionized Science in the Twentieth Century
 
 ### Motivation
 
-- To understand God's thoughts, we must study statistics, for these are the measure of his purpose.     ---Florence Nightingale
+-   To understand God's thoughts, we must study statistics, for these are the measure of his purpose. ---Florence Nightingale
 
 She used statistical methods to improve healthcare during the Crimean War, demonstrating the power of data visualization.
-
 
 ### Error function
 
@@ -27,50 +26,39 @@ Laplace did not need God in his formulation, he did need something he called the
 
 --early 19th-century science was in the grip of philosophical determinism--the belief that everything that happens is determined in advance by the initial conditions of the universe and the mathematical formulas that describe its motions
 
-
 --more precise measurement not exactly leads to less error----instead inversely. Newton and Laplace had used were proving to be only rough approximations.
 
 ---new paradigm: statistical model of reality
 
 --by the end of the 20th century almost all of science had shifted to using statistical models.
 
-
 ideas and expression have drifted into the popular vocabulary
 
 --profound shift in philosophical view: what are these statistical models? How did they come about? What do they mean in real life?
-
-
 
 ### 3 mathematical ideas
 
 #### randomness
 
-- past: unpredictablity: one cannot go searching for something which is found at random
+-   past: unpredictablity: one cannot go searching for something which is found at random
 
-- morden scientists: **probability distribution**: allows us to put constraints on this randomness and gives us a limited ability to predict future but random events.----randomness have a structure that can be described mathematically.
+-   morden scientists: **probability distribution**: allows us to put constraints on this randomness and gives us a limited ability to predict future but random events.----randomness have a structure that can be described mathematically.
 
 #### Probability
 
-
 From Aristotle:"it is the nature of probability that improbable things will happen"
-
-
 
 19th century: consisted primarily of sophisticated tricks but lacked a sold theoretical foundation
 
 Early 20th Century: Ronald A. Fisher revolutionized statistics with his work on experimental design, MLE and analysis of variance (ANOVA). Jerzy Neyman and Egon Pearson developed hypothesis testing and confidence intervals.
 
-
 Mid-20th Century: the development of computers in the 1950s and 1960s enabled more complex data analysis
-
 
 Bernoullis --Fermat De Moivre(insert Calculus) discern some deep fundabemtal theorems--"laws of large numbers"
 
 Pascal
 
 games of chance, counting equally probable events
-
-
 
 #### statistics
 
@@ -80,25 +68,23 @@ distribution function used to examine the question, like Laplace's error functio
 
 ## 
 
-
-
 ## 《心理统计(日常生活中的统计推理原书第3版)》(作者杰弗里O.贝内特、威廉L.布里格斯、马里奥F.特里奥拉)(Psychostatistics (The Original Book of Statistical Reasoning in Everyday Life, 3rd Edition) by Jeffrey O. Bennett, William L. Briggs, Mario F. Triola))
 
 Reading this kind of books to cultivate my ability of telling story, which help me understand statistics knowledge in a deeper depth.
 
-
-
-
-
 ## TEN GREAT IDEAS ABOUT CHANCE
- 
- Written by PERSI DIACONIS & BRAIN SKYRMS
+
+Written by PERSI DIACONIS & BRAIN SKYRMS
 
 ### Measurement
 
 Nov.1st
 
 ### Judegement
+
+## Statistical inference by George Casella and Roger L. Berger
+
+[@casella2024] likes Sir Arthur Conan Doyle and Sherlock Holmes, and I also like them (an old memory..). Finding some stories in a theory book is a good way to make the book more interesting. I also like the way they use examples to explain theorems, which makes it easier to understand. I think this is a good way to learn statistics.Sir Arthur Conan Doyle and Sherlock Holmes are indeed timeless classics.    Using their stories to explain statistical theories is like adding a dollop of intrigue to your math.    Image Holmes cracking a case with Bayesian inference or predicting the next crime using regression analysis.    It s like transforming a dry textbook into a thrilling adventure!    But yeah, this book is definitely not a walk in the park.  It s more like a marathon through a maze of numbers and theorems. —yes, often really difficult for me. Just remember, even Holmes had his tough cases, but he always figured them out in the end.    So, keep at it, and maybe one day you ll be the Sherlock of statistics, solving the most baffling statistical mysteries
 
 ## Good Quotes with My Feeling (relavent to my understanding of my major)
 
@@ -108,37 +94,33 @@ Nov.1st
 
 “It can scarcely be denied that the supreme goal of all theory is to make the irreducible basic elements as simple and as few as possible without having to surrender the adequate representation of a single datum of experience.” Einstein’s words have given me the ultimate goal in mastering a field of study (for me, statistics), constantly reminding me to keep moving forward. This is also an example of the power that books bring to me.---Thanks to the book "The Model Thinker" written by Scott Page to let me know this sentence.
 
-+ "Youth means a temperamental predominance of courage over timidity of the appetite, for adventure over the love of ease."
+-   "Youth means a temperamental predominance of courage over timidity of the appetite, for adventure over the love of ease."
 
-  - This quote is from the poem "Youth", which could serve as a call to young statisticians to be bold: venture out of the comfort of theoretical work, take risks in collaborating across fields, and engage with messy, real-world data. This spirit of adventure is what will keep the field vibrant and ensure its continued relevance in the evolving landscape of science and technology.
+    -   This quote is from the poem "Youth", which could serve as a call to young statisticians to be bold: venture out of the comfort of theoretical work, take risks in collaborating across fields, and engage with messy, real-world data. This spirit of adventure is what will keep the field vibrant and ensure its continued relevance in the evolving landscape of science and technology.
 
-+ "Theorem go, theorem come, only examples lie forever."
-      
-  - This highlights the enduring value of real-world impact over theoretical intricacies.It is through practical examples, solving real problems, that statistical methods prove their lasting worth.
-    
-     (Thinking more concisely and wisely by leveraging examples in our beautiful nature.)
-     
-     (Examples remain fixed points of reference, giving continuity in the landscape of mathematical thought.)
-     
-- Feeling: During university, when laying the foundation of knowledge, it's essential to focus on theoretical fundamentals, including mathematical analysis (such as Fourier analysis, real analysis, complex analysis, and functional analysis), and a profound understanding of linear algebra. As statisticians venture out to apply their skills, they should carry these foundational principles with them, dedicating themselves more to real-world applications that benefit society. For me, it is especially in fields like medicine, which is particularly relevant for a student of biostatistics.Balancing deep theoretical work with practical applications during university life of a statistics- majored student will keep the field dynamic and ensure its continued relevance in the evolving landscape of science and technology.
-     
-+ "The most incomprehensible thing about the universe is that it is comprehensible." --Albert Einstein
+-   "Theorem go, theorem come, only examples lie forever."
 
-  - the ability to make sense of complex data is at the heart of what makes the discipline so valuable.    not only in embracing theoretical rigor, which is inherently demanding and critical, but also in seeking out opportunities to collaborate across disciplines and tackle real-world data challenges.
+    -   This highlights the enduring value of real-world impact over theoretical intricacies.It is through practical examples, solving real problems, that statistical methods prove their lasting worth.
 
+        (Thinking more concisely and wisely by leveraging examples in our beautiful nature.)
 
+        (Examples remain fixed points of reference, giving continuity in the landscape of mathematical thought.)
+
+-   Feeling: During university, when laying the foundation of knowledge, it's essential to focus on theoretical fundamentals, including mathematical analysis (such as Fourier analysis, real analysis, complex analysis, and functional analysis), and a profound understanding of linear algebra. As statisticians venture out to apply their skills, they should carry these foundational principles with them, dedicating themselves more to real-world applications that benefit society. For me, it is especially in fields like medicine, which is particularly relevant for a student of biostatistics.Balancing deep theoretical work with practical applications during university life of a statistics- majored student will keep the field dynamic and ensure its continued relevance in the evolving landscape of science and technology.
+
+-   "The most incomprehensible thing about the universe is that it is comprehensible." --Albert Einstein
+
+    -   the ability to make sense of complex data is at the heart of what makes the discipline so valuable. not only in embracing theoretical rigor, which is inherently demanding and critical, but also in seeking out opportunities to collaborate across disciplines and tackle real-world data challenges.
 
 ## Wisdom of the west
 
+-   "No man's knowledge here can go beyond his experience."
 
-+ "No man's knowledge here can go beyond his experience."
+    -   Gain experience beyond immediate theoretical boundaries—to immerse themselves in the problems of biology, economics, medicine, and more. By doing so, they expand their understanding and ensure their work remains benefit.
 
-  - Gain experience beyond immediate theoretical boundaries—to immerse themselves in the problems of biology, economics, medicine, and more. By doing so, they expand their understanding and ensure their work remains benefit.
-                  
-+ "Once a science becomes solidly groundly, it proceeds more or less independently"
+-   "Once a science becomes solidly groundly, it proceeds more or less independently"
 
-  - In this case, the philosophy meaning of bioststistics still stands well.
-
+    -   In this case, the philosophy meaning of bioststistics still stands well.
 
 ## words
 
@@ -156,9 +138,7 @@ resistance反对
 
 celestial bodies
 
-
 discrepancy
-
 
 in the grip of 被控制
 
@@ -166,21 +146,15 @@ Books give me power.
 
 Teachers who recommend books to me give me power to read books and keep going.
 
-
 mount--be mounted增加/ 爬山/ 组织开展
 
 cropped up
 
 aphorism(GRE)
 
-
 new paradigm
 
 habitually drink
 
 
-
-
-
-
-
+## reference list
