@@ -9,6 +9,8 @@ navbar:
       href: teaching.html
    # - text: "Supervison"
     #  href: super.html
+    - text: "Projects and Contests"
+      href: https://yuuuulu.github.io/stat.pre/
     - text: "Foundation Mathematical Learning"
       href: https://yuuuulu.github.io/Math-s-interesting-things/
     - text: "Statistics Learning Contents"
