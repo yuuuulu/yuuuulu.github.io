@@ -13,8 +13,8 @@ navbar:
       href: https://yuuuulu.github.io/stat.pre/
     - text: "Foundation Mathematical Learning"
       href: https://yuuuulu.github.io/Math-s-interesting-things/
-    - text: "Statistics Learning Contents"
-      href: https://yuuuulu.github.io/stat.pre/
+    #- text: "Statistics Learning Contents"
+     # href: https://yuuuulu.github.io/stat.pre/
     - text: "Progress Everyday"
       href: resource.html
 output:
