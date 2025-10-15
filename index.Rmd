@@ -11,8 +11,11 @@ output:
 ::: {.column width="70%"}
 $~$
 
-Yu Lu, an Applied Statistics student focusing on biostatistics learning in School of Mathematics and Physics at Xi'an Jiaotong-Liverpool University. I am interested in
+Yu Lu, an Applied Statistics student focusing on biostatistics learning in School of Mathematics and Physics at Xi'an Jiaotong-Liverpool University (XJTLU). I am interested in using my spare time reading statistical inference related books, running / biking for long distances around the city and eating good food with friends while chatting about life (sometimes, about math or philosophy). One more very enjoyable thing for me that saves my spirit is to chatting with professors in XJTLU math area since they are really good at telling stories about math and their enthusiasm always overflows the XJTLU math building. Learning by myself is tough but chatting with people in the field that I want to learn is always a good way to keep me motivated. Although I consider myself introverted and not always inclined to socialize, I finds deep fulfillment in helping others understand mathematical concepts. Step by step—starting from the basics and reasoning through problems together—has helped me rediscover the true meaning of learning.
 :::
+
+
+
 
 ::: {.column width="30%"}
 ![](){width="100%"}
