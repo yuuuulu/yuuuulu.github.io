@@ -429,10 +429,11 @@ structure that can be described mathematically.</p></li>
 things will happen”</p>
 <p>19th century: consisted primarily of sophisticated tricks but lacked
 a sold theoretical foundation</p>
-<p>Early 20th Century: Ronald A. Fisher revolutionized statistics with
-his work on experimental design, MLE and analysis of variance (ANOVA).
-Jerzy Neyman and Egon Pearson developed hypothesis testing and
-confidence intervals.</p>
+<p>Early 20th Century: Ronald A. Fisher (rejected by Pearson in the
+Biometrika and then went to agricultral station) revolutionized
+statistics with his work on experimental design, MLE, multiple
+comparison, analysis of variance (ANOVA). Jerzy Neyman and Egon Pearson
+developed hypothesis testing and confidence intervals.</p>
 <p>Mid-20th Century: the development of computers in the 1950s and 1960s
 enabled more complex data analysis</p>
 <p>Bernoullis –Fermat De Moivre(insert Calculus) discern some deep
@@ -440,15 +441,128 @@ fundabemtal theorems–“laws of large numbers”</p>
 <p>Pascal</p>
 <p>games of chance, counting equally probable events</p>
 </div>
-<div id="statistics" class="section level4">
-<h4>statistics</h4>
+</div>
+</div>
+<div id="statistics" class="section level1">
+<h1>statistics</h1>
+<p>population <span class="math inline">\(f(x;\theta)\)</span> and <span
+class="math inline">\(\theta\)</span> is unknown</p>
+<div id="oldclassical-bayesian-estimation-moment-estimation"
+class="section level2">
+<h2>old/classical: Bayesian estimation; moment estimation</h2>
+</div>
+<div id="moment-estimation" class="section level2">
+<h2>Moment estimation</h2>
+<ul>
+<li>For the moment estimation, we do not know the density so we could
+not calculate the expectation directly. Instead, we use LLN to
+approximate the expectation with sample mean. We then have</li>
+</ul>
+<p><span class="math display">\[
+m_1(\theta) = E[X] \approx \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i
+\]</span></p>
+<p>then <span class="math display">\[
+\hat \theta = m_1^{-1}(\frac{1}{n} \sum_{i=1}^n X_i)
+\]</span></p>
+<p>For the multiple parameter case, we could use multiple moments to
+estimate the parameters. (k equations to solve k unknown parameters).
+Here we do not know the precise distribution, so we could not calculate
+the moments directly. Instead, we use LLN to approximate the moments
+with sample moments.</p>
+<p>Suppose <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span>
+are iid samples from the distribution with parameters <span
+class="math inline">\(f(x;\theta_1, \theta_2, \ldots, \theta_k)\)</span>
+then by LLM.</p>
+<p>We then have approximatedmoment equation:</p>
+<p><span class="math display">\[
+E[X^j] = m_j(\theta_1, \theta_2, \ldots, \theta_k) \approx \frac{1}{n}
+\sum_{i=1}^n X_i^j, j=1,2,\ldots,k
+\]</span></p>
+<p>then we could solve the equations to get the estimators.</p>
+<p>The solution <span class="math inline">\(\hat \theta_1, \hat
+\theta_2, \ldots, \hat \theta_k\)</span> are the moment estimators of
+the parameters.</p>
+</div>
+<div id="bayesian-estimation" class="section level2">
+<h2>Bayesian estimation</h2>
+<p><span class="math inline">\(f(x|\theta)\)</span> is regarded as
+conditional density and the unknown parameter <span
+class="math inline">\(\theta\)</span> is the condition. <span
+class="math inline">\(\theta\)</span> is a random variable with prior
+distribution <span class="math inline">\(\pi(\theta)\)</span>.</p>
+<p><span class="math inline">\((X, \theta)\)</span> has joint
+distribution <span
+class="math inline">\(f(x,\theta)=f(x|\theta)\pi(\theta)\)</span></p>
+<p>Then we get the marginal distribution of <span
+class="math inline">\(X\)</span>:</p>
+<p><span class="math inline">\(f_X(x) = \int_{-\infty}^{+\infty}
+f(x|\theta)\pi(\theta)d\theta=\int_{-\infty}^{+\infty}
+f(x;\theta)\pi(\theta)d\theta\)</span></p>
+<p>the Bayesian formula is</p>
+<p><span class="math display">\[ \frac {P(A|C_i)P(C_i)}{\sum_j
+P(A|C_j)P(C_j)} =P(C_i|A)\]</span></p>
+<p><span class="math display">\[
+f(\theta|x)=\frac{f(x|\theta)\pi(\theta)}{f_X(x)} =
+\frac{f(x;\theta)\pi(\theta)}{\int_{-\infty}^{+\infty}
+f(x;\theta)\pi(\theta)d\theta}
+\]</span></p>
+<p>Then above we have used Bayes theorem to get the posterior
+distribution of <span class="math inline">\(\theta\)</span> given <span
+class="math inline">\(X=x\)</span></p>
+<p>This is the updation of your belief or learning.</p>
+<p>Bayesian statistics is unclear and ambiguous, but leaving us with no
+choice but to incorporate the most fundamental knowledge we have
+（不清不楚，不得不用）. We then update our understanding through
+experimental data. If it cannot be accomplished in one attempt, we
+iterate multiple times—eventually, we will gain a solid understanding of
+the parameters. The learning process is one of repeated iteration; there
+is no need to expect it to be completed in a single attempt.</p>
+<p>When we do not know every knowledge about the model, we could use the
+prior of uniform distribution to represent our ignorance. That is,
+everyone is equally likely.</p>
+<p>for <span class="math inline">\(f(x;\theta)\)</span>, we could
+calculate the expectation ; mode; CI</p>
+<p>modern statistics</p>
+<p><span class="math inline">\(L(\theta) = E[R(\theta,X)]\)</span></p>
+<p><span class="math inline">\(\hat \theta = argmin_\theta
+L(\theta)\)</span></p>
+<p>where <span class="math inline">\(R(\theta,X)\)</span> is the loss
+function</p>
+<p><strong>Fisher ambitious ：
+不想依赖于贝叶斯，选prior的时候不能包含个人的任何认知，那就选客观的uniform分布</strong></p>
+<p><span class="math inline">\(\pi (\theta|x) {d\theta}=
+d\theta\)</span> uniform</p>
+<p><span class="math inline">\(f(\theta|x_1, x_2, \ldots, x_n) =
+\frac{f(x_1, x_2, \ldots, x_n;\theta)\pi(\theta)}{\int f(x_1, x_2,
+\ldots, x_n;\theta)\pi(\theta)d\theta}\)</span> = <span
+class="math inline">\(L(\theta)\)</span></p>
+<p><span class="math display">\[
+= \frac{f(x_1;\theta)f(x_2;\theta)\ldots f(x_n;\theta) }{\int
+f(x_1;\theta)f(x_2;\theta)\ldots f(x_n;\theta)  d\theta}=L(\theta)
+\]</span></p>
+<p>Mode:</p>
+<p>Find maximum of <span class="math inline">\(f(\theta|x_1, x_2,
+\ldots, x_n)\)</span> i.e. L(<span
+class="math inline">\(\theta\)</span>)</p>
+<p><span class="math inline">\(\hat \theta = argmax_\theta
+L(\theta)=argmax_\theta \frac{f(x_1;\theta)f(x_2;\theta)\ldots
+f(x_n;\theta)}{f_X(x_1,x_2,..x_n)}\)</span></p>
+<p><span class="math inline">\(= argmax_\theta
+f(x_1;\theta)f(x_2;\theta)\ldots f(x_n;\theta)=argmax_\theta
+L(\theta)\)</span> this is the likelihood function</p>
+<p>When Fisher wanted to publish his idea to the Royal Society, he had
+been harshly commented through the discussion of the Royal Society. This
+is a good tradition but nowadays’ conference does ntot keep this. This
+means now they just have a presentation but the comments will not appear
+in the published paper.</p>
+<p>then</p>
+<p>Fisher: MLE</p>
+<p>modern: Loss function</p>
 <p>statistical distribution</p>
 <p>distribution function used to examine the question, like Laplace’s
 error function but much more complicated, using probability theory to
 describe what might be expected from future data taken at random from
 the same population of people</p>
-</div>
-</div>
 </div>
 <div id="section" class="section level2">
 <h2></h2>
@@ -620,6 +734,7 @@ entry-spacing="0">
 <div id="ref-casella2024" class="csl-entry">
 Casella, George, and Roger Berger. 2024. <em>Statistical Inference</em>.
 CRC Press.
+</div>
 </div>
 </div>
 </div>
