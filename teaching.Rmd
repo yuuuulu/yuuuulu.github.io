@@ -157,13 +157,101 @@ When Fisher wanted to publish his idea to the Royal Society, he had been harshly
 
 
 
-then
+then we could use log likelihood to simplify the calculation of the derivative to get the maximum likelihood estimator.
+
 
 
 
 Fisher: MLE
 
 modern: Loss function
+
+
+# Modern Statistics
+
+Loss function is a "scanning apparatus".  
+It will take special value at true parameter.
+
+Such as $\rho$ or minimum point.
+
+## Mean Squared loss
+
+## Kullback-Leibler Divergence
+
+### Empirical Loss and MLE
+
+Consider the empirical loss function：
+
+$$L(\theta) = \mathbb{E}_{\Theta} \left[ \frac{f(x;\theta)}{f(x;\theta)} \log \frac{f(x;\theta)}{f(x;\theta)} \right]$$
+
+$$= \int \frac{f(x;\theta)}{f(x;\theta)} \log \frac{f(x;\theta)}{f(x;\theta)} f(x;\theta) dx$$
+
+$$= \int \left[ \log \frac{f(x;\theta)}{f(x;\theta)} \right] f(x;\theta) dx$$
+
+$$= \mathbb{E}_{\Theta} \left[ \log \frac{f(x;\theta)}{f(x;\theta)} \right]$$
+
+$$\approx \frac{1}{n} \sum_{i=1}^{n} \log \frac{f(x_i;\theta)}{f(x_i;\theta)}$$
+
+$$= \frac{1}{n} \sum_{i=1}^{n} \log f(x_i;\theta) - \frac{1}{n} \sum_{i=1}^{n} \log f(x_i;\theta)$$
+
+
+
+$$\text{Argmin}(\hat{\theta}) = \text{Argmin}\left[ -\frac{1}{n} \sum_{i=1}^{n} \log f(x_i;\theta) \right]$$
+
+$$= \text{Argmax}\left[ \sum_{i=1}^{n} \log f(x_i;\theta) \right]$$
+
+$$= \text{Argmax}\left[ \log \prod_{i=1}^{n} f(x_i;\theta) \right]$$
+
+**结论：MLE ⇔ KL散度最小化**
+
+### KL散度的性质证明
+
+设 $E_{\theta}$ 为关于 $f_{\theta}(x)$ 的期望。
+
+真实模型为 $\theta_0$，比较模型为 $\theta$。
+
+考虑 KL 散度：
+
+$$\mathbb{E}_{\theta} \left[ \frac{f(x;\theta_0)}{f(x;\theta)} \log \frac{f(x;\theta_0)}{f(x;\theta)} \right]$$
+
+令 $\varphi(x) = x \log x$，则 $\varphi'(x) = \log x + 1$，$\varphi''(x) = \frac{1}{x} > 0$，  
+因此 $\varphi(x)$ 在 $(0,+\infty)$ 上是凸函数。
+
+由 Jensen 不等式：
+
+$$\varphi\left( \mathbb{E}_{\theta} \left[ \frac{f(x;\theta_0)}{f(x;\theta)} \right] \right) \leq \mathbb{E}_{\theta} \left[ \varphi\left( \frac{f(x;\theta_0)}{f(x;\theta)} \right) \right]$$
+
+计算期望值：
+
+$$\mathbb{E}_{\theta} \left[ \frac{f(x;\theta_0)}{f(x;\theta)} \right] = \int_{-\infty}^{\infty} \frac{f(x;\theta_0)}{f(x;\theta)} f(x;\theta) dx$$
+
+$$= \int_{-\infty}^{\infty} f(x;\theta_0) dx = 1$$
+
+因此：
+
+$$\varphi(1) = 1 \times \log 1 = 0 \leq \mathbb{E}_{\theta} \left[ \frac{f(x;\theta_0)}{f(x;\theta)} \log \frac{f(x;\theta_0)}{f(x;\theta)} \right]$$
+
+定义损失函数：
+
+$$l(\theta) = \mathbb{E}_{\theta} \left[ \frac{f(x;\theta_0)}{f(x;\theta)} \log \frac{f(x;\theta_0)}{f(x;\theta)} \right] \geq 0$$
+
+且 $l(\theta_0) = 0$，因此 $\theta_0$ 是 $l(\theta)$ 的最小值点。
+
+经验估计为：
+
+$$l(\theta) \approx \frac{1}{n} \sum_{i=1}^n \frac{f(x_i;\theta_0)}{f(x_i;\theta)} \log \frac{f(x_i;\theta_0)}{f(x_i;\theta)}$$
+
+**关键结论：** 最大似然估计等价于最小化 KL 散度，这为 MLE 提供了信息论的理论基础。
+
+Empirical loss means that since we do not know the true distribution, we could use the sample to approximate the loss function.
+
+
+DeepSeek loss function---喂数据---梯度下降---LLM
+
+
+
+
+
 
 statistical distribution
 
