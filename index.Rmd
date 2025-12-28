@@ -20,7 +20,7 @@ Yu Lu, an Applied Statistics student focusing on biostatistics learning in Schoo
 ::: {.column width="30%"}
 ![](){width="100%"}
 
-![](proabout.jpg)
+![](proabout0.png)
 :::
 :::
 
