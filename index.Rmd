@@ -11,7 +11,8 @@ output:
 ::: {.column width="70%"}
 $~$
 
-Yu Lu, an Applied Statistics student focusing on biostatistics learning in School of Mathematics and Physics at Xi'an Jiaotong-Liverpool University (XJTLU). I am interested in using my spare time reading statistical inference related books, running / biking for long distances around the city and eating good food with friends while chatting about life (sometimes, about math or philosophy). One more very enjoyable thing for me that saves my spirit is to chatting with professors in XJTLU math area since they are really good at telling stories about math and their enthusiasm always overflows the XJTLU math building. Learning by myself is tough but chatting with people in the field that I want to learn is always a good way to keep me motivated. Although I consider myself introverted and not always inclined to socialize, I finds deep fulfillment in helping others understand mathematical concepts. Step by step—starting from the basics and reasoning through problems together—has helped me rediscover the true meaning of learning.
+Yu Lu, an [Applied Statistics student focusing on biostatistics](https://www.xjtlu.edu.cn/en/study/undergraduate/applied-statistics) learning in Wisdom Lake Acedemy of Pharamacy and School of Mathematics and Physics at [Xi'an Jiaotong-Liverpool University](https://www.xjtlu.edu.cn/). 
+
 :::
 
 
@@ -26,7 +27,41 @@ Yu Lu, an Applied Statistics student focusing on biostatistics learning in Schoo
 
 ### Current Progresses
 
-Keep going for being "a person who can coax treasure out of messy, unstructured data" especially biological data.
+- [Projects](https://yuuuulu.github.io/stat.pre/)
+
+- [Conference Paper 1 -- TB-DeepSeek-Agent: A Large Language Model for Tuberculosis Incidence Prediction with Web-Based Automatic Report](https://link.springer.com/chapter/10.1007/978-981-95-4049-5_14)
+
+- [Working Papers Waiting...].....
+
+
+- Keep going for being "a person who can coax treasure out of messy, unstructured data"
+
+
+### Research Interests (Stii in my exploration to future specific research direction...)
+
+- Statistical Learning (Machine Learning):
+
+  [notes (messy notes)]((https://yuuuulu.github.io/Math-s-interesting-things/stat_learn.html))
+  
+  [notes including R-code and basic knowledge](https://yuuuulu.github.io/Math-s-interesting-things/mth1113.html)
+  
+
+- [(Bayesian) Statistical Inference](https://studio.youtube.com/playlist/PLsCS49fLu9siSOv2EfayvNCishUEctIKx/edit) which has applied on the [2025 American Mathematical Modeling Contest (MMC) Problem C](https://yuuuulu.github.io/MathematicalModeling2025/): [Hierarchical Bayesian combinatorial ARMA model](https://yuuuulu.github.io/MathematicalModeling2025/The_Riddle_of_Olympic_Medal_Table__Mathematical_Model_Prediction_and_Multi_factor_Analysis.pdf); current working research.
+
+- [High-dimensional Statistics](https://www.youtube.com/playlist?list=PLsCS49fLu9siPvFTKi6AB1SqaNqRTD-hG)--learning now.
+
+- Biostatistics and Epidemiology (Practices including [2024 SURF's Survival Analysis on Poisoning](https://yuuuulu.github.io/stat.pre/2024surf.html); [2025 SURF](https://yuuuulu.github.io/2025SURF/); [2025 Biostat Contest](https://yuuuulu.github.io/mixed-model-repeated-measures-depression-clinical-data/) )
+
+
+- [Differential Equation applied on PK and PD modeling APH207 motivation](https://www.youtube.com/playlist?list=PLsCS49fLu9sj3VgtFBdA0QctfwLcpEueM)
+
+### Presentation
+
+- [Penalized Regression](PenalizedRegression.pdf)
+
+- [EM Algorithm Application](https://www.youtube.com/playlist?list=PLsCS49fLu9siSOv2EfayvNCishUEctIKx)
+
+
 
 $~$
 
