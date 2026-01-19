@@ -25,7 +25,7 @@ Yu Lu, an [Applied Statistics student focusing on biostatistics](https://www.xjt
 :::
 :::
 
-### Current Progresses
+### Papers and Projects
 
 - [Projects](https://yuuuulu.github.io/stat.pre/)
 
