@@ -50,7 +50,7 @@ Yu Lu, an [Applied Statistics student focusing on biostatistics](https://www.xjt
 
 - [High-dimensional Statistics](https://www.youtube.com/playlist?list=PLsCS49fLu9siPvFTKi6AB1SqaNqRTD-hG)--learning now.
 
-- Biostatistics and Epidemiology (Practices including [2024 SURF's Survival Analysis on Poisoning](https://yuuuulu.github.io/stat.pre/2024surf.html); [2025 SURF](https://yuuuulu.github.io/2025SURF/); [2025 Biostat Contest](https://yuuuulu.github.io/mixed-model-repeated-measures-depression-clinical-data/) )
+- Biostatistics and Epidemiology (Practices including [2024 SURF (Undergraduate Research Fellowship)'s Survival Analysis on Poisoning](https://yuuuulu.github.io/stat.pre/2024surf.html); [2025 SURF](https://yuuuulu.github.io/2025SURF/); [2025 Biostat Contest](https://yuuuulu.github.io/mixed-model-repeated-measures-depression-clinical-data/) )
 
 
 - [Differential Equation applied on PK and PD modeling APH207 motivation](https://www.youtube.com/playlist?list=PLsCS49fLu9sj3VgtFBdA0QctfwLcpEueM)
@@ -61,6 +61,19 @@ Yu Lu, an [Applied Statistics student focusing on biostatistics](https://www.xjt
 
 - [EM Algorithm Application](https://www.youtube.com/playlist?list=PLsCS49fLu9siSOv2EfayvNCishUEctIKx)
 
+- [Introduction to the Biostatistics major](生统专业分享2025.pdf)
+
+### Honors and Awards
+
+- 2024 Academic Achievement Scholarship of XJTLU
+
+- 2025 Academic Excellence Scholarship of XJTLU
+
+- [2025 American Mathematical Modeling Contest (MMC) Honorable Mention](https://yuuuulu.github.io/MathematicalModeling2025/)
+
+- [2024-2025 Dean List of Wisdom Lake Academy of Pharmacy, XJTLU](https://mp.weixin.qq.com/s/nDTlpu-iTPVcALSPk6fo2w)
+
+- [2024 XJTLU Biostatistics Contest First Prize](https://mp.weixin.qq.com/s/mT_CkoXjRcwM_FpTXjIyAg)
 
 
 $~$
