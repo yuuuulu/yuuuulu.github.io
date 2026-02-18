@@ -37,6 +37,8 @@ Yu Lu, an [Applied Statistics student focusing on biostatistics](https://www.xjt
 - Keep going for being "a person who can coax treasure out of messy, unstructured data"
 
 
+<!--
+
 ### Research Interests (Stii in my exploration to future specific research direction...)
 
 - Statistical Learning (Machine Learning):
@@ -54,6 +56,7 @@ Yu Lu, an [Applied Statistics student focusing on biostatistics](https://www.xjt
 
 
 - [Differential Equation applied on PK and PD modeling APH207 motivation](https://www.youtube.com/playlist?list=PLsCS49fLu9sj3VgtFBdA0QctfwLcpEueM)
+
 
 ### Presentation
 
@@ -78,7 +81,7 @@ Yu Lu, an [Applied Statistics student focusing on biostatistics](https://www.xjt
 ### Teaching Experience
 
 - 2025-2026 Pure Mathematics Help Center at XJTLU School of Mathematics and Physics: Every Wednesday afternoon during the teaching week, the Department of Pure Mathematics organizes a help center to answer questions for sophomore students, explain exercises on mathematical analysis and advanced algebra, and guide their professional knowledge and learning.
-
+-->
 
 $~$
 
