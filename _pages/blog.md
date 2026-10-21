@@ -29,6 +29,9 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 <h2>A Brand New Semester and also last year at XJTLU...</h2>
 <p class="blog-date">2026-09-01</p>
 <p>I feel incredibly fortunate and honored to have the chance to undertake my Final Year Project under Dr. Zhu’s supervision. I continually appreciate the elegance with which he explains statistical concepts and addresses research problems.</p>
+<div class="blog-gallery">
+<figure><img src="/assets/img/blog/regression-book.png" alt="Introduction to Linear Regression Analysis book" loading="lazy"></figure>
+</div>
 </article>
 
 <article class="blog-entry" id="seminar">
@@ -90,7 +93,10 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 <figure><img src="/assets/img/blog/akun-linear-algebra.png" alt="akun linear algebra" loading="lazy"></figure>
 <figure><img src="/assets/img/blog/akun-rudin.png" alt="akun rudin" loading="lazy"></figure>
 <figure><img src="/assets/img/blog/akun-apostol.png" alt="akun apostol" loading="lazy"></figure>
+<figure><img src="/assets/img/blog/akun-fourier-book.jpg" alt="Prof. Chi-Kun Lin’s Fourier Analysis and Applications book" loading="lazy"></figure>
+<figure><img src="/assets/img/blog/akun-signed-book.jpg" alt="Prof. Chi-Kun Lin’s handwritten dedication and signature" loading="lazy"></figure>
 </div>
+<p>Later, shortly before Akun left XJTLU, I had the honor of attending his seminars and receiving a personally signed copy of his book.</p>
 </article>
 
 <article class="blog-entry" id="uniform">
@@ -134,6 +140,5 @@ The following memories are undated in my notes.
 
 <div class="blog-gallery">
 <figure><img src="/assets/img/blog/help-center-again.png" alt="help center again" loading="lazy"></figure>
-<figure><img src="/assets/img/blog/regression-book.png" alt="regression book" loading="lazy"></figure>
 </div>
 </article>
