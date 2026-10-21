@@ -16,7 +16,7 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 <table class="blog-index"><thead><tr><th>Date</th><th>Entry</th></tr></thead><tbody>
 <tr><td>2026-09-01</td><td><a href="#final-year-project">A Brand New Semester and also last year at XJTLU</a></td></tr>
 <tr><td>2026-08-17</td><td><a href="#seminar">Three years of stat & public-health seminars</a></td></tr>
-<tr><td>2026-07-15</td><td><a href="#jcsds">The 4th JCSDS</a></td></tr>
+<tr><td>2026-07-15</td><td><a href="#jcsds">The 4th JCSDS and Prof. Jianqing Fan's autograph "Statistics is SURE for you"</a></td></tr>
 <tr><td>2025-12-11</td><td><a href="#warm-help-center">Warm Help Center: learning together</a></td></tr>
 <tr><td>2025-03-22</td><td><a href="#spring-ride">A spring ride by the lake</a></td></tr>
 <tr><td>2024-10-09</td><td><a href="#michael-levitt">A wonderful life in science</a></td></tr>
@@ -45,9 +45,10 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 </article>
 
 <article class="blog-entry" id="jcsds">
-<h2>The 4th JCSDS</h2>
+<h2>The 4th JCSDS and Prof. Jianqing Fan's autograph "Statistics is SURE for you"</h2>
 <p class="blog-date">2026-07-15</p>
-<p>At the 4th Joint Conference on Statistics and Data Science, I had the pleasure of receiving Prof. Jianqing Fan's autograph. It was a memorable moment among the talks and conversations.</p>
+<p>Among the inspiring talks and conversations at the 4th Joint Conference on Statistics and Data Science, one moment stood out: receiving Prof. Jianqing Fan’s autograph. I was truly honored that Prof. Fan kindly agreed to write the exact words I had suggested: “Statistics is SURE for you.” A clever nod to <em>sure screening</em> in ultrahigh-dimensional variable selection, and a personal encouragement that made the moment all the more special.</p>
+<p>A little statistical wordplay, a lot of encouragement, and a memory I’ll surely cherish.</p>
 
 <div class="blog-gallery">
 <figure><img src="/assets/img/blog/jcsds-2026.png" alt="jcsds 2026" loading="lazy"></figure>
