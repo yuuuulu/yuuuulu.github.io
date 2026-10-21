@@ -40,6 +40,7 @@ jobs:
           npm ci
           export JEKYLL_ENV=production
           bundle exec jekyll build
+          touch _site/.nojekyll
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:

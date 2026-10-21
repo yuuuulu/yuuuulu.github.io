@@ -52,6 +52,8 @@ for dirname in ['_pages','_bibliography','_data','_includes','assets']:
 for obsolete in ['assets/img/proabout.webp', 'assets/pdf/imported/APH103_Final_Report.pdf']:
  (out/obsolete).unlink(missing_ok=True)
 shutil.rmtree(out/'assets/img/imported', ignore_errors=True)
+# The starter's demo notebook is not part of this site and requires Jupyter on CI.
+(out/'assets/jupyter/blog.ipynb').unlink(missing_ok=True)
 
 # Remove al-folio author's social data and replace with Yu Lu's.
 if not (out/'_data/socials.yml').exists():
