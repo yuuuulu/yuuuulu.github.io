@@ -1,0 +1,28 @@
+- label: Mathematical Foundations
+  items:
+    - title: Analysis 1
+      url: /math/analysis-1/
+    - title: Calculus
+      url: /math/calculus/
+    - title: Advanced Linear Algebra
+      url: /math/linear-algebra/
+    - title: ODE, PDE, and Fourier Series with codes
+      url: /math/differential-equations/
+- label: Statistics and Learning
+  items:
+    - title: Prob. and Stat.
+      url: /math/probability-statistics/
+    - title: Statistical Learning
+      url: /math/statistical-learning/
+    - title: Mathematical Statistics
+      url: /statistics/mathematical-statistics/
+    - title: Survival Analysis
+      url: /statistics/survival-analysis/
+    - title: Resampling
+      url: /statistics/resampling/
+    - title: Generalized Linear Models
+      url: /statistics/generalized-linear-models/
+    - title: Statistics Tips
+      url: /statistics/statistics-tips/
+    - title: Additional Statistics Notes
+      url: /statistics/additional-notes/

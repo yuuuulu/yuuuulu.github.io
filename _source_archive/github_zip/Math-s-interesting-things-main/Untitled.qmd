@@ -1,0 +1,6 @@
+---
+title: "发疯日记清空版本"
+format: pdf
+editor: visual
+---
+

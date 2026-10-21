@@ -1,0 +1,60 @@
+---
+layout: page
+title: "Statistics Tips"
+permalink: /statistics/statistics-tips/
+nav: false
+lecture_note: true
+math: true
+toc:
+  sidebar: left
+---
+
+[← Lecture Notes]({{ '/math/' | relative_url }})
+
+{% raw %}
+# Summary of Statistical Concepts
+
+## Ordinary Least Squares (OLS) and Maximum Likelihood Estimation (MLE)
+
+-   OLS has a geometric interpretation where the goal is to minimize the sum of squared residuals.
+-   In Simple Linear Regression (SLR), the OLS and MLE methods produce the same estimates, showcasing their equivalence in this context.
+
+## Relationships Between Distributions
+
+-   The square of the t-distribution ($t^2$) follows an F-distribution, illustrating the connections between different statistical distributions and their roles in hypothesis testing.
+
+## Gamma Function
+
+-   The Gamma function is fundamental in defining distributions like the Chi-square and F-distributions.
+-   These functions are key to understanding the mathematical foundations of many statistical tests.
+
+## Partial F-Test
+
+-   In Multiple Linear Regression (MLR), the Partial F-Test is valuable for testing the significance of a subset of variables.
+-   It allows for comparison between different models and is a more nuanced approach within MLR.
+
+## Uniform Distribution
+
+-   The simplicity of the Uniform distribution makes it a versatile tool for generating other distributions and models in statistical analysis.
+
+## Bayes' Theorem and Its Applications
+
+-   Bayes' Theorem is crucial in techniques like Linear Discriminant Analysis (LDA), Quadratic Discriminant Analysis (QDA), and Naive Bayes.
+-   It is especially influential in probabilistic modeling and classification tasks.
+
+## F-Test and t-test in Simple Linear Regression
+
+-   $t^2$=FThe F-test assesses the overall significance of the regression model, whereas the t-test is often used to evaluate individual coefficients, particularly in one-sided tests.
+
+## Understanding Hypothesis Tests
+
+-   Each hypothesis test has its own specific interpretation, aiding in the meaningful analysis of data.
+-   The philosophy behind tests like the F-test is grounded in the shape and properties of the underlying distribution.
+-   Understanding the connections between these tests and more familiar ones (like the Z-test) can clarify their significance and application.
+
+
+
+## Tailor series and homoscedasticity in regression analysis
+
+tailor series helps to diagnose non-linearity in the neighborhood. If the second-derivative of talor is not zero evn the third. We should consider higher ......
+{% endraw %}

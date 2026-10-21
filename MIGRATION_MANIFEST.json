@@ -1,0 +1,59 @@
+{
+  "method": "strict contiguous source slices for teaching.Rmd; all source files byte-for-byte archived; Markdown/Quarto markup adapted only in their displayed versions",
+  "teaching_body_start_line": 11,
+  "teaching_body_end_line": 339,
+  "reading_slices": [
+    {
+      "source": "teaching.Rmd",
+      "start_line": 11,
+      "end_line": 62,
+      "destination": "_pages/notes/statistics-history.md",
+      "sha256": "c2bc25aa57e68041903b5c9a04fbff8c0173e4eeba56230c7ba52ee16c78efc3"
+    },
+    {
+      "source": "teaching.Rmd",
+      "start_line": 63,
+      "end_line": 171,
+      "destination": "_pages/notes/estimation.md",
+      "sha256": "e8f5c2bab8c923e45669e0eb40dbb6ea90b6d7561a2e52941e119509e7fae314"
+    },
+    {
+      "source": "teaching.Rmd",
+      "start_line": 172,
+      "end_line": 261,
+      "destination": "_pages/notes/kl-divergence.md",
+      "sha256": "cced526775b7eab53d0e8e087065454a35a172563b332597cb6d3b3fbabb1fc1"
+    },
+    {
+      "source": "teaching.Rmd",
+      "start_line": 262,
+      "end_line": 292,
+      "destination": "_pages/notes/reading-books.md",
+      "sha256": "bc0957bd8bde6b23dc063f52fd71b7f6e451a139fe299beb5a1ecc25d3f5bca4"
+    },
+    {
+      "source": "teaching.Rmd",
+      "start_line": 293,
+      "end_line": 339,
+      "destination": "_pages/notes/philosophy.md",
+      "sha256": "e8ccbb11c6200a9f58a983550412be81510af3f71b6e5c311b32500169f1d1e9"
+    }
+  ],
+  "archived_files_sha256": {
+    "index.Rmd": "95ae46a8157537aae4097ecb9d7cd0ccfdcf525970dcc75426c927c595268d69",
+    "hello.Rmd": "b24217162516deda0b4384efba945ade6e699ab4f0476cd36698f07843718282",
+    "teaching.Rmd": "e67920252e36ad4664cb0fd4ca673b8e355231a8524a7db914bbb8b5ac096a7e",
+    "resource.Rmd": "e39fcbf3288f5ef1d3590f2f5bcdbb066e47444fc5461aef9310277e24a591e0",
+    "about.qmd": "d1254886306dc3df3f97e755eef0b1ed58be0fb208d286fa2b306a9b82073572",
+    "references.bib": "7adcf2b811bc718793a110a6f9bd4e0fbc886a0b49810d475dcbbe44fa8aca3a"
+  },
+  "imported_from_github_zip": [
+    "Math-s-interesting-things-main",
+    "stat.pre-main"
+  ],
+  "external_projects_not_in_uploaded_zip": [
+    "https://yuuuulu.github.io/MathematicalModeling2025/",
+    "https://yuuuulu.github.io/2025SURF/",
+    "https://yuuuulu.github.io/mixed-model-repeated-measures-depression-clinical-data/"
+  ]
+}

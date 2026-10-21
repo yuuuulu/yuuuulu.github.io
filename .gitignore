@@ -1,4 +1,11 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+_site/
+_site_build/
+.jekyll-cache/
+.sass-cache/
+.bundle/
+vendor/
+.DS_Store
+_al-folio-upstream/
+
+__pycache__/
+*.pyc

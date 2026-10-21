@@ -1,0 +1,156 @@
+# 1. Regression Models
+
+## One Individual's Data
+For one individual $z_1, \dots, z_p$, the failure time $t_i$, the failure rate (intensity):
+
+$$
+\lambda(t \mid z_i) = \exp(z_i^T \beta) \times \lambda_0(t)
+$$
+
+Where $z_i$ represents the variables of the individual $i$, and $\beta$ is a vector of coefficients.
+
+## Proportional Hazard Assumption
+Under the proportional hazard assumption, the hazard ratio between different individuals remains constant over time:
+
+$$
+\frac{\lambda(t \mid z_i)}{\lambda(t \mid z_j)} = \exp((z_i - z_j)^T \beta)
+$$
+
+## Likelihood Function
+The likelihood function $L(\beta)$ for the hazard rate for censored data is:
+
+$$
+L(\beta) = \prod_{i=1}^{n} \left[\lambda(t_i \mid z_i)\right]^{\delta_i} \exp \left( - \int_0^{t_i} \lambda(s \mid z_i) ds \right)
+$$
+
+For censored data:
+
+$$
+\delta_i = 
+\begin{cases} 
+1 & \text{if event observed (uncensored)} \\ 
+0 & \text{if censored} 
+\end{cases}
+$$
+
+Thus, the partial likelihood function $L_P(\beta)$ is:
+
+$$
+L_P(\beta) = \prod_{i=1}^{n} \frac{\exp(z_i^T \beta)}{\sum_{j \in R(t_i)} \exp(z_j^T \beta)}
+$$
+
+Where $R(t_i)$ is the set of individuals at risk at time $t_i$.
+
+# 2. Product-Limit Method for Censored Data
+
+Assume $n$ independent individuals. The survival probability is modeled as:
+
+$$
+S(t) = P(T \geq t) = \prod_{j: t_j \leq t} \left(1 - \frac{d_j}{Y_j} \right)
+$$
+
+Where:
+
+- $d_j$ is the number of failures at time $t_j$,
+- $Y_j$ is the number of individuals at risk just before time $t_j$.
+
+For censored data, the hazard rate:
+
+$$
+\lambda_j = \frac{d_j}{Y_j}
+$$
+
+The likelihood function from MLE is then:
+
+$$
+L = \prod_{j=1}^{k} \left( \frac{d_j}{Y_j} \right)^{d_j} \left( 1 - \frac{d_j}{Y_j} \right)^{Y_j - d_j}
+$$
+
+# 1. Log-Rank Test (2-Sample)
+
+## Overview
+- **Slight advantage**: Is it significant enough? Maybe within the noise.
+- **At first glance**: This can be seen as a $t$-test (2-sample), where censoring $\to X$.
+
+## Table for Seamlessly Handling with Ties
+
+|      | Group 1 | Group 2 | Total  |
+|------|---------|---------|--------|
+| Died | $d_{1k}$| $d_{2k}$| $d_k$  |
+| Survived |       |         |        |
+| Total| $r_{1k}$| $r_{2k}$| $r_k$  |
+
+- $d_k$: death time.
+- $r_k$: number at risk at time $t_k$.
+- $d_{1k}$ and $d_{2k}$: number of deaths in group 1 and group 2 respectively.
+
+To test the hypothesis $H_0$: No difference between survival curves:
+
+$$
+E(X_k) = \frac{r_{1k}}{r_k} d_k
+$$
+
+The test statistic:
+
+$$
+W = \frac{\sum_{k=1}^{K} (X_k - E(X_k))}{\sqrt{\text{Var}(X_k)}}
+$$
+
+Where:
+
+$$
+\text{Var}(X_k) = \frac{r_{1k} r_{2k} d_k (r_k - d_k)}{r_k^2 (r_k - 1)}
+$$
+
+And under $H_0$:
+
+$$
+W \sim N(0,1)
+$$
+
+From this, the $p$-value is calculated to determine the significance.
+
+# 2. Cox (1972)
+
+## Failure Time
+Consider the failure time $T$ (discrete or continuous random variable). Define the survival function as:
+
+$$
+S(t) = P(T \geq t) = 1 - F(t)
+$$
+
+Where $F(t)$ is the distribution function.
+
+### Discrete Case
+The failure rate $\lambda$ is defined as:
+
+$$
+\lambda(t_k) = \frac{P(t_k \leq T < t_{k+1} \mid T \geq t_k)}{h_k} = \frac{f(t_k)}{S(t_k)}
+$$
+
+For the continuous case, the hazard function is:
+
+$$
+\lambda(t) = \lim_{\Delta t \to 0} \frac{P(t \leq T < t + \Delta t \mid T \geq t)}{\Delta t} = \frac{f(t)}{S(t)}
+$$
+
+Thus, the relationship between the hazard function and the survival function is:
+
+$$
+\lambda(t) = -\frac{d}{dt} \log S(t)
+$$
+
+Which implies:
+
+$$
+S(t) = e^{-\int_0^t \lambda(u) du}
+$$
+
+### Likelihood and Censoring
+For censored data, the likelihood function becomes:
+
+$$
+L = \prod_{i=1}^{n} \left[ \lambda(t_i) \right]^{\delta_i} \left[ S(t_i) \right]^{1 - \delta_i}
+$$
+
+Where $\delta_i = 1$ if the event is observed and $\delta_i = 0$ if censored.

@@ -1,0 +1,39 @@
+---
+layout: page
+title: Resources
+permalink: /resources/
+nav: true
+nav_order: 7
+description: Software, learning links, and community resources.
+---
+
+#### Softwares I use everyday now
+
+-   [Quarto](https://quarto.org/)
+
+-   [Zotero](https://www.zotero.org/)
+
+-   [Posit/Rstudio](https://posit.co/)
+
+-   [Shiny](https://shiny.posit.co/py/)
+
+-   [VScode](https://code.visualstudio.com/)
+
+-   [IDEA/JAVA](https://www.jetbrains.com/idea/)
+
+#### Learning now
+
+-   [ISLR](https://www.edx.org/learn/statistics/stanford-university-statistical-learning?index=product&queryID=bade83630a78d19c4c0b90c0d7a2959f&position=4&results_level=second-level-results&term=Stanford+statistics&objectID=course-ef2fc3ac-b0bc-4004-bd30-d610832d0cdd&campaign=Statistical+Learning+with+R&source=edX&product_category=course&placement_url=https%3A%2F%2Fwww.edx.org%2Fsearch)
+
+-   [R in action](https://github.com/Rkabacoff/RiA3)
+
+-   [Statitical Inference(Casella, George and Berger, Roger)](https://github.com/yuuuulu/stat-inference/blob/main/stat%20inference.qmd)
+
+
+-   [Stack overflow](https://stackoverflow.com/users/27016089/yu-lu)
+
+
+-   [Cross Validated](https://stats.stackexchange.com/users/427866/yu-lu)
+
+
+-   [MATHEMATICS](https://math.stackexchange.com/users/1243804/yu-lu)

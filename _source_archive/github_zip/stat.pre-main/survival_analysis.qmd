@@ -1,0 +1,205 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+bibliography: references.bib
+---
+
+# cox model
+
+[@cox1972]cox \# 1. Regression Models
+
+## 1.1 One Individual's Data
+
+For an individual with covariates $z_1, \dots, z_p$, the failure time is represented as $t_i$. The failure rate, also known as the hazard function, for this individual is given by:
+
+$$
+\lambda(t \mid z_i) = \exp(z_i^T \beta) \times \lambda_0(t)
+$$
+
+Where: - $z_i$: vector of covariates for individual $i$, - $\beta$: coefficient vector that needs to be estimated, - $\lambda_0(t)$: baseline hazard function (i.e., the hazard when $z_i = 0$).
+
+## 1.2 Proportional Hazard Assumption
+
+Under the proportional hazard assumption, the ratio of hazard functions between two individuals with covariates $z_i$ and $z_j$ remains constant over time:
+
+$$
+\frac{\lambda(t \mid z_i)}{\lambda(t \mid z_j)} = \exp((z_i - z_j)^T \beta)
+$$
+
+This property is what makes the Cox proportional hazards model useful in survival analysis.
+
+## 1.3 Likelihood Function
+
+For censored data, the likelihood function of the hazard rate for $n$ individuals is given by:
+
+$$
+L(\beta) = \prod_{i=1}^{n} \left[ \lambda(t_i \mid z_i) \right]^{\delta_i} \exp \left( - \int_0^{t_i} \lambda(s \mid z_i) ds \right)
+$$
+
+Where: - $t_i$: observed failure or censoring time for individual $i$, - $\delta_i$: event indicator for individual $i$, where $\delta_i = 1$ if the event is observed (failure) and $\delta_i = 0$ if censored.
+
+For computational ease, the partial likelihood function, $L_P(\beta)$, can be expressed as:
+
+$$
+L_P(\beta) = \prod_{i=1}^{n} \frac{\exp(z_i^T \beta)}{\sum_{j \in R(t_i)} \exp(z_j^T \beta)}
+$$
+
+Where: - $R(t_i)$: the set of individuals still at risk at time $t_i$.
+
+------------------------------------------------------------------------
+
+# 2. Product-Limit Method for Censored Data (Kaplan-Meier Estimator)
+
+The Kaplan-Meier estimator is used to estimate the survival probability in the presence of censored data. For $n$ independent individuals, the survival probability is given by:
+
+$$
+S(t) = P(T \geq t) = \prod_{j: t_j \leq t} \left(1 - \frac{d_j}{Y_j} \right)
+$$
+
+Where: - $d_j$: the number of failures at time $t_j$, - $Y_j$: the number of individuals at risk just before time $t_j$.
+
+This estimator assumes that censored data are randomly distributed.
+
+------------------------------------------------------------------------
+
+# 3. Log-Rank Test (2-Sample Comparison)
+
+## 3.1 Overview
+
+The log-rank test is used to compare the survival distributions of two groups. It is a non-parametric test that assumes that the hazard functions are proportional.
+
+-   **Slight advantage**: Is the difference significant enough? This is determined by calculating the test statistic.
+-   **At first glance**: This can be thought of as a generalization of the $t$-test to survival data, where the censoring mechanism is taken into account.
+
+### 1-sample Kaplan-Meire
+
+Unfolds in time
+
+conditional probability
+
+handel more on censoring data(into conditional probability)
+
+with standard error--Green wood's formula
+
+## 3.2 Handling Ties (Log-Rank Test Table)
+
+|          | Group 1  | Group 2  | Total |
+|----------|----------|----------|-------|
+| Died     | $d_{1k}$ | $d_{2k}$ | $d_k$ |
+| Survived |          |          |       |
+| Total    | $r_{1k}$ | $r_{2k}$ | $r_k$ |
+
+Where: - $d_k$: total number of deaths at time $t_k$, - $r_k$: number of individuals at risk at time $t_k$, - $d_{1k}$, $d_{2k}$: number of deaths in group 1 and group 2 at time $t_k$, respectively.
+
+## 3.3 Test Statistic
+
+To test the null hypothesis $H_0$: No difference between survival curves (i.e., $S_1(t) = S_2(t)$), the test statistic is computed as:
+
+$$
+W = \frac{\sum_{k=1}^{K} (O_k - E_k)}{\sqrt{\text{Var}(O_k)}}
+$$
+
+Where: - $O_k$: observed number of events in group 1 at time $t_k$, - $E_k$: expected number of events under the null hypothesis, - $\text{Var}(O_k)$: the variance of $O_k$.
+
+The expectation and variance are calculated as:
+
+$$
+E(O_k) = \frac{r_{1k}}{r_k} d_k
+$$
+
+$$
+\text{Var}(O_k) = \frac{r_{1k} r_{2k} d_k (r_k - d_k)}{r_k^2 (r_k - 1)}
+$$
+
+Under the null hypothesis:
+
+$$
+W \sim N(0,1)
+$$
+
+The $p$-value can be computed from this statistic to assess the significance.
+
+------------------------------------------------------------------------
+
+# 4. Cox (1972) Proportional Hazards Model
+
+### 4.1 Failure Time
+
+Let $T$ be a continuous random variable representing the failure time. The survival function is defined as:
+
+$$
+S(t) = P(T \geq t) = 1 - F(t)
+$$
+
+Where $F(t)$ is the cumulative distribution function (CDF) of $T$.
+
+### 4.2 Discrete Case
+
+In the discrete case, the hazard function $\lambda(t_k)$ at time $t_k$ is defined as:
+
+$$
+\lambda(t_k) = \frac{P(t_k \leq T < t_{k+1} \mid T \geq t_k)}{h_k} = \frac{f(t_k)}{S(t_k)}
+$$
+
+Where $f(t_k)$ is the probability density function (PDF) of $T$ at time $t_k$.
+
+### 4.3 Continuous Case
+
+In the continuous case, the hazard function $\lambda(t)$ is defined as:
+
+$$
+\lambda(t) = \lim_{\Delta t \to 0} \frac{P(t \leq T < t + \Delta t \mid T \geq t)}{\Delta t} = \frac{f(t)}{S(t)}
+$$
+
+The hazard function represents the instantaneous failure rate at time $t$ given survival until time $t$.
+
+The relationship between the hazard function and the survival function is:
+
+$$
+\lambda(t) = -\frac{d}{dt} \log S(t)
+$$
+
+Which implies that:
+
+$$
+S(t) = e^{-\int_0^t \lambda(u) du}
+$$
+
+### 4.4 Likelihood Function for Censored Data
+
+For censored data, the likelihood function can be expressed as:
+
+$$
+L = \prod_{i=1}^{n} \left[ \lambda(t_i) \right]^{\delta_i} \left[ S(t_i) \right]^{1 - \delta_i}
+$$
+
+Where: - $\delta_i = 1$ if the event is observed (failure), - $\delta_i = 0$ if censored.
+
+This likelihood can be maximized to estimate the coefficients $\beta$ in the Cox model.
+
+### 4.5 log rank test for cox
+``` r
+# Load necessary libraries
+library(survival)
+library(survminer)
+
+# Example data: Lung cancer survival dataset
+data(lung)
+lung$sex <- factor(lung$sex, levels = c(1, 2), labels = c("Male", "Female"))
+
+# Kaplan-Meier survival curve
+km_fit <- survfit(Surv(time, status) ~ sex, data = lung)
+ggsurvplot(km_fit, data = lung, pval = TRUE, conf.int = TRUE,
+           risk.table = TRUE, ggtheme = theme_minimal())
+
+# Log-rank test to compare survival between Male and Female
+log_rank_test <- survdiff(Surv(time, status) ~ sex, data = lung)
+print(log_rank_test)
+
+# Cox Proportional Hazards Model
+cox_model <- coxph(Surv(time, status) ~ sex + age + ph.ecog, data = lung)
+summary(cox_model)
+```
+
+# References of relavent paper

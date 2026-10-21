@@ -1,0 +1,1193 @@
+---
+layout: page
+title: "Survey Sampling"
+permalink: /statistics/survey-sampling/
+nav: false
+math: true
+toc:
+  sidebar: left
+---
+
+[← Projects]({{ '/projects/' | relative_url }})
+
+{% raw %}
+# Thanks to Dr. Ying Chen for teaching me this course.
+
+# Reference Book:
+
+Elementary Survey Sampling, 7th Edition, by Richard L. Scheaffer, William Mendenhall III, and Richard L. Ott
+
+# An important example of Survey Sampling
+
+## Sample from real population
+
+### SRP
+
+```r
+# Load packages
+library(dplyr)
+library(sampling)
+library(readxl)
+#Chap 5: Sampling from Real Populations
+#5.1 Data on the population of the United States is given in Appendix C and on the data disk under USPOP. The goal is to estimate the total U.S. population in the 18–24 age group from a sample of states. The states are divided into four geographic regions. Using these regions as strata, select an appropriately sized stratified random sample of states and use their data on population in the 18- to 24-year-old group to estimate the total U.S. population in that age group. Because the total population is available from the data on all the states, check to see if your estimate is within the margin of error you established for your estimate. Compare your result with those of other students in the class.
+setwd("/Users/luyu/Library/CloudStorage/OneDrive-Xi'anJiaotong-LiverpoolUniversity")
+USPOP <- read_excel("USPOP(3).XLS")
+
+summary(USPOP)
+table(USPOP$Section[-1])
+colnames(USPOP)
+USPOP1<-   USPOP[,-1] %>%
+  mutate(across(where(is.character), ~ as.numeric(gsub(",", "", .))))
+USPOP2 <- cbind(USPOP[,1],USPOP1)
+USPOP2$Youth <- USPOP2[,4]
+sum(USPOP2$Youth[-1])
+sum(USPOP2$Youth[-1])==USPOP2$Youth[1]
+
+sectionweight <-  USPOP2[-1,] %>%
+count(Section)
+
+#Sample observations from each group
+set.seed(2025)
+stratified_sample1 <- USPOP2[-1,] %>%
+  group_by(Section) %>%
+  slice_sample(prop = 0.25)  # Select 25% samples per group
+
+# View the stratified sample
+stratified_sample1
+table(stratified_sample1$Section)
+strataStat <- stratified_sample1[,c("Section","Youth")] %>%
+  group_by(Section) %>%  
+  summarize(
+    Youth_Section_count = sum(!is.na(Youth)),
+    Youth_Section_mean = mean(Youth),
+    Youth_Section_var = var(Youth)
+  )
+
+strataStat
+
+sf <- table(stratified_sample1$Section)/table(USPOP$Section[-1])
+sf
+# Calculate weighted sum
+EstTotal <- sum(sectionweight$n*strataStat$Youth_Section_mean)
+EstTotal
+USPOP2[1,4]
+
+EstVar<- sum(sectionweight$n^2*((1-sf)/strataStat$Youth_Section_count)*strataStat$Youth_Section_var)
+2*sqrt(EstVar)
+
+abs(USPOP2[1,4]-EstTotal)<2*sqrt(EstVar)
+
+#5.2 The Florida Survey Research Center has completed a telephone survey on opinions about recycling for a group of cities in Florida. The questionnaire reproduced on the following pages shows the information that was coded to track the city, county, and interviewer, as well as the survey questions asked. The data are stored on the data disk in a file called RECYCLE. The survey used a stratified random sample design with three strata defined by the level of recycling education in the cities: stratum 1 (low education), stratum 2 (moderate education), and stratum 3 (high education). Each response in the dataset includes a stratum code, and the sample sizes were equal across all three strata. The population sizes for the strata are assumed to be nearly equal as well. Your task is to analyze the survey data by selecting two questions of your choice and following these steps: (a) estimate the true population proportion for each selected question; (b) determine whether the proportion of men responding in the category of interest differs from the proportion of women in the same category for each question; (c) for one of the selected questions, estimate the true population proportions within each of the three strata; and (d) for the question used in part (c), compare the true proportions across the three strata to assess whether they differ. To facilitate analysis, you may organize the sampled data in two-way tables for clearer results and calculations. The full survey questionnaire is available in a Word file linked from electronic Section 5.0.
+RECYCLE <- read_excel("RECYCLE.XLS")
+
+Analysisdata <- RECYCLE[,c("Q2a","Q3","Q24","Stratum")]
+table(Analysisdata$Stratum)
+Q2a <- table(Analysisdata$Stratum,Analysisdata$Q2a)
+Q2a 
+PropQ2a <- prop.table(Q2a, margin = 1)
+PropQ2a
+colMeans(PropQ2a)
+
+Q3 <- table(Analysisdata$Stratum,Analysisdata$Q3)
+Q3 
+PropQ3 <- prop.table(Q3, margin = 1)
+PropQ3
+colMeans(PropQ3)
+
+Q2aGender <- table(Analysisdata$Q24,Analysisdata$Q2a)
+Q2aGender 
+PropQ2aGender <- prop.table(Q2aGender, margin = 1)
+PropQ2aGender
+
+Q3Gender <- table(Analysisdata$Q24,Analysisdata$Q3)
+Q3Gender 
+PropQ3Gender <- prop.table(Q3Gender, margin = 1)
+PropQ3Gender
+
+# 5.3 The CARS93 data, in Appendix C, has cars classified as to being one of six different types: small, compact, midsize, large, sporty, or van. A numerical type code is given in the data set, in addition to the actual name of the type. The goal of this activity is to see if poststratification on car type pays any dividends when estimating:
+#  Average city gasoline mileage
+# Proportion of cars with air bags
+# for the cars in this population.
+CARS93 <- read_excel("CARS93.XLS")
+summary(CARS93)
+#Simple random sampling
+set.seed(2025)
+CARS93Sample1 <- CARS93 %>%
+  slice_sample(prop = 0.25)
+CARS93Sample1
+n <- nrow(CARS93Sample1)
+
+mean(CARS93Sample1$MPGCITY)
+2*sd(CARS93Sample1$MPGCITY)
+
+pairbags <- sum(CARS93Sample1$AIRBAGS>0)/n
+pairbags
+varp <- pairbags*(1-pairbags)/(n-1)
+2*sqrt(varp)
+#poststratification on car type
+N <- nrow(CARS93)
+table(CARS93$TYPE)
+SumStratum <- CARS93 %>%
+  group_by(TYPE) %>%  
+  summarize(
+    NStratum = sum(!is.na(TYPE)),
+    WStratum = sum(!is.na(TYPE))/N
+  )
+SumStratum 
+
+SampleSumStratum <- CARS93Sample1 %>%
+  group_by(TYPE) %>%  
+  summarize(
+    MPGCITY_TYPE_count = sum(!is.na(MPGCITY)),
+    MPGCITY_TYPE_mean = mean(MPGCITY),
+    MPGCITY_TYPE_var = var(MPGCITY)
+  )
+SampleSumStratum
+
+sf <- SampleSumStratum$MPGCITY_TYPE_count/SumStratum$NStratum
+sf
+# Calculate weighted sum
+#MPGCITY
+MPGCITYPostmean <- sum(SumStratum$WStratum*SampleSumStratum$MPGCITY_TYPE_mean)
+MPGCITYPostmean
+
+EstVar<- sum(SumStratum$WStratum^2*((1-sf)/SampleSumStratum$MPGCITY_TYPE_count)*SampleSumStratum$MPGCITY_TYPE_var)
+2*sqrt(EstVar)
+
+#AIRBAGS
+SampleSumStratumAIRBAGS <- CARS93Sample1 %>%
+  group_by(TYPE) %>%  
+  summarize(
+    AIRBAGS_TYPE_count = sum(!is.na(AIRBAGS)),
+    AIRBAGS_TYPE_prop = sum(AIRBAGS>0)/AIRBAGS_TYPE_count,
+    AIRBAGS_TYPE_var = AIRBAGS_TYPE_prop*(1-AIRBAGS_TYPE_prop)
+  )
+SampleSumStratumAIRBAGS
+
+
+# Calculate weighted sum
+AIRBAGSPostProp <- sum(SumStratum$WStratum*SampleSumStratumAIRBAGS$AIRBAGS_TYPE_prop)
+AIRBAGSPostProp
+
+EstVar<- sum(SumStratum$WStratum^2*((1-sf)/SampleSumStratumAIRBAGS$AIRBAGS_TYPE_count)*SampleSumStratumAIRBAGS$AIRBAGS_TYPE_var)
+2*sqrt(EstVar)
+
+# 5.6
+
+HeightProb <- read_excel("EXPERIENCE5.6.XLS")
+summary(HeightProb)
+HeightProb
+PROBM <- as.matrix(HeightProb[,"PROB-M"])
+PROBF <- as.matrix(HeightProb[,"PROB-F"])
+PROB <- as.matrix(HeightProb[,"PROB"])
+
+n <- 20
+MaleSample <- sample(HeightProb$Height, size = n, replace = TRUE, prob = PROBM)
+MaleSample
+FemaleSample <- sample(HeightProb$Height, size = n, replace = TRUE, prob = PROBF)
+FemaleSample
+(mean(MaleSample)+mean(FemaleSample))/2
+(1/n)*(var(MaleSample)+var(FemaleSample))/4
+
+AdultSample <- sample(HeightProb$Height, size = 2*n, replace = TRUE, prob = PROB)
+AdultSample
+mean(AdultSample)
+var(AdultSample)/(2*n)
+
+```
+
+
+
+### 5.1
+
+Data on the population of the United States is given in Appendix C and on the data disk under USPOP. The goal is to estimate the total U.S. population in the 18–24 age group from a sample of states. The states are divided into four geographic regions. Using these regions as strata, select an appropriately sized stratified random sample of states and use their data on population in the 18- to 24-year-old group to estimate the total U.S. population in that age group. Because the total population is available from the data on all the states, check to see if your estimate is within the margin of error you established for your estimate. Compare your result with those of other students in the class.
+
+```r
+# Load packages
+library(dplyr)
+library(sampling)
+library(readxl)
+#Chap 5: Sampling from Real Populations
+
+setwd("/Users/luyu/Library/CloudStorage/OneDrive-Xi'anJiaotong-LiverpoolUniversity")
+USPOP <- read_excel("USPOP.XLS")
+
+summary(USPOP)
+table(USPOP$Section[-1])
+colnames(USPOP)
+USPOP1<-   USPOP[,-1] %>%
+  mutate(across(where(is.character), ~ as.numeric(gsub(",", "", .))))
+USPOP2 <- cbind(USPOP[,1],USPOP1)
+USPOP2$Youth <- USPOP2[,4]
+sum(USPOP2$Youth[-1])
+sum(USPOP2$Youth[-1])==USPOP2$Youth[1]
+
+sectionweight <-  USPOP2[-1,] %>%
+count(Section)
+
+#Sample observations from each group
+set.seed(2025)
+stratified_sample1 <- USPOP2[-1,] %>%
+  group_by(Section) %>%
+  slice_sample(prop = 0.25)  # Select 25% samples per group
+
+# View the stratified sample
+stratified_sample1
+table(stratified_sample1$Section)
+strataStat <- stratified_sample1[,c("Section","Youth")] %>%
+  group_by(Section) %>%  
+  summarize(
+    Youth_Section_count = sum(!is.na(Youth)),
+    Youth_Section_mean = mean(Youth),
+    Youth_Section_var = var(Youth)
+  )
+
+strataStat
+
+sf <- table(stratified_sample1$Section)/table(USPOP$Section[-1])
+sf
+# Calculate weighted sum
+EstTotal <- sum(sectionweight$n*strataStat$Youth_Section_mean)
+EstTotal
+USPOP2[1,4]
+
+EstVar<- sum(sectionweight$n^2*((1-sf)/strataStat$Youth_Section_count)*strataStat$Youth_Section_var)
+2*sqrt(EstVar)
+
+abs(USPOP2[1,4]-EstTotal)<2*sqrt(EstVar)
+```
+
+### 5.2
+
+The Florida Survey Research Center has completed a telephone survey on opinions about recycling for a group of cities in Florida. The questionnaire reproduced on the following pages shows the information that was coded to track the city, county, and interviewer, as well as the survey questions asked. The data are stored on the data disk in a file called RECYCLE. The survey used a stratified random sample design with three strata defined by the level of recycling education in the cities: stratum 1 (low education), stratum 2 (moderate education), and stratum 3 (high education). Each response in the dataset includes a stratum code, and the sample sizes were equal across all three strata. The population sizes for the strata are assumed to be nearly equal as well. Your task is to analyze the survey data by selecting two questions of your choice and following these steps:
+
+(a) estimate the true population proportion for each selected question; (b) determine whether the proportion of men responding in the category of interest differs from the proportion of women in the same category for each question;
+(b) for one of the selected questions, estimate the true population proportions within each of the three strata; and (d) for the question used in part (c), compare the true proportions across the three strata to assess whether they differ.
+
+To facilitate analysis, you may organize the sampled data in two-way tables for clearer results and calculations. The full survey questionnaire is available in a Word file linked from electronic Section 5.0.
+
+```r
+setwd("/Users/luyu/Library/CloudStorage/OneDrive-Xi'anJiaotong-LiverpoolUniversity")
+RECYCLE <- read_excel("RECYCLE.XLS")
+
+Analysisdata <- RECYCLE[,c("Q2a","Q3","Q24","Stratum")]
+table(Analysisdata$Stratum)
+Q2a <- table(Analysisdata$Stratum,Analysisdata$Q2a)
+Q2a 
+PropQ2a <- prop.table(Q2a, margin = 1)
+PropQ2a
+colMeans(PropQ2a)
+
+Q3 <- table(Analysisdata$Stratum,Analysisdata$Q3)
+Q3 
+PropQ3 <- prop.table(Q3, margin = 1)
+PropQ3
+colMeans(PropQ3)
+
+Q2aGender <- table(Analysisdata$Q24,Analysisdata$Q2a)
+Q2aGender 
+PropQ2aGender <- prop.table(Q2aGender, margin = 1)
+PropQ2aGender
+
+Q3Gender <- table(Analysisdata$Q24,Analysisdata$Q3)
+Q3Gender 
+PropQ3Gender <- prop.table(Q3Gender, margin = 1)
+PropQ3Gender
+```
+
+### 5.3
+
+The CARS93 data, in Appendix C, has cars classified as to being one of six different types: small, compact, midsize, large, sporty, or van. A numerical type code is given in the data set, in addition to the actual name of the type. The goal of this activity is to see if poststratification on car type pays any dividends when estimating:
+
+Average city gasoline mileage
+
+Proportion of cars with air bags
+
+for the cars in this population
+
+```r
+setwd("/Users/luyu/Library/CloudStorage/OneDrive-Xi'anJiaotong-LiverpoolUniversity")
+CARS93 <- read_excel("CARS93.XLS")
+summary(CARS93)
+#Simple random sampling
+set.seed(2025)
+CARS93Sample1 <- CARS93 %>%
+  slice_sample(prop = 0.25)
+CARS93Sample1
+n <- nrow(CARS93Sample1)
+
+mean(CARS93Sample1$MPGCITY)
+2*sd(CARS93Sample1$MPGCITY)
+
+pairbags <- sum(CARS93Sample1$AIRBAGS>0)/n
+pairbags
+varp <- pairbags*(1-pairbags)/(n-1)
+2*sqrt(varp)
+#poststratification on car type
+N <- nrow(CARS93)
+table(CARS93$TYPE)
+SumStratum <- CARS93 %>%
+  group_by(TYPE) %>%  
+  summarize(
+    NStratum = sum(!is.na(TYPE)),
+    WStratum = sum(!is.na(TYPE))/N
+  )
+SumStratum 
+
+SampleSumStratum <- CARS93Sample1 %>%
+  group_by(TYPE) %>%  
+  summarize(
+    MPGCITY_TYPE_count = sum(!is.na(MPGCITY)),
+    MPGCITY_TYPE_mean = mean(MPGCITY),
+    MPGCITY_TYPE_var = var(MPGCITY)
+  )
+SampleSumStratum
+
+sf <- SampleSumStratum$MPGCITY_TYPE_count/SumStratum$NStratum
+sf
+# Calculate weighted sum
+#MPGCITY
+MPGCITYPostmean <- sum(SumStratum$WStratum*SampleSumStratum$MPGCITY_TYPE_mean)
+MPGCITYPostmean
+
+EstVar<- sum(SumStratum$WStratum^2*((1-sf)/SampleSumStratum$MPGCITY_TYPE_count)*SampleSumStratum$MPGCITY_TYPE_var)
+2*sqrt(EstVar)
+
+#AIRBAGS
+SampleSumStratumAIRBAGS <- CARS93Sample1 %>%
+  group_by(TYPE) %>%  
+  summarize(
+    AIRBAGS_TYPE_count = sum(!is.na(AIRBAGS)),
+    AIRBAGS_TYPE_prop = sum(AIRBAGS>0)/AIRBAGS_TYPE_count,
+    AIRBAGS_TYPE_var = AIRBAGS_TYPE_prop*(1-AIRBAGS_TYPE_prop)
+  )
+SampleSumStratumAIRBAGS
+
+
+# Calculate weighted sum
+AIRBAGSPostProp <- sum(SumStratum$WStratum*SampleSumStratumAIRBAGS$AIRBAGS_TYPE_prop)
+AIRBAGSPostProp
+
+EstVar<- sum(SumStratum$WStratum^2*((1-sf)/SampleSumStratumAIRBAGS$AIRBAGS_TYPE_count)*SampleSumStratumAIRBAGS$AIRBAGS_TYPE_var)
+2*sqrt(EstVar)
+```
+
+### 5.6
+
+We now move from selecting samples from real sets of data to selecting samples from probability distributions. The probability distributions partially given in the following table represent the heights of adults in America. The complete set of data is available via a link from electronic Section 5.0. PROB-M denotes the probabilities of various heights (in inches) for males, PROB-F denotes the probabilities for females, and PROB denotes the combined probabilities for adults. The goal is to:
+
+Select samples from these distributions
+
+Compare estimates of the average height from:
+
+Stratified random sampling
+
+Simple random sampling
+
+```{=tex}
+\begin{enumerate}[label=a.]
+    \item Use the discrete distributions sampling tool (available via a link in electronic Section 5.0) to produce random samples from specified discrete distributions.
+    \item Select a random sample of 20 male heights and a separate random sample of 20 female heights. From these data:
+    \begin{itemize}
+        \item Estimate the average height of all adults.
+        \item Calculate a bound on the error of estimation. \\
+        \textit{(Assume that approximately 50\% of adults are male.)}
+    \end{itemize}
+    \item Select a simple random sample of 40 heights from the combined adult height distribution. From these data:
+    \begin{itemize}
+        \item Estimate the average height of all adults.
+        \item Calculate a bound on the error of estimation.
+    \end{itemize}
+    \item Repeat steps (b) and (c) multiple times to generate sampling distributions of estimates in each case.
+    \item Compare the results of (b) and (c). Comment on when stratification appears to improve estimation precision.
+\end{enumerate}
+```
+```{=tex}
+\section*{Height Probability Distribution Table}
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+Height (inches) & PROB-M (Male) & PROB-F (Female) & PROB (Combined) \\
+\midrule
+56 & 0.000000 & 0.000500 & 0.000250 \\
+57 & 0.000000 & 0.003800 & 0.001900 \\
+58 & 0.000000 & 0.005100 & 0.002550 \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+74 & 0.042000 & 0.000000 & 0.021000 \\
+75 & 0.034300 & 0.000000 & 0.017150 \\
+76 & 0.022300 & 0.000000 & 0.011150 \\
+\bottomrule
+\end{tabular}
+\end{center}
+```
+\textit{(Table continues with all height values as shown in the original data.)}
+
+
+# Central Limit Theorem
+
+$X_1, X_2,..., X_n \sim^{iid} F(\mu, \sigma^2)$, $Y_n=\sqrt n \frac{\bar x- \mu}{\sigma} -->N(0,1)$
+
+(p.s. Apart from this, CLT also says that When the sample size is large enough (n $\geq$ 30), the mean distribution of the sample is normal. But here we just prove the above thing)
+
+Proof: (based on MGF)
+
+$z_i =(x_i-\mu)/ \sigma$ where $Y_n=\sqrt n \bar z$ and $z_i \sim ^{iid} F(0,1)$
+
+$$
+E(e^{tZ}) = m(t) \implies 
+\begin{cases} 
+m(0) = 1 \\
+m'(0) = 0 = E(Z) \\
+m''(0) = 1 + 0^2 = 1 = E(Z^2)
+\end{cases}
+$$
+
+$$m(t) = m(0) + m'(0)t + \frac{m''(\xi)}{2}t^2, \quad 0 < \xi < t$$
+
+$$M_{Y_n}(t) = E\left[ \exp\left\{ t \sum_{i=1}^n \frac{Z_i}{\sqrt{n}} \right\} \right] = \prod_{i=1}^n E\left[ \exp\left\{ \frac{t Z_i}{\sqrt{n}} \right\} \right].$$
+
+$$= \left[ m\left( \frac{t}{\sqrt{n}} \right) \right]^n = \left[ 1 + \frac{m''(\xi) t^2}{2n} \right]^n, \quad 0 < \xi < \frac{t}{\sqrt{n}}.$$
+
+$n \to \infty, \quad \frac{t}{\sqrt{n}} \to 0 \implies \xi \to 0 \implies m''(\xi) \to m''(0) = 1.$
+
+$M_{Y_n}(t) \to \left[ 1 + \frac{t^2}{2n} \right]^n \to e^{\frac{t^2}{2}} = E(e^{tZ})$
+
+$\left[ 1 + \frac{t}{n} \right]^n \to e^t \quad \text{Y}_n \xrightarrow{d} N(0,1)$
+
+$\textbf{Hajek}$ Let $m_N = \max_{1 \leq i \leq n} (y_i - \bar{y})$. Then if
+
+$\frac{1}{\min(n, N-n)} \frac{m_N}{S_y^2} \to 0, \quad \frac{\bar{y} - Y}{\sqrt{\text{Var}(\bar y)}} \xrightarrow{d} N(0,1)$
+
+## Limit Distribution
+
+Wold-weorwilz Thm
+
+$\{a_{N_1}, \ldots, a_{N_n}\}$, $\{X_{n_1}, \ldots, X_{n_N}\}$,
+
+$$
+\frac{\frac{1}{N} \sum (a_{N_i} - \overline{a_N})^r}{\left[ \frac{1}{N} \sum (a_{N_i} - \overline{a_N})^2 \right]^{r/2}} = O(1), \quad \overline{a_N} = \frac{1}{N} \sum a_{N_i}.
+$$
+
+$$
+\frac{\frac{1}{N} \sum (X_{N_i} - \overline{X_N})^r}{\left[ \frac{1}{N} \sum (X_{N_i} - \overline{X_N})^2 \right]^{r/2}} = O(1) \quad X_N = \frac{1}{N} \sum X_{N_i}.
+$$ $X_1,X_2,...X_N$ uniformly distributio from $X_{N_1},...$
+
+## Conclusion
+
+Let $X_1, X_2, \ldots, X_n$ i.i.d. $F(\mu, \sigma^2)$. Define $Y_n = \sqrt{n} \frac{\overline{X} - \mu}{\sigma} \xrightarrow{d} N(0,1)$.
+
+Let $L_N = \sum a_{N_i} X_i$, $E[L_N] = N \overline{a_N} \overline{X}$.
+
+$$
+\text{Var}(L_N) = \frac{1}{N-1} \left[ \sum (a_{N_i} - \overline{a_N})^2 \right] \left[ \sum (X_{N_i} - \overline{X})^2 \right]
+$$
+
+As $N \to \infty$,
+
+$$
+P\left\{ \frac{L_N - E(L_N)}{\sqrt{\text{Var}(L_N)}} \leq z \right\} \to \frac{1}{\sqrt{2\pi}} \int_{-\infty}^z e^{-\frac{t^2}{2}} dt.
+$$
+
+### This leads the construction of confidence interval as well as sample size, which is one of keys to SURVEY SAMPLING
+
+# Basic knowledge of Statistics
+
+## Sampling distribution
+
+What we learned before about sampling distribution are the situation of "Sampling with Replacement".
+
+We are beginning to embark a journey that allows us to learn about populations by obtaining data from samples since it is rare that we know all values in an entire population.
+
+**Sampling distribution of a statistic** is the probability distribution of a sample statistics (such as mean/proportion which tend to target the population mean/proportion), with all samples having the same sample size. This concept is important to understand. The behavior of a statistic can be known by understanding its distribution( (The random variable in this case is the value of that sample statistics)). Under certain condition, the distribution of sampling mean/proportion approximates a normal distribution.
+
+**Though statistics does not depend on unknown parameters, the distribution of it depend on unknown parameters.(eg. Normal distribution of sample means depends on population mean(an unknow parameter) and standard deviation)**
+
+(ps: the advantage of sampling with replacement:
+
+when selecting a relatively small sample from a large population, it makes no significant difference whether we sample with or without replacement.
+
+Sampling with replacement results in independent events that are unaffected by previous outcomes, and independent events are easier to analyze and they result in simpler formulas.)
+
+**For a fixed sample size, the mean of all possible sample means is equal to the mean of population though sample means vary(sampling variability)**
+
+### Example
+
+If the population follows $N \sim (\mu, \sigma^2)$, the sampling distribution of mean follows $N \sim (\mu, \sigma^2/\sqrt n)$
+
+# Basic knowledge in Survey sampling
+
+| Elementary Unit                    | In sampling we get information from an individual, which is called an individual unit.                   |
+|-------------------|-----------------------------------------------------|
+| Population                         | The sum of all individual units in a given investigation at a given time.                                |
+| -----------------                  | ------------------------------------------------------------------------------------------------         |
+| Sample                             | A subset of the Population                                                                               |
+| -----------------                  | ------------------------------------------------------------------------------------------------         |
+| Subpopulation                      | A specific part of the Population of the study. Typically, subgroups and study domains are not the same. |
+| -----------------                  | ------------------------------------------------------------------------------------------------         |
+| Enumeration Unit and Sampling Unit | Individuals that would be selected under a particular sampling mechanism.                                |
+| -----------------                  | ------------------------------------------------------------------------------------------------         |
+
+# Chapter 4 Simple Random Sampling (SRS)
+
+## Estimator for population mean
+
+Estimator for population mean $\mu$: $$
+\hat{\mu} = \bar{y} =  \frac{1}{n}\sum_{i=1}^n y_i
+$$
+
+Estimator for the variance of $\bar{y}$ $$
+\hat{V}(\bar{y}) = \left( 1-\frac{n}{N} \right) \frac{s^2}{n}
+$$
+
+## Estimator for population total
+
+Estimator for population total $\hat{\tau}$: $$
+\hat{\tau} = N\bar{y} =  \frac{N}{n}\sum_{i=1}^n y_i
+$$
+
+Estimator for the variance of $\tau$ $$
+\hat{V}(\hat{\tau}) = \hat{V}(N\bar{y}) = N^2 \left( 1-\frac{n}{N} \right) \frac{s^2}{n}
+$$
+
+### A note on Bounds
+
+The estimator for the bound on the error of estimation is $2\sqrt{V(\hat\lambda)}$ where $V(\hat\lambda)$ is the variance of the estimator ($\hat\mu$, $\hat\tau$, or $\hat{p}$).\
+*(Notation deviates from the textbook)*\
+$2$ is an approximated version of a t-test of 1.96 (95% CI of two sides) that the text uses to simplify calculation.
+
+## Sample size estimates for population mean and for population total
+
+Sample size required to estimate $\mu$ or $\tau$ with a bound on the error of estimation $B$. $$
+n = \frac{N\sigma^2}{(N-1)D + \sigma^2} \\
+\text{where} \\
+D = \frac{B^2}{4} \text{ for } \mu \text{ and} \\
+D = \frac{B^2}{4N^2} \text{ for } \tau
+$$
+
+### Fuction in R for sample size estimate
+
+## Estimator for population proportion
+
+Estimator for the population proportion $p$: $$
+\hat{p} = \bar{y} = \frac{\sum_{i=1}^n y_i}{n}
+$$
+
+Estimated variance of $\hat{p}$: $$
+\hat{V}(\hat{p}) = \left(1 - \frac{n}{N} \right) \frac{\hat{p} \hat{q}}{n-1} \\
+\text{where} \\
+\hat{q} = 1-\hat{p}
+$$
+
+## Sample size estimate for population proportion
+
+$\sigma^2$ si replaced with $pq$ in the sample size formula to estimate $p$ with a bound on the error of estimation $B$: $$
+n = \frac{Npq}{(N-1)D + pq} \\
+\text{where} \\
+D = \frac{B^2}{4}
+$$
+
+## Example Exercise
+
+1.  The Fish and Game Department of a particular state was concerned about the direction of its future hunting programs. To provide for a greater potential for future hunting, the department wanted to determine the proportion of hunters seeking any type of game bird. A simple random sample of $n=1000$ of the $N=99,000$ licensed hunters was obtained. Suppose 430 indicated that they hunted game birds. Estimate $p$, the proportion of licensed hunters seeking game birds. Place a bound on the error of estimation. Using the data, determine the sample size the department must obtain to estimate the proportion of game bird hunters, given a bound on the error of estimation of magnitude $B=0.02$. Recall the estimator of a simple random sample. The proportion $\hat{p}=\frac{1}{n} \sum_{i=1}^n y_i=\frac{430}{1000}=\frac{43}{100}$ The bound on the error of $\hat{p}$ is $$
+    \begin{aligned}
+    2 \sqrt{\hat{v}(\hat{p})} & =2 \sqrt{\left(1-\frac{1000}{99000}\right) \times \frac{\frac{43}{100} \times\left(1-\frac{43}{1000}\right)}{1000-1}} \\
+    & =2 \times \sqrt{\frac{98}{99} \times \frac{43}{100} \times \frac{57}{100} \times \frac{1}{998}} \\
+    & =2 \times 0.016 \\
+    & =0.032
+    \end{aligned}
+    $$
+
+If $B=0.02$, then the sample size $n$ the department must obtain to estimate $p$ is $\hat{n}=\frac{N \hat{p} \hat{q}}{(N-1) D+\hat{p} \hat{q}}=\frac{89000 \times \frac{43}{100} \times \frac{57}{100}}{(99000-1) \times\left(\frac{0.02}{1}\right)^2+\frac{43}{100} \times \frac{57}{100}}$ $\approx 2392$.
+
+Therefore in this question the estimator of $P$ $$
+\hat{p}=\frac{25}{30}=\frac{5}{6}
+$$ and the bound of error is $$
+\begin{aligned}
+2 \sqrt{\hat{v}(\hat{p})} & =2 \cdot \sqrt{\left(1-\frac{30}{300}\right) \times \frac{\frac{5}{6} \times \frac{1}{6}}{30-1}} \\
+& =2 \times \sqrt{\frac{7}{10} \times \frac{5}{36} \times \frac{1}{28}} \\
+& =2 \times 0.0657 \\
+& =0.1314
+\end{aligned}
+$$
+
+Here if $B=0.05$, then the sample size required to estimated $p$ is given by $$
+\begin{aligned}
+\hat{n} & =\frac{N p q}{(N-1) D+p q} \\
+& =\frac{300 \times \frac{5}{6} \times \frac{1}{6}}{(300-1) \times \frac{(0.05)^2}{4}+\frac{5}{8} \times \frac{1}{6}} \approx 128
+\end{aligned}
+$$
+
+Therefore, we need 128 samples at least.
+
+2.  State park officials were interested in the proportion of campers who consider the camp-site spacing adequate in a particular campground. They decided to take a simple random sample of $n=30$ from the first $N=300$ camping parties that visited the campground. Let $y_i=0$ if the head of the $i t h$ party sampled does not think the campsite spacing is adequate and $y_i=1$ if he does $(i=1,2, \ldots, 30)$. Use the data in the accompanying table to estimate $p$, the proportion of campers who consider the campsite spacing adequate. Place a bound on the error of estimation. Use the data to determine the sample size required to estimate $p$ with a bound on the error of estimation of magnitude $B=0.05$.
+
+| Camper sampled | Response, $y_i$          |
+|:---------------|:-------------------------|
+| 1              | 1                        |
+| 2              | 0                        |
+| 3              | 1                        |
+| .              | .                        |
+| .              | .                        |
+| 29             | 1                        |
+| 30             | 1                        |
+|                | $\sum_{i=1}^{30} y_i=25$ |
+
+$$
+\begin{aligned}
+& \text {the estimator of the population } \\
+& \text { proportion } p \text { is } \hat{p}=\bar{y}=\frac{\sum_{i=1}^n y_i}{n} \\
+& \text { and the variance of } p \text { is. } \\
+& \qquad \hat{V}(\hat{p})=\left(1-\frac{n}{N}\right) \frac{\hat{p} \hat{q}}{n-1} \text {, where } \hat{q}=1-\hat{p}
+\end{aligned}
+$$ and the bound on the error of estimation is $$
+\begin{gathered}
+2 \sqrt{\hat{V}(\hat{p})}=2 \cdot \sqrt{\left(1-\frac{n}{N 1}\right) \frac{\hat{p} q}{n-1}} \\
+\text { Let } B=2 \sqrt{\hat{V}(\hat{p})} \text {, then } 2 \sqrt{\left(1-\frac{n}{N}\right) \frac{p q}{n-1}}=B
+\end{gathered}
+$$ we have $n=\frac{N p q}{(N-1) D+p q}$, where $q=1-p$ and $D=\frac{B^2}{4}$
+
+3.  An investigator is interested in estimating the total number of "count trees" (trees larger than a specified size) on a plantation of $N=1500$ acres. This information is used to determine the total volume of lumber for trees on the plantation. A simple random sample of $n=100$ one-acre plots was selected, and each plot was examined for the number of count trees. The sample average for the $n=100$ one-acre plots was $\bar{y}=25.2$ with a sample variance of $s^2=136$. Estimate the total number of count trees on the plantation. Place a bound on the error of estimation. Using the results of the survey, determine the sample size required to estimate $\tau$, the total number of trees on the plantation, with a bound on the error of estimation of magnitude $B=1500$.
+
+The estimation of total number of count tree $i$ is given by $\hat{\tau}=N \cdot \bar{y}=1500 \times 25.2=37800$ and the bound on the error of $\hat{\imath}$ is $$
+\begin{aligned}
+2 \cdot N \cdot \sqrt{\hat{V}(\bar{y})} & =2 \cdot N \cdot \sqrt{\left(1-\frac{n}{N}\right) \cdot \frac{S^2}{n}} \\
+& =2 \times 1500 \times \sqrt{\left(1-\frac{100}{1500}\right) \cdot \frac{136}{100}} \\
+& =3379.84
+\end{aligned}
+$$
+
+If $B=1500$, then the sample size required to estimate $\tau$ is given by $$
+\begin{aligned}
+\hat{n} & =\frac{N S^2}{(N-1) D+S^2}, \text { where } D=\frac{B^2}{4 N^2} \\
+& =\frac{1500 \times 136}{(1500-1) \times \frac{(1500)^2}{4 \times(1500)^2}+136} \approx 400
+\end{aligned}
+$$
+
+# Chapter 5 Stratfied Sampling
+
+## Estimator for population mean
+
+Estimator for population mean $\mu$: $$
+\bar{y}_{st} = \frac{1}{N}\sum_{i=1}^LN_i\bar{y}_i
+$$
+
+Estimator of variance of $\bar{y}_{st}$ $$
+\hat{V}(\bar{y}_{st}) = \frac{1}{N^2}\sum_{i=1}^L \left[ N^2_i \left( \frac{N_i-n_i}{N_i} \right) \left( \frac{s^2_i}{n_i} \right) \right]
+$$
+
+## Estimator for population total
+
+Estimator for population total $\tau$: $$
+N\bar{y}_{st} = \sum_{i=1}^L N_i \bar{y}_i
+$$
+
+Estimator for the variance of $\tau$: $$
+N^2 \hat{V}(\bar{y}_{st}) = \sum_{i=1}^L N_i^2 \left ( \frac{N_i-n_i}{N_i} \right ) \left ( \frac{s_i^2}{n_i} \right )
+$$
+
+## Approximate Sample size with a fixed Bound
+
+Approximate **sample size** $n$ required to estimate $\mu$ or $\tau$ with a bound $B$ on the error of estimation:
+
+$$
+n = \frac{\sum_{i=1}^L N_i^2 \sigma^2_i/a_i}{N^2 D + \sum_{i=1}^L N_i \sigma^2_i} \\
+D = \frac{B^2}{4} \text{ when estimating } \mu \\
+D = \frac{B^2}{4N^2} \text{ when estimating } \tau \\
+$$
+
+## Example Exercise
+
+1.  An advertising firm, interested in determining how much to emphasize television advertising in a certain county, decides to conduct a sample survey to estimate the average number of hours each week that households within the county watch televi- sion. The county contains two towns, A and B, and a rural area. Town A is built around a factory, and most households contain factory workers with school-age chil- dren. Town B is an exclusive suburb of a city in a neighboring county and contains older residents with few children at home. There are 155 households in town A, 62 in town B, and 93 in the rural area. Discuss the merits of using stratified random sam- pling in this situation.The advertising firm in here decides to use telephone interviews rather than personal interviews because all households in the county have telephones, and this method reduces costs. The cost of obtaining an observation is then the same in all three strata. The stratum standard deviations are again approximated by $\sigma_1 \approx 5, \sigma_2 \approx 15$, and $\sigma_3 \approx 10$. The firm desires to estimate the population mean $\mu$ with a bound on the error of estimation equal to 2 hours. Find the appropriate sample
+
+step (1) Given a bound $B=2, \Rightarrow D=\frac{B^2}{4}=1$
+
+(2) Optimal Allocation Theorem (Neyman allocation) Here the costs are same for all strata.
+
+(3) $\left\{\begin{array}{l}n_i=n \cdot \frac{N_i \sigma_i}{\sum_{i=1}^L N_i \sigma_i} \\ \hat{V}\left(\bar{y}_{s t}\right)=\frac{1}{N^2} \sum_{i=1}^L N_i^2\left(1-\frac{n_i}{N_i}\right) \cdot\left(\frac{\sigma_i^2}{n_i}\right) \\ D=\sqrt{\hat{V}\left(\bar{y}_{s t}\right)}\end{array} \Rightarrow n=\frac{\left(\sum_{k=1}^L N_k \sigma_k\right)^2}{N^2 \cdot D+\sum_{i=1}^L N_i \sigma_i^2}\right.$
+
+(4) $$
+    \begin{aligned}
+    & \begin{aligned}
+    \sum_{i=1}^3 N_i \sigma_i
+    & =155 \times 5+62 \times 15+93 \times 10 \\
+    & =2635
+    \end{aligned} \\
+    & \begin{aligned}
+    n_1=n \cdot \frac{155 \times 5}{2635} & =n \cdot(0.30)
+    \end{aligned} \\
+    & \begin{aligned}
+    n_2= & n \frac{62 \times 15}{2635}=n \cdot(0.35) \\
+    n_3=n & \frac{93 \times 10}{2635}=n \cdot(0.35)
+    \end{aligned}
+    \end{aligned}
+    $$
+
+(5) Calculate sample size, $\eta$. $$
+    \left\{\begin{array}{l}
+    \sum_{i=1}^3 N_i \sigma_1^2=27125 . \\
+    N^2 D=(310)^2 \cdot 1=96100 \\
+    \sum_{i=1}^2 N_i \sigma_i=2635
+    \end{array} \Longrightarrow n=\frac{2635^2}{96100+27125}=56.34 \text {. or } 57\right.
+    $$
+
+(6) Stratum sample sizes $$
+    n_1=57 \times 0.3=17.1 \rightarrow 18 \text { to control the bound. }
+    $$ $$
+    \begin{aligned}
+    & n_2=57 \times 0.35=20 \\
+    & n_3=57 \times 0.35=20
+    \end{aligned}
+    $$
+
+Therefore, the sample size $n$ is 58 .
+
+2.  A quality control inspector must estimate the proportion of defective microcomputer chips coming from two different assembly operations. She knows that, among the chips in the lot to be inspected, $60 \%$ are from assembly operation A and $40 \%$ are from assembly operation B. In a random sample of 100 chips, 38 turn out to be from operation A and 62 from operation B. Among the sampled chips from operation A, six are defective. Among the sampled chips from operation B, ten are defective.
+
+```{=html}
+<!-- -->
+```
+a.  Considering only the simple random sample of 100 chips, estimate the proportion of defectives in the lot, and place a bound on the error of estimation.
+
+b.  Stratifying the sample, after selection, into chips from operation A and B, estimate the proportion of defectives in the population, and place a bound on the error of estimation. Ignore the fpc in both cases. Which answers do you find more acceptable?
+
+Part (a): Estimation of the Proportion of Defective Chips in the Lot (Simple Random Sampling) Calculation of the Proportion of Defective Chips: - Total number of defective chips in the sample: $6+10=16$ - Total sample size: 100 - The estimated proportion of defectives $\hat{p}$ is: $\hat{p}=\frac{\text { Number of defectives }}{\text { Total sample size }}=\frac{16}{100}=0.16$
+
+Estimation Error: - The standard error (SE) of the proportion is calculated using the formula for the standard error of a proportion: $S E=\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$ Plugging in the values we get: $S E=$ $\sqrt{\frac{0.16 \times 0.84}{100}}=\sqrt{\frac{0.1344}{100}}=\sqrt{0.001344} \approx 0.0367$ - A 95% confidence interval for the proportion can be estimated as: $\mathrm{CI}=\hat{p} \pm 1.96 \times$ $S E=0.16 \pm 1.96 \times 0.0367 \approx 0.16 \pm 0.0719$ Thus, the $95 \% \mathrm{Cl}$ is approximately: \[0.0881, 0.2319\]
+
+# Chapte 7 Systematic Sampling
+
+## Estimator for population mean
+
+Estimator for population mean $\mu$: $$
+\hat{\mu} = \bar{y}_{sy} =  \frac{1}{n}\sum_{i=1}^n y_i
+$$ Estimator of variance of $\bar{y}_{st}$ $$
+\hat{V}(\bar{y}_{st}) = \left( 1-\frac{n}{N} \right) \frac{s^2}{n}
+$$ assuming a randomly ordered population
+
+Notice that this is the same estimator as used in a **Simple Random Sample**
+
+The true variance of $\bar{y}_{st}$ is given by $$
+V(\bar{y}_{sy}) = \frac{\sigma^2}{n} [1+(n-1) \rho]
+$$
+
+Where $\rho$ is a measure of the correlation between pairs of observations in the same systematic sample. It consists of the variability *within sample* over the variability *between samples*.\
+- characteristics of a systematic sample compared to that of the population $$
+\rho \approx \frac{MSB - MST}{(n-1)MST} \\
+$$
+
+$$
+MSB = \frac{n}{k-1} \sum_{i=1}^k (\bar{y}_i - \bar{\bar{y}}_i)^2 \\
+MSW = \frac{1}{k(n-1)} \sum_{i=1}^k \sum_{j=1}^n (y_{ij} - \bar{y}_i)^2 \\
+SST = \sum_{i=1}^k \sum_{j=1}^n (y_{ij} - \bar{\bar{y}})^2
+$$ where $\bar{\bar{y}}$ is the overall mean per element. here, for $\rho$ is $$
+\rho = \frac{(k-1)nMSB - SST}{(n-1)SST}
+$$
+
+Systematic sampling uses the same estimators as simple random sampling because it is designed to be practically as random as a SRS, and a better estimate is not possible without taking multiple cluster samples. As such, the remaining equations for population total, proportions, sample size, etc. are the same as in SRS and **can be found in Chapter 4**.
+
+## 1 in k sampling for mean
+
+Estimator for the population mean $\mu$ under $1 \text{ in } k'$ systematic sampling: $$
+\hat{\mu} = \sum_{i=1}^{n_s} \frac{\bar{y}_i}{n_s}
+$$ $y_i$ is the mean of the $i^{th}$ systematic sample.\
+$n_s$ is the number in the sample.
+
+Estimated variance of $\hat{\mu}$: $$
+\hat{V}(\hat{\mu}) = \left(1- \frac{n}{N} \right) \frac{s^2_{\bar{y}}}{n_s} \\
+\text{where} \\
+s^2_{\bar{y}} = \frac{\sum_{i=1}^{n_s} (\bar{y_i} - \hat{\mu})^2}{n_s-1}
+$$
+
+## 1 in k sampling for total
+
+$1 \text{ in } k'$ systematic sampling can be used for population total, $\tau$, too
+
+$$
+\hat{\tau} = N\hat{\mu} = N \sum_{i=1}^{n_s} \frac{\bar{y}_i}{n_s}
+$$
+
+Estimated variance of $\hat{\tau}$: $$
+\hat{V}(\hat{\tau}) = N^2\hat{V}(\hat\mu) = N^2 \left(1- \frac{n}{N} \right) \frac{s^2_{\bar{y}}}{n_s} \\
+$$
+
+## Example Exercise
+
+A college is concerned about improving its relations with a neighboring community. A 1-in-150 systematic sample of the $N=4500$ students listed in the directory is taken to estimate the total amount of money spent on clothing during one quarter of the school year. The results of the sample are listed in the accompanying table. Use these data to estimate $\tau$ and place a bound on the error of estimation.
+
+| Student | Amount spent (dollar) | Student | Amount spent (dollars) | Student | Amount spent (dollars) |
+|:-----------|:-----------|:-----------|:-----------|:-----------|:-----------|
+| 1       | 30                    | 11      | 29                     | 21      | 9                      |
+| 2       | 22                    | 12      | 21                     | 22      | 15                     |
+| 3       | 10                    | 13      | 13                     | 23      | 6                      |
+| 4       | 62                    | 14      | 15                     | 24      | 93                     |
+| 5       | 28                    | 15      | 23                     | 25      | 21                     |
+| 6       | 31                    | 16      | 32                     | 26      | 20                     |
+| 7       | 40                    | 17      | 14                     | 27      | 13                     |
+| 8       | 29                    | 18      | 29                     | 28      | 12                     |
+| 9       | 17                    | 19      | 48                     | 29      | 29                     |
+| 10      | 51                    | 20      | 50                     | 30      | 38                     |
+
+$$
+\begin{aligned}
+& \hat{\gamma}=N \mu=N \sum_{i=1}^{n_s} \frac{\bar{y}_i}{n_s} \\
+& =4500 \times \frac{850}{30} \\
+& B E=2 \sqrt{\operatorname{Var}^2 r(\gamma)} \\
+& =\sqrt[2]{N^2\left(1-\frac{n}{N}\right) \frac{S_T^S}{n_S}} \\
+& S^2 \bar{y}=338.6437 \\
+& B E=30137.06
+\end{aligned}
+$$
+
+# Chapter 8 Cluster Sampling
+
+## Notations
+
+$N-\quad$ number of clusters in the population
+
+$n-$ number of clusters in a SRS
+
+$m_i-$ number of elements in cluster $i$
+
+$\bar{m}=\frac{1}{n} \sum_{i=1}^n m_i$ average cluster size for the sample
+
+$M=\sum_{i=1}^N m_i$ number of elements in the population
+
+$\bar{M}=\frac{M}{N}$ average cluster size for the population
+
+$y_i-$ total of all observations in the $i^{t h}$ cluster
+
+## Population mean
+
+Estimator for the population mean $\mu$: $$
+\bar{y} = \frac{\sum_{i=1}^n y_i}{\sum_{i=1}^n m_i}
+$$
+
+Estimated variance of $\bar{y}$: $$
+\hat{V}(\bar{y}) = \left( \frac{N-n}{N n \bar{M}^2} \right) s_r^2 \\
+\text{where} \\
+s_r^2 = \frac{\sum_{i=1}^n (y_i - \bar{y} m_i)^2}{n-1}
+$$ *Note:* If $\bar{M}$ is unknown, it can be approximated by $\bar{m}$.
+
+## Population total
+
+Estimator for the population mean $\tau$: $$
+M\bar{y} = M \left( \frac{\sum_{i=1}^n y_i}{\sum_{i=1}^n m_i} \right)
+$$
+
+Estimated variance of $M\bar{y}$: $$
+\hat{V}(M\bar{y}) = M^2\hat{V}(\bar{y}) = N^2 \left( \frac{N-n}{Nn} \right) s_r^2 \\
+\text{where} \\
+s_r^2 = \frac{\sum_{i=1}^n (y_i - \bar{y} m_i)^2}{n-1}
+$$
+
+## Population total (M unknown)
+
+$$
+N\bar{y_t} = \frac{N}{n} \sum_{i=1}^n y_i \text{ where } \bar{y_t} = \frac{\sum_{i=1}^n y_i}{n} 
+$$
+
+Estimated variance of $N\bar{y_t}$: $$
+\hat{V} (N\bar{y_t}) = N^2\hat{V}(\bar{y_t}) = N^2 \left( \frac{N-n}{Nn} \right) s_t^2 \\
+\text{where} \\
+s_t^2 = \frac{\sum_{i=1}^n (y_i - \bar{y_t})^2}{n-1}
+$$
+
+## Approximate sample size required to estimate population mean
+
+Approximate sample size required to estimate $\mu$, with a bound $B$ on the error of estimation: $$
+n = \frac{N\sigma^2_r}{ND + \sigma^2_r} \\
+\sigma^2_r \text{ is estimated by } s_r^2 \\
+D = \frac{B^2\bar{M}^2}{4}
+$$
+
+## Approximate sample size required to estimate population total
+
+Approximate sample size required to estimate $\tau$, using $M\bar{y}$, with a bound $B$ on the error of estimation: $$
+n = \frac{N\sigma^2_r}{ND + \sigma^2_r} \\
+\sigma^2_r \text{ is estimated by } s_r^2 \\
+D = \frac{B^2}{4N^2}
+$$
+
+(Note that the only difference between **(8.12)** and **(8.13)** is **D**.)
+
+## Approximate sample size required to estimate population total (without M)
+
+Approximate sample size required to estimate $\tau$, using $N\bar{y_t}$, with a bound $B$ on the error of estimation: $$
+n = \frac{N\sigma^2_t}{ND + \sigma^2_t} \\
+\sigma^2_t \text{ is estimated by } s_t^2 \\
+D = \frac{B^2}{4N^2}
+$$
+
+## Population proportion
+
+Estimator for the population proportion $p$: $$
+\hat{p} = \frac{\sum_{i=1}^n a_i}{\sum_{i=1}^n m_i}
+$$
+
+Estimated variance of $\hat{p}$: $$
+\hat{V}(\hat{p}) = \left( \frac{N-n}{N n \bar{M}^2} \right) s_p^2 \\
+\text{where} \\
+s_p^2 = \frac{\sum_{i=1}^n (a_i - \hat{p} m_i)^2}{n-1}
+$$
+
+## Probabilities proportional to size (PPS)
+
+**Method: Cumulative sum method / Maximum size method / Catalog method**
+
+Estimator of the population mean $\mu$: $$
+\hat{u}_{pps} = \bar{\bar{y}} = \frac{1}{n}\sum_{i=1}^n \bar{y_i}
+$$
+
+Estimator for the variance of $\hat{u}_{pps}$: $$
+\hat{V}(\hat{u}_{pps}) = \frac{1}{n(n-1)} \sum_{i=1}^n (\bar{y_i} - \hat{u}_{pps})^2
+$$
+
+Estimator of the population total $\tau$: $$
+\hat{\tau}_{pps} = \frac{M}{n}\sum_{i=1}^n \bar{y_i}
+$$
+
+Estimator for the variance of $\hat{\tau}_{pps}$: $$
+\hat{V}(\hat{\tau}_{pps}) = \frac{M^2}{n(n-1)} \sum_{i=1}^n (\bar{y_i} - \hat{u}_{pps})^2
+$$
+
+## Example Exercise
+
+1.  Cluster sampling
+
+A sociologist wants to estimate the per-capita income in a certain small city. No list of resident adults is available. Here, cluster sampling seems to be the logical choice for the survey design because no lists of elements are available. Each of the city blocks will be considered one cluster, and the clusters are numbered on a city map, with the numbers from 1 to 415.The experimenter has enough time and money to sample n = 25 clusters and to interview every household within each cluster. Hence, 25 random numbers between 1 and 415 are selected, and the clusters having these numbers are marked on the map. Interviewers are then assigned to each of the sampled clusters.
+
+| Cluster | Number of residents, $m_i$ | Total income per cluster, $y_i$ (dollars) | Cluster | Number of residents, $m_i$ | Total income per cluster, $y_i$ (dollars) |
+|:-----------|:-----------|:-----------|:-----------|:-----------|:-----------|
+| 1       | 8                          | 96,000                                  | 14      | 10                         | 49,000                                  |
+| 2       | 12                         | 121,000                                   | 15      | 9                          | 53,000                                    |
+| 3       | 4                          | 42,000                                    | 16      | 3                          | 50,000                                    |
+| 4       | 5                          | 65,000                                    | 17      | 6                          | 32,000                                    |
+| 5       | 6                          | 52,000                                    | 18      | 5                          | 22,000                                    |
+| 6       | 6                          | 40,000                                    | 19      | 5                          | 45,000                                    |
+| 7       | 7                          | 75,000                                    | 20      | 4                          | 37,000                                    |
+| 8       | 5                          | 65,000                                    | 21      | 6                          | 51,000                                    |
+| 9       | 8                          | 45,000                                    | 22      | 8                          | 30,000                                    |
+| 10      | 3                          | 50,000                                    | 23      | 7                          | 39,000                                    |
+| 11      | 2                          | 85,000                                    | 24      | 3                          | 47,000                                    |
+| 12      | 6                          | 43,000                                    | 25      | 8                          | 41,000                                    |
+| 13      | 5                          | 54,000                                    |         | $\sum_{i=1}^{25} m_i=151$  | $\sum_{i=1}^{25} y_i=$ <br> \$1,329,000   |
+
+|                   | $N$ |   Mean | Median |   SD   |
+|:------------------|:---:|-------:|-------:|:------:|
+| Resident          | 25  |  6.040 |  6.000 | 2.371  |
+| Income            | 25  | 53,160 | 49,000 | 21,784 |
+| $y_i-\bar{y} m_i$ | 25  |      0 |    993 | 25,189 |
+
+$\bar{y}=\frac{\sum_{i=1}^n y_i}{\sum_{i=1}^n m_i}=\frac{\$ 1,329,000}{151}=\frac{\$ 53,160}{6.04}=\$ 8801$
+
+Because $M$ is not known, the $\bar{M}$ appearing in Eq. (8.2) must be estimated by $\bar{m}$, where $$
+\bar{m}=\frac{\sum_{i=1}^n m_i}{n}=\frac{151}{25}=6.04
+$$
+
+$\begin{aligned} \hat{V}(\bar{y}) & =\left(1-\frac{n}{N}\right) \frac{s_{\mathrm{r}}^2}{n \bar{M}^2} \\ & =\left[1-\frac{25}{415}\right] \frac{(25,189)^2}{25(6.04)^2}=653,785\end{aligned}$
+
+Thus, the estimate of $\mu$ with a bound on the error of estimation is given by $$
+\bar{y} \pm 2 \sqrt{\hat{V}(\bar{y})}=8801 \pm 2 \sqrt{653,785}=8801 \pm 1617
+$$
+
+And for total income $\tau$ is given by
+
+$M\bar y = 2500(8801) = \$ 22,002,500$
+
+The bound on the error of estimation is given by
+
+$$
+M\bar y \pm 2 \sqrt{M^2\hat{V}(\bar y)}=22,002,500 \pm 2 \sqrt{(2500)^2(653,785)}
+$$
+
+But, here, if M is not known, we can use the following equation to estimate the total income $\tau$:
+
+$$
+N\bar y_t = \frac{N}{n}\sum_{i=1}^n y_i = \frac{415}{25}(1,329,000) = 22061400
+$$
+
+Since $s_t^2= \frac{\sum_{i=1}^n (y_i - \bar y_t)^2}{n-1}$, we can use the following equation to estimate the variance of $\hat{\tau}=(21784)^2$:
+
+the bound of error is
+
+$$
+N\bar y_t \pm 2 \sqrt{N^2(1-\frac{n}{N})\frac{s_t^2}{n}}=22,061,400 \pm 2 \sqrt{(415)^2(1-25/415)(21784)^2/25}
+$$
+
+2.  PPS (probability proportional to size) sampling
+
+An investigator wishes to estimate the average number of defects per board on boards of electronic components manufactured for installation in computers. The boards contain varying numbers of components, and the investigator thinks that the number of defects should be positively correlated with the number of components on a board. Thus, pps sampling is used, with the probability of selecting any one board for the sample being proportional to the number of components on that board. A sample of n = 4 boards is to be selected from the N = 10 boards of one day of production. The number of components on each of the ten boards are
+
+10, 12, 22, 8, 16, 24, 9, 10, 8, 31
+
+Show how to select n = 4 boards with probabilities proportional to size.
+
+(the sum of 10, 12, 22, 8, 16, 24, 9, 10, 8, 31 is 150)
+
+Sol:
+
+Method 1: Cumulative sums method -- randomly get 4 numbers from 0 to 150
+
+Method 2: Maximum size method -- generate the ramdom pair (i,j) $i \in [1,N], j\in[1,M]$, where N=10, M=31. If the pair does not exist then change another one until 4 boards are selected.
+
+Method 3: Catalog method
+
+a.  Sequence 1,2,...,$x_1$,$x_1+1$,...,$x_1+x_2,x_1+x_2+1,$,..$x_1+...+x_n$ --\> (1,2,...,150),where $x_i$ is the size of each board.
+
+b.  k = 150/4 = 37
+
+$R_1 =$ SRS(1,2,...,37)
+
+$R_2 = R_1 +37$
+
+$R_3 = R_2 +37$
+
+$R_4 = R_3 +37$
+
+c.  If $\sum _{i=1}^{j-1} x_i < R_1 \leq \sum _{i=1}^{j} x_i, y_i=y_j$ select the j-th board
+
+Then we will estimate the average number of defects per board on boards of electronic components manufactured for installation in computers. If the number of defects found boards 2, 3, 5, and 7 was 1, 3, 2, and 1, respectively
+
+Firstly, calculate the cluster mean and probability. $$
+\begin{array}{lll}
+\bar{y}_1=\frac{1}{12}, & \bar{y}_2=\frac{3}{22}, & \bar{y}_3=\frac{2}{16},\bar y_4 = \frac{1}{9}\\
+p_1=\frac{12}{150}, & p_2=\frac{22}{150}, & p_3=\frac{9}{150}, p_4=\frac{9}{150}
+\end{array}
+$$
+
+Secondly, the estimation of average number is given by $$
+\begin{aligned}
+\hat{\mu}_{p p s} & =\frac{1}{n} \sum_{i=1}^n \frac{\bar{y}_i}{p_i}=\frac{1}{4}\left(\frac{\bar{y}_1}{p_1}+\frac{\bar{y}_2}{p_2}+\frac{\bar{y}_3}{p_2}+\frac{\bar{y}_4}{p_4}\right) \approx 1.25 \\
+\text { And } \hat{v}\left(\hat{\mu}_{p p s}\right) & =\frac{1}{n(n-1)} \sum_{i=1}^n\left(\frac{\bar{y}_i}{p_i}-\hat{\mu}_{p p s}\right)^2 \\
+& =\frac{1}{4 \times 3} \times(1.665) \\
+& \approx 0.14
+\end{aligned}
+$$
+
+Therefore, the bound $B=2 \sqrt{\hat{v}\left(\hat{\mu_{\text {pps }}}\right)}=2 \sqrt{0.14} \approx 0.75$
+
+# Chapter 9 Two-Stage Cluster Sampling
+
+## Advantages
+
+The advantages of two-stage cluster sampling over other designs are the same as those listed in Chapter 8 for cluster sampling. First, a frame listing all elements in the population may be impossible or costly to obtain, whereas obtaining a list of all clus- ters may be easy. For example, compiling a list of all university students in the coun- try would be expensive and time-consuming, but a list of universities can be readily acquired. Second, the cost of obtaining data may be inflated by travel costs if the sampled elements are spread over a large geographic area. Thus, sampling clusters of elements that are physically close together is often economical.
+
+## How to draw
+
+Randomly select clusters first, then randomly sample elements within chosen clusters.
+
+## Population mean
+
+Unbiased estimator of the population mean $\mu$ : $$
+\hat{\mu}=\left(\frac{N}{M}\right) \frac{\sum_{i=1}^n M_i \bar{y}_i}{n}=\frac{1}{\bar{M}} \frac{\sum_{i=1}^n M_i \bar{y}_i}{n}
+$$ assuming simple random sampling at each stage.
+
+Estimated variance of $\hat{\boldsymbol{\mu}}$ : $$
+\hat{V}(\hat{\mu})=\left(1-\frac{n}{N}\right)\left(\frac{1}{n \bar{M}^2}\right) s_{\mathrm{b}}^2+\frac{1}{n N \bar{M}^2} \sum_{i=1}^n M_i^2\left(1-\frac{m_i}{M_i}\right)\left(\frac{s_i^2}{m_i}\right)
+$$ where $$
+s_{\mathrm{b}}^2=\frac{\sum_{i=1}^n\left(M_i \bar{y}_i-\bar{M} \hat{\mu}\right)^2}{n-1}
+$$ and $$
+s_i^2=\frac{\sum_{j=1}^{m_i}\left(y_{i j}-\bar{y}_i\right)^2}{m_i-1} \quad i=1,2, \ldots, n
+$$
+
+Notice that $s_{\mathrm{b}}^2$ is simply the sample variance among the terms $M_i \bar{y}_i$.
+
+## Population total
+
+Estimation of the population total $\boldsymbol{\tau}$ : $$
+\hat{\tau}=M \hat{\mu}=\frac{N}{n} \sum_{i=1}^n M_i \bar{y}_i
+$$ assuming simple random sampling at each stage. Estimated variance of $\hat{\boldsymbol{\tau}}$ : $$
+\begin{aligned}
+\hat{V}(\hat{\tau}) & =M^2 \hat{V}(\hat{\mu}) \\
+& =\left(1-\frac{n}{N}\right)\left(\frac{N^2}{n}\right) s_{\mathrm{b}}^2+\frac{N}{n} \sum_{i=1}^n M_i^2\left(1-\frac{m_i}{M_i}\right)\left(\frac{s_i^2}{m_i}\right)
+\end{aligned}
+$$
+
+## Ratio Estimation of Population Mean
+
+Ratio estimator of the population mean $\mu$ : $$
+\hat{\mu}_{\mathrm{r}}=\frac{\sum_{i=1}^n M_i \bar{y}_i}{\sum_{i=1}^n M_i}
+$$
+
+Estimated variance of $\hat{\boldsymbol{\mu}}_{\mathbf{r}}$ : $$
+\hat{V}\left(\hat{\mu}_{\mathrm{r}}\right)=\left(1-\frac{n}{N}\right)\left(\frac{1}{n \bar{M}^2}\right) s_{\mathrm{r}}^2+\frac{1}{n N \bar{M}^2} \sum_{i=1}^n M_i^2\left(1-\frac{m_i}{M_i}\right)\left(\frac{s_i^2}{m_i}\right)
+$$
+
+where $$
+s_{\mathrm{r}}^2=\frac{\sum_{i=1}^n M_i^2\left(\bar{y}_i-\hat{\mu}_{\mathrm{r}}\right)^2}{n-1}=\frac{\sum_{i=1}^n\left(M_i \bar{y}_i-M_i \hat{\mu}_{\mathrm{r}}\right)^2}{n-1}
+$$ and $$
+s_i^2=\frac{\sum_{i=1}^{m_i}\left(y_{i j}-\bar{y}_i\right)^2}{m_i-1} \quad i=1,2, \ldots, n
+$$
+
+## Population proportion
+
+Estimator of a population proportion $\boldsymbol{p}$ : $$
+\hat{p}=\frac{\sum_{i=1}^n M_i \hat{p}_i}{\sum_{i=1}^n M_i}
+$$
+
+Estimated variance of $\boldsymbol{p}$ : $$
+\hat{V}(\hat{p})=\left(1-\frac{n}{N}\right)\left(\frac{1}{n \bar{M}^2}\right) s_{\mathrm{r}}^2+\frac{1}{n N \bar{M}^2} \sum_{i=1}^n M_i^2\left(1-\frac{m_i}{M_i}\right)\left(\frac{\hat{p}_i \hat{q}_i}{m_i-1}\right)
+$$
+
+where $$
+s_{\mathrm{r}}^2=\frac{\sum_{i=1}^n M_i^2\left(\hat{p}_i-\hat{p}\right)^2}{n-1}=\frac{\sum_{i=1}^n\left(M_i \hat{p}_i-M_i \hat{p}\right)^2}{n-1}
+$$ and $\hat{q}_i=1-\hat{p}_i$.
+
+## Probabilities proportional to size (PPS)
+
+Estimator of the population mean $\mu$ : $$
+\hat{\mu}_{\mathrm{pps}}=\frac{1}{n} \sum_{i=1}^n \bar{y}_i
+$$
+
+Estimated variance of $\hat{\boldsymbol{\mu}}_{\text {pps }}$ : $$
+\hat{V}\left(\hat{\mu}_{\mathrm{pps}}\right)=\frac{1}{n(n-1)} \sum_{i=1}^n\left(\bar{y}_i-\hat{\mu}_{\mathrm{pps}}\right)^2
+$$
+
+Estimator of the population total $\boldsymbol{\tau}$ : $$
+\hat{\tau}_{\mathrm{pps}}=\frac{M}{n} \sum_{i=1}^n \bar{y}_i
+$$
+
+Estimated variance of $\hat{\boldsymbol{\tau}}_{\mathbf{p p s}}$ : $$
+\hat{V}\left(\hat{\tau}_{\mathrm{pps}}\right)=\frac{M^2}{n(n-1)} \sum_{i=1}^n\left(\bar{y}_i-\hat{\mu}_{\mathrm{pps}}\right)^2
+$$
+
+
+
+# Summary
+
+## Advantages and Disadvantages of Common Sampling Methods
+
+### Simple Random Sampling:
+
+-   Advantages: It is easy to operate and ensures that each individual in the population has an equal probability of being selected. Theoretically, it can obtain an unbiased sample, and the results have strong statistical inference ability.
+
+-   Disadvantages: When the population is large, the numbering and sampling process are cumbersome. If there is an obvious hierarchical structure in the population, the sample may not well represent the characteristics of each layer.
+
+### Stratified Sampling:
+
+-   Advantages: First, the population is stratified according to characteristics, and then independent sampling is carried out from each layer, making the sample more representative and improving the accuracy of estimation. It also allows for separate analysis of each layer to understand the differences among different levels.
+
+-   Disadvantages: It requires a certain understanding of the characteristics of the population to stratify reasonably. The sampling procedure is more complex than simple random sampling, and the calculation amount is relatively large.
+
+### Cluster Sampling:
+
+-   Advantages: The sampling unit is a group, and sampling and investigation are relatively convenient, which can reduce the cost and difficulty of sampling. It is suitable for situations where the population is widely distributed and individual access is difficult.
+
+-   Disadvantages: Individuals within a cluster often have similarities, which may lead to insufficient sample representativeness. The sampling error is usually larger than that of simple random sampling and stratified sampling.
+
+### Systematic Sampling:
+
+-   Advantages: After arranging the population in a certain order, sampling is carried out at equal intervals. It is simple to operate and easy to implement. In some cases, the sample is evenly distributed and can have good representativeness.
+
+-   Disadvantages: If there are periodic changes in the population, and the sampling interval is related to the period, it may lead to serious bias.
+
+Prevention and Correction of Sample Selection Bias
+
+### Prevention and Correction of Sample Selection Bias
+
+-   Prevention:
+
+-   Reasonable Sampling Design: Adopt scientific sampling methods, such as random sampling and stratified sampling, to ensure that each individual has an appropriate probability of being selected. Clearly define the source and scope of the sample and consider the diversity of the population. For example, in consumer surveys, cover people of different ages, regions, and income levels.
+
+-   Establish Strict Criteria: When selecting samples, establish clear inclusion and exclusion criteria to avoid
+{% endraw %}

@@ -1,0 +1,48 @@
+name: Deploy Yu Lu al-folio
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout personalized content
+        uses: actions/checkout@v4
+      - name: Download official al-folio starter
+        run: git clone --depth 1 --branch main https://github.com/alshedivat/al-folio.git "$RUNNER_TEMP/al-folio-starter"
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare personalized al-folio source
+        run: |
+          python -m pip install pyyaml
+          python scripts/assemble.py --upstream "$RUNNER_TEMP/al-folio-starter" --out _site_build
+          python scripts/audit_content.py
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.5'
+          bundler-cache: false
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+      - name: Build official al-folio
+        working-directory: _site_build
+        run: |
+          bundle install
+          npm ci
+          export JEKYLL_ENV=production
+          bundle exec jekyll build
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: _site_build/_site
+          branch: gh-pages
+          clean: true

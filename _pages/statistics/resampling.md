@@ -1,0 +1,213 @@
+---
+layout: page
+title: "Resampling"
+permalink: /statistics/resampling/
+nav: false
+lecture_note: true
+math: true
+toc:
+  sidebar: left
+---
+
+[← Lecture Notes]({{ '/math/' | relative_url }})
+
+{% raw %}
+## outlier and high leverage points
+
+outlier: y strange; high leverage points: x strange When doing regression, removing the high leverage observations has a much more substantial impact on the least squares line than removing the outlier.(why?) for linear regression, use $h_i=1/n + (x_i-\bar x)^2/ \Sigma(x_i-\bar x)^2$to quantify the leverage statistic, if it is greatly exceeds (p+1)/n(because there is p+1 parameters to estimate), the cooresponding point may have high levegage
+
+### Philosophy Behind Average Leverage and Trace of the Hat Matrix(projection matrix)
+
+1.  **Projection and Influence**: Linear regression can be viewed as a projection of data onto a subspace defined by the predictors, with the hat matrix encapsulating this projection.
+
+2.  **Degrees of Freedom**: The rank of the design matrix, corresponding to the number of predictors plus one (for the intercept), represents the total degrees of freedom available for fitting the model.
+
+3.  **Trace as a Measure of Complexity**: The trace of the hat matrix(for linear regression it is p+1), equal to ( p + 1 ), distributes the total influence across the observations, reflecting how each data point contributes to the model.
+
+4.  **Balance and Diagnostics**: Understanding leverage and its average value helps diagnose the balance between model complexity and fit, ensuring that the model is neither too simple nor overfitted.
+
+## colinearity
+
+In an RSS contour plot, if the contours take on an elliptical shape, it typically indicates that the two regression coefficients are collinear. Here is a detailed explanation of the relationship between elliptical shapes and collinearity:
+
+Elliptical Shapes and Collinearity Definition of Collinearity:
+
+Collinearity refers to the phenomenon where two or more predictor variables (independent variables) are highly linearly correlated. When predictor variables are highly correlated, the coefficient estimates in the regression model become unstable and imprecise.
+
+Meaning of Elliptical Shapes in Contour Plots:
+
+When two predictor variables are collinear, the contours in the Residual Sum of Squares (RSS) contour plot form an elliptical shape. This is because a small adjustment to one coefficient can be offset by adjusting the other coefficient, thereby maintaining the same RSS value.
+
+The major axis of the ellipse represents the direction of the linear relationship between the two variables. Changes along this direction have a smaller impact on the RSS, while changes along the minor axis have a larger impact.
+
+Illustrative Understanding:
+
+If the contours are circular, it indicates that there is no significant linear relationship between the two coefficients. If the contours are elongated ellipses, it indicates that there is a significant linear relationship between the two coefficients, i.e., collinearity. eg. of linear regresssion
+
+```r
+library(ggplot2)
+library(dplyr)
+
+
+data(mtcars)
+train_df <- mtcars
+
+
+train_df <- train_df %>%
+  select(mpg, wt, hp)
+
+
+linear_model <- lm(mpg ~ wt + hp, data = train_df)
+
+# rss
+calc_rss <- function(beta_wt, beta_hp) {
+  train_df$linear_pred <- beta_wt * train_df$wt + beta_hp * train_df$hp
+  rss <- sum((train_df$mpg - train_df$linear_pred)^2)
+  return(rss)
+}
+
+# 生成wt和hp系数的网格
+beta_wt_seq <- seq(-10, 10, length.out = 100)
+beta_hp_seq <- seq(-1, 1, length.out = 100)
+rss_values <- outer(beta_wt_seq, beta_hp_seq, Vectorize(calc_rss))
+
+
+rss_df <- expand.grid(beta_wt = beta_wt_seq, beta_hp = beta_hp_seq)
+rss_df$rss <- as.vector(rss_values)
+
+
+coef_wt <- coef(linear_model)["wt"]
+coef_hp <- coef(linear_model)["hp"]
+
+
+p <- ggplot(rss_df, aes(x = beta_wt, y = beta_hp, z = rss)) +
+  geom_contour(aes(z = rss), bins = 20) +
+  geom_point(aes(x = coef_wt, y = coef_hp), color = "red") +
+  labs(title = "RSS Contour Plot for Linear Regression Model",
+       x = expression(beta[wt]),
+       y = expression(beta[hp])) +
+  theme_minimal()
+
+print(p)
+
+```
+<figure class="note-figure" style="max-width:560px;margin:1.3rem auto;"><img src="/assets/img/code-output/resampling-qmd/chunk-001-1.png" alt="Output from code example 1" loading="lazy" style="display:block;max-width:100%;max-height:420px;width:auto;height:auto;margin:auto;object-fit:contain;"><figcaption style="font-size:.88rem;color:#666;text-align:center;margin-top:.45rem;">Output from code example 1</figcaption></figure>
+
+eg. of coxph:
+
+```r
+
+library(survival)
+library(ggplot2)
+library(dplyr)
+
+# Use the lung dataset from the survival package
+data(lung)
+train_df <- lung
+
+# Check for missing values and remove rows with missing values
+train_df <- train_df %>% na.omit()
+
+# Select variables of interest
+train_df <- train_df %>%
+  select(age, ph.karno, time, status) %>%
+  mutate(status = ifelse(status == 2, 1, 0)) # Convert status variable to binary (1 = event, 0 = censored)
+
+# Prepare the survival object
+y <- Surv(train_df$time, train_df$status)
+
+# Fit the Cox model using the Breslow method
+cox_model <- coxph(y ~ age + ph.karno, data = train_df, method = "breslow")
+
+# Define a function to calculate RSS for given coefficients
+calc_rss <- function(beta_age, beta_ph_karno) {
+  train_df$linear_pred <- beta_age * train_df$age + beta_ph_karno * train_df$ph.karno
+  cox_model_temp <- coxph(y ~ linear_pred, data = train_df, method = "breslow")
+  return(-2 * logLik(cox_model_temp))
+}
+
+# Generate a grid of beta values for age and ph.karno
+beta_age_seq <- seq(-0.1, 0.1, length.out = 100)
+beta_ph_karno_seq <- seq(-0.1, 0.1, length.out = 100)
+rss_values <- outer(beta_age_seq, beta_ph_karno_seq, Vectorize(calc_rss))
+
+# Create a data frame for plotting
+rss_df <- expand.grid(beta_age = beta_age_seq, beta_ph_karno = beta_ph_karno_seq)
+rss_df$rss <- as.vector(rss_values)
+
+# Plot the RSS contour plot
+p <- ggplot(rss_df, aes(x = beta_age, y = beta_ph_karno, z = rss)) +
+  geom_contour(aes(z = rss), bins = 20) +
+  geom_point(aes(x = coef(cox_model)["age"], y = coef(cox_model)["ph.karno"]), color = "red") +
+  labs(title = "RSS Contour Plot for Cox Model",
+       x = expression(beta[age]),
+       y = expression(beta[ph.karno])) +
+  theme_minimal()
+
+print(p)
+
+
+```
+<figure class="note-figure" style="max-width:560px;margin:1.3rem auto;"><img src="/assets/img/code-output/resampling-qmd/chunk-002-1.png" alt="Output from code example 2" loading="lazy" style="display:block;max-width:100%;max-height:420px;width:auto;height:auto;margin:auto;object-fit:contain;"><figcaption style="font-size:.88rem;color:#666;text-align:center;margin-top:.45rem;">Output from code example 2</figcaption></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Resampling methods
+it is a trade-off of bias and variance that is a imporatance here.
+
+### cross-validation
+
+Use the data we have had to conduct both training and testing.
+
+
+Drawbacks: waste power of the information so we overestimate the MSE. 
+           random results
+
+### LOOCV
+Leave one out cross validation makes up the drawbacks of cv by using the whole data information and the result stays the same by calculate average MSE, which is $$1/n \Sigma(y_i-\hat y_i/1-h_i)^2$$
+
+$h_i$ is the leverage which indicates the influence of an observation on its own fit. In this formula, when $h_i$ goes higher, the observation has a high power on itself so that it punishes the residual(Since high leverage points have a significant influence on the model, their errors might be underestimated if no adjustments are made. If a particular observation has an extreme influence on the model, according to this formula, its error will be greatly amplified to emphasize its importance in model fitting. This adjustment helps prevent the model from relying too heavily on specific high leverage points, thereby improving the model's generalization ability.), the formula (residual) goes higher.
+
+
+Drawbacks of LOOCV: does not shake up data enough because the training data is nearly same and so that correlated. To avoid their average's high variance casued by it, small K may be good but it will lead a biased average because of not big enough training set as the original set.
+
+
+
+So choosing K=5 or 10 is a bias-variance tradeoff.
+### K-fold
+
+also use average MSE as CV
+
+#### for classification problem
+
+
+LOOCV:
+
+$$1/n\Sigma (Error_i) $$
+K-fold:
+
+$$\Sigma n_k/n (Error_k)$$ (n_k is the number of a group and Error_k is the wrong number divided by the number of a group)
+
+
+The estimated standard deviation of $\Sigma n_k/n (Error_k)$is given by:
+
+$$
+\hat{SE}(CV_K) = \sqrt{\frac{1}{K-1} \sum_{k=1}^{K} (Err_k - \overline{Err_k})^2}
+
+           
+$$
+but it is not valid enough because they are not independent.
+{% endraw %}

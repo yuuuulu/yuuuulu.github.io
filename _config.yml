@@ -1,0 +1,45 @@
+# Site-level overrides applied on top of official al-folio v1 starter by scripts/assemble.py.
+# This is the GitHub Pages root site for yuuuulu.github.io; keep baseurl empty.
+title: blank
+first_name: ""
+middle_name:
+last_name: Yu Lu
+contact_note: "Applied Statistics (Biostatistics), Xi'an Jiaotong-Liverpool University"
+description: "Yu Lu — academic homepage, statistics notes, reading and philosophy."
+keywords: "Yu Lu, applied statistics, biostatistics, reading, philosophy, Bayesian inference"
+lang: en
+url: https://yuuuulu.github.io
+baseurl: ""
+footer_text: 'Yu Lu · <a href="https://github.com/yuuuulu">GitHub</a> · Powered by al-folio.'
+max_width: 930px
+navbar_fixed: true
+footer_fixed: false
+search_enabled: false
+socials_in_search: false
+posts_in_search: false
+bib_search: false
+serve_og_meta: false
+selected_papers: false
+enable_math: true
+enable_darkmode: true
+enable_masonry: false
+enable_medium_zoom: false
+enable_progressbar: false
+enable_project_categories: false
+lazy_loading_images: true
+imagemagick:
+  enabled: false
+external_sources: []
+enable_publication_badges:
+  altmetric: false
+  dimensions: false
+  google_scholar: false
+  inspirehep: false
+scholar:
+  first_name: [Yu]
+  last_name: [Lu]
+  bibliography: papers.bib
+  source: /_bibliography/
+  query: '@*'
+
+icon: favicon.svg

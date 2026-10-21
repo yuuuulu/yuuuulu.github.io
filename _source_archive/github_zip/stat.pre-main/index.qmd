@@ -1,0 +1,27 @@
+---
+title: "Practice Project List"
+format: html
+editor: visual
+---
+
+# Thanks to the wonderful learning resourses at XJTLU including sophisticated and kind teachers, frinends and senior students, I have lots of opportunities to practice in the real project to apply the knowledge.
+
+- 2024 Mathematical Modeling Contest
+
+- 2024 SURF
+
+- 2024 Coding Practice with application to ... tb
+
+- 2024 Bayesian seminar-2025 em
+
+- 2025 Mathematical Modeling Contest
+
+- 2025 Biomedical Statistics Contest at XJTLU
+
+- 2025 APH103 (Survey Sampling) Final Project
+
+- 2025 SURF
+
+- 2026 Operational Research MIP-Algorithm-Design Project
+
+...

@@ -1,0 +1,16 @@
+---
+title: "A General Simulated Annealing Framework for Large Orienteering Problems with Time Windows: A Case Study of One-Day Route Planning in Suzhou"
+editor: visual
+---
+
+# This is our front-end web application for the project.
+
+[Web-App: https://oracle-suzhou-travel.base44.app/](https://oracle-suzhou-travel.base44.app/)
+
+# Report
+
+[Click here to see our report](https://github.com/yuuuulu/stat.pre/blob/main/MTH203_report.pdf)
+
+# Algorithm code
+
+[GitHub Repo](https://github.com/yuuuulu/OR-MIP-Opti-Route)
