@@ -14,7 +14,7 @@ description: Dated moments in mathematics, statistics, teaching, and everyday li
 Moments in mathematics, statistics, teaching, and everyday life, from newest to oldest.
 
 <table class="blog-index"><thead><tr><th>Date</th><th>Entry</th></tr></thead><tbody>
-<tr><td>2026-09-01</td><td><a href="#final-year-project">A Brand New Semester and also last semester</a></td></tr>
+<tr><td>2026-09-01</td><td><a href="#final-year-project">A Brand New Semester and also last year at XJTLU</a></td></tr>
 <tr><td>2026-08-17</td><td><a href="#seminar">Three years of stat & public-health seminars</a></td></tr>
 <tr><td>2026-07-15</td><td><a href="#jcsds">The 4th JCSDS</a></td></tr>
 <tr><td>2025-12-11</td><td><a href="#warm-help-center">Warm Help Center: learning together</a></td></tr>
@@ -26,7 +26,7 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 </tbody></table>
 
 <article class="blog-entry" id="final-year-project">
-<h2>A Brand New Semester and also last semester</h2>
+<h2>A Brand New Semester and also last year at XJTLU...</h2>
 <p class="blog-date">2026-09-01</p>
 <p>I feel incredibly fortunate and honored to have the chance to undertake my Final Year Project under Dr. Zhu’s supervision. I continually appreciate the elegance with which he explains statistical concepts and addresses research problems.</p>
 </article>
