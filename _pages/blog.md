@@ -20,7 +20,7 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 <tr><td>2025-12-11</td><td><a href="#warm-help-center">Warm Help Center: learning together</a></td></tr>
 <tr><td>2025-03-22</td><td><a href="#spring-ride">A spring ride by the lake</a></td></tr>
 <tr><td>2024-10-09</td><td><a href="#michael-levitt">A wonderful life in science</a></td></tr>
-<tr><td>2024-09-25</td><td><a href="#akun">Wednesday mathematics with Prof. Chi-Kun Lin</a></td></tr>
+<tr><td>2024-09-25</td><td><a href="#akun">Wednesday mathematics by Prof. Akun</a></td></tr>
 <tr><td>2024-07-26</td><td><a href="#uniform">Uniform generates everything</a></td></tr>
 <tr><td>2024-03-26</td><td><a href="#youth">Youth and adventure</a></td></tr>
 </tbody></table>
@@ -86,7 +86,7 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 </article>
 
 <article class="blog-entry" id="akun">
-<h2>Wednesday mathematics with Prof. Chi-Kun Lin</h2>
+<h2>Wednesday mathematics by Prof. Akun</h2>
 <p class="blog-date">2024-09-25</p>
 <p>I am grateful to Prof. Chi-Kun Lin (Akun) for his Wednesday evening classes, where mathematical analysis, linear algebra, ODEs, PDEs, and philosophy meet. Today I went to his office with two like-minded applied mathematics classmates. We kept asking questions until 11:30 p.m. and saw his beautifully organized mathematics notes from 1985. I came away with so much. Akun is a wonderful storyteller!</p>
 

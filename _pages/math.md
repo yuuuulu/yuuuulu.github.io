@@ -42,6 +42,7 @@ These notes move among Advanced Linear Algebra, Analysis, PDEs, multivariable ca
 | [Prob. and Stat.]({{ '/math/probability-statistics/' | relative_url }}) | Probability, inference, and model selection. |
 | [Statistical Learning]({{ '/math/statistical-learning/' | relative_url }}) | Regression, regularization, and prediction. |
 | [Mathematical Statistics]({{ '/statistics/mathematical-statistics/' | relative_url }}) | Distribution transformations and estimation. |
+| [Survey Sampling]({{ '/statistics/survey-sampling/' | relative_url }}) | Sampling designs, estimation, and survey methods. |
 | [Survival Analysis]({{ '/statistics/survival-analysis/' | relative_url }}) | Time-to-event methods. |
 | [Resampling]({{ '/statistics/resampling/' | relative_url }}) | Bootstrap and related methods. |
 | [Generalized Linear Models]({{ '/statistics/generalized-linear-models/' | relative_url }}) | Models beyond ordinary linear regression. |

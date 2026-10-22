@@ -8,7 +8,7 @@ toc:
   sidebar: left
 ---
 
-[← Projects]({{ '/projects/' | relative_url }})
+[← Lecture Notes]({{ '/math/' | relative_url }})
 
 {% raw %}
 # Thanks to Dr. Ying Chen for teaching me this course.

@@ -21,7 +21,7 @@ def main(zip_path):
                 continue
             if relative.suffix.lower() in SOURCE_EXTENSIONS:
                 destination = ROOT / '_source_archive/github_zip' / path
-            elif relative.suffix.lower() == '.pdf' and relative.name in {'2421874.pdf', 'MTH203_report.pdf'}:
+            elif relative.suffix.lower() == '.pdf' and relative.name == 'MTH203_report.pdf':
                 destination = ROOT / 'assets/pdf/imported' / relative.name
             else:
                 continue

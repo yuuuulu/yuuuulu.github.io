@@ -14,7 +14,6 @@ Selected research and course projects.
 | Project | Description |
 |---|---|
 | [2024 SURF]({{ '/statistics/2024-surf/' | relative_url }}) | Research project notes. |
-| [Survey Sampling]({{ '/statistics/survey-sampling/' | relative_url }}) | Course project and methods. |
 | [MIP Algorithm Development]({{ '/statistics/mip-algorithm/' | relative_url }}) | Operations research project. |
 | [Suzhou Smart Travel Maker](https://oracle-suzhou-travel.base44.app/) | A web app designed with friends using operations research algorithms to plan a one-day trip. |
 
@@ -22,7 +21,6 @@ Selected research and course projects.
 
 | Report | Format |
 |---|---|
-| [2024 Mathematical Modeling Contest]({{ '/assets/pdf/imported/2421874.pdf' | relative_url }}) | PDF |
 | [MTH203 Report]({{ '/assets/pdf/imported/MTH203_report.pdf' | relative_url }}) | PDF |
 
 ## Other project sites
