@@ -1,6 +1,7 @@
 <style>
 .biostat-toast { display:block; width:100%; max-width:420px; overflow:visible; }
 .biostat-toast svg { display:block; width:100%; height:auto; overflow:visible; }
+.biostat-toast .toast-squint { opacity:0; animation:toast-eye-smile 9s ease-in-out infinite; }
 .biostat-toast .toast-head { transform-box:view-box; transform-origin:287px 444px; animation:toast-head-tilt 9s ease-in-out infinite; }
 .biostat-toast .toast-arm { transform-box:view-box; transform-origin:435px 535px; animation:toast-raise 9s ease-in-out infinite; }
 .biostat-toast .toast-cap { transform-box:view-box; transform-origin:658px 93px; animation:toast-open 9s ease-in-out infinite; }
@@ -11,6 +12,10 @@
 .biostat-toast .toast-lasso { animation-delay:-.55s; }
 .biostat-toast .toast-normal { animation-delay:-1.1s; }
 .biostat-toast .toast-ols { animation-delay:-1.55s; }
+@keyframes toast-eye-smile {
+  0%,10%,87%,100% { opacity:0; }
+  20%,72% { opacity:1; }
+}
 @keyframes toast-head-tilt {
   0%,100% { transform:rotate(0); }
   20%,72% { transform:rotate(-3.5deg); }
@@ -46,11 +51,10 @@
   71%,84% { stroke-dashoffset:0; }
   100% { stroke-dashoffset:270; }
 }
-.biostat-toast .toast-quote { opacity:0; min-height:2.3em; max-width:380px; margin:.25rem auto 0; color:#67427b; font-size:.75rem; line-height:1.25; text-align:center; animation:toast-quote 9s linear infinite; }
+.biostat-toast .toast-quote { opacity:0; min-height:2.3em; max-width:380px; margin:.25rem auto 0; color:#67427b; font-size:.75rem; line-height:1.25; text-align:center; animation:toast-quote 9s linear forwards; }
 @keyframes toast-quote {
   0%,49% { opacity:0; }
-  55%,84% { opacity:1; }
-  94%,100% { opacity:0; }
+  55%,100% { opacity:1; }
 }
 @keyframes toast-float {
   0%,29% { opacity:0; transform:translateY(23px); }
@@ -59,14 +63,15 @@
   92%,100% { opacity:0; transform:translateY(-72px); }
 }
 @media (prefers-reduced-motion:reduce) {
-  .biostat-toast .toast-head,.biostat-toast .toast-arm,.biostat-toast .toast-cap,.biostat-toast .toast-coin,.biostat-toast .toast-cdf,.biostat-toast .toast-steps,.biostat-toast .toast-float,.biostat-toast .toast-quote { animation:none!important; }
-  .biostat-toast .toast-coin,.biostat-toast .toast-cdf,.biostat-toast .toast-float,.biostat-toast .toast-quote { opacity:0; }
+  .biostat-toast .toast-squint,.biostat-toast .toast-head,.biostat-toast .toast-arm,.biostat-toast .toast-cap,.biostat-toast .toast-coin,.biostat-toast .toast-cdf,.biostat-toast .toast-steps,.biostat-toast .toast-float,.biostat-toast .toast-quote { animation:none!important; }
+  .biostat-toast .toast-coin,.biostat-toast .toast-cdf,.biostat-toast .toast-float { opacity:0; }
+  .biostat-toast .toast-quote { opacity:1; }
 }
 </style>
 <div class="biostat-toast">
 <svg viewBox="0 0 800 566" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="toast-title toast-desc">
   <title id="toast-title">A biostatistics toast</title>
-  <desc id="toast-desc">An illustrated student tilts her head slightly to the left, raises a bottle, and opens its cap. The cap turns into a coin and drops onto the label, where a rising Poisson cumulative distribution appears while small Ridge, LASSO, normal distribution, and OLS projection diagrams float upward. The animation repeats.</desc>
+  <desc id="toast-desc">An illustrated student tilts her head slightly to the left and smiles with narrowed eyes as she raises a bottle and opens its cap. The cap turns into a coin and drops onto the label, where a rising Poisson cumulative distribution appears while small Ridge, LASSO, normal distribution, and OLS projection diagrams float upward. The animation repeats.</desc>
   <defs>
     <path id="toast-arm-shape" d="M375 566 L391 521 L416 481 L447 450 L490 432 L535 411 L559 385 L572 348 L574 247 L564 194 L568 150 L575 124 L598 110 L605 58 L710 54 L711 88 L742 88 L774 100 L797 131 L800 174 L800 242 L786 273 L785 385 L771 425 L747 451 L733 486 L713 538 L703 566 Z"/>
     <path id="toast-head-shape" d="M196 0 C183 18 179 35 175 47 C120 39 91 75 77 127 C65 163 66 202 82 228 C73 260 77 306 90 339 C96 390 129 421 184 441 L218 447 C236 468 263 482 290 483 C322 481 348 462 356 440 C389 418 414 384 405 344 C407 300 390 263 385 229 C395 191 380 145 360 112 C340 78 305 53 267 50 C277 16 259 0 250 0 Z"/>
@@ -88,6 +93,11 @@
   <image href="{{ '/assets/img/prof_pic.webp' | relative_url }}" width="800" height="566" mask="url(#toast-body-mask)"/>
   <g class="toast-head">
     <image href="{{ '/assets/img/prof_pic.webp' | relative_url }}" width="800" height="566" clip-path="url(#toast-head-clip)"/>
+    <g class="toast-squint" aria-hidden="true">
+      <path d="M181 284 Q198 278 216 284 Q217 296 209 301 Q194 308 182 298 Z" fill="#eac7ac"/>
+      <path d="M306 269 Q323 262 341 267 Q343 279 333 285 Q319 291 307 283 Z" fill="#eac5a7"/>
+      <path d="M183 294 Q198 304 213 293 M309 278 Q325 288 340 275" fill="none" stroke="#684439" stroke-width="3.2" stroke-linecap="round"/>
+    </g>
   </g>
   <g class="toast-arm">
     <path d="M624 109 Q661 102 700 103 L699 121 Q665 116 624 127 Z" fill="#decbe8" stroke="#271d2d" stroke-width="4"/>
@@ -139,14 +149,17 @@
     <rect width="192" height="112" rx="11" fill="#fff" fill-opacity=".95" stroke="#ac8abf" stroke-width="2"/>
     <text x="12" y="23" fill="#553173" font-size="18" font-weight="700" font-family="Arial, sans-serif">OLS projection</text>
     <path d="M22 78 L79 96 L167 75 L109 57 Z" fill="#e8e6f5" stroke="#8b78b2" stroke-width="2"/>
-    <path d="M106 71 L112 31" fill="none" stroke="#c75c67" stroke-width="3" stroke-linecap="round"/>
-    <path d="M108 39 L112 30 L116 40" fill="none" stroke="#c75c67" stroke-width="2.5"/>
-    <path d="M105 65 L113 67 L112 75" fill="none" stroke="#685186" stroke-width="2"/>
-    <circle cx="112" cy="30" r="3.5" fill="#c75c67"/><circle cx="106" cy="71" r="3.5" fill="#685186"/>
-    <text x="119" y="38" fill="#8b3f55" font-size="13" font-family="Arial, sans-serif">y</text>
-    <text x="116" y="82" fill="#5b4b79" font-size="13" font-family="Arial, sans-serif">ŷ</text>
-    <text x="115" y="55" fill="#8b3f55" font-size="13" font-family="Arial, sans-serif">e</text>
-    <text x="9" y="106" fill="#43334b" font-size="13" font-family="Arial, sans-serif">e = y − ŷ ⟂ col(X)</text>
+    <path d="M54 79 L111 31" fill="none" stroke="#3d70ac" stroke-width="3" stroke-linecap="round"/>
+    <path d="M103 34 L111 31 L109 40" fill="none" stroke="#3d70ac" stroke-width="2.5"/>
+    <path d="M54 79 L111 70" fill="none" stroke="#76639c" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M111 70 V31" fill="none" stroke="#c75c67" stroke-width="3" stroke-linecap="round"/>
+    <path d="M107 39 L111 30 L115 39" fill="none" stroke="#c75c67" stroke-width="2.5"/>
+    <path d="M111 62 H118 V69" fill="none" stroke="#685186" stroke-width="2"/>
+    <circle cx="54" cy="79" r="3" fill="#76639c"/><circle cx="111" cy="70" r="3.5" fill="#685186"/><circle cx="111" cy="30" r="3.5" fill="#3d70ac"/>
+    <text x="120" y="34" fill="#3d70ac" font-size="13" font-family="Arial, sans-serif">y</text>
+    <text x="117" y="82" fill="#5b4b79" font-size="13" font-family="Arial, sans-serif">ŷ</text>
+    <text x="120" y="55" fill="#a34b58" font-size="12" font-family="Arial, sans-serif">y−ŷ</text>
+    <text x="9" y="106" fill="#43334b" font-size="13" font-family="Arial, sans-serif">y−ŷ ⟂ col(X)</text>
   </g></g>
 </svg>
 <div class="toast-quote">Waiting and then making progress is Poisson Distribution, same as real life!</div>
