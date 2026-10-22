@@ -1,16 +1,16 @@
 <style>
 .biostat-toast { display:block; width:100%; max-width:420px; overflow:visible; }
 .biostat-toast svg { display:block; width:100%; height:auto; overflow:visible; }
-.biostat-toast .toast-arm { transform-box:view-box; transform-origin:435px 535px; animation:toast-raise 9s ease-in-out infinite; }
-.biostat-toast .toast-cap { transform-box:view-box; transform-origin:658px 93px; animation:toast-open 9s ease-in-out infinite; }
-.biostat-toast .toast-cdf { opacity:0; animation:toast-label 9s linear infinite; }
-.biostat-toast .toast-steps { stroke-dasharray:270; stroke-dashoffset:270; animation:toast-draw 9s ease-in-out infinite; }
-.biostat-toast .toast-float { opacity:0; animation:toast-float 9s ease-in-out infinite; }
-.biostat-toast .toast-lasso { animation-delay:-.55s; }
-.biostat-toast .toast-dna { animation-delay:-1.1s; }
-.biostat-toast .toast-clinical { animation-delay:-1.55s; }
+.biostat-toast .toast-arm { transform-box:view-box; transform-origin:435px 535px; animation:toast-raise 9s ease-in-out 1s infinite; }
+.biostat-toast .toast-cap { transform-box:view-box; transform-origin:658px 93px; animation:toast-open 9s ease-in-out 1s infinite; }
+.biostat-toast .toast-cdf { opacity:0; animation:toast-label 9s linear 1s infinite; }
+.biostat-toast .toast-steps { stroke-dasharray:270; stroke-dashoffset:270; animation:toast-draw 9s ease-in-out 1s infinite; }
+.biostat-toast .toast-float { opacity:0; animation:toast-float 9s ease-in-out 1s infinite; }
+.biostat-toast .toast-lasso { animation-delay:.45s; }
+.biostat-toast .toast-dna { animation-delay:-.1s; }
+.biostat-toast .toast-clinical { animation-delay:-.55s; }
 @keyframes toast-open {
-  0%,12%,100% { transform:translate(0,0) rotate(0); }
+  0%,100% { transform:translate(0,0) rotate(0); }
   30%,60% { transform:translate(-20px,-62px) rotate(-14deg); }
   73% { transform:translate(-32px,-85px) rotate(-20deg); }
   87% { transform:translate(-15px,-43px) rotate(-6deg); }
@@ -45,12 +45,12 @@
   <title id="toast-title">A biostatistics toast</title>
   <desc id="toast-desc">An illustrated student opens a bottle and raises it. A rising Poisson cumulative distribution appears on its label while small Ridge, LASSO, genetics, and clinical trial illustrations float upward. The animation repeats.</desc>
   <defs>
-    <path id="toast-arm-shape" d="M375 566 L391 521 L416 481 L447 450 L490 432 L535 411 L559 385 L572 348 L574 247 L576 194 L589 145 L607 116 L605 58 L710 54 L711 88 L742 88 L774 100 L797 131 L800 174 L800 242 L786 273 L785 385 L771 425 L747 451 L733 486 L713 538 L703 566 Z"/>
+    <path id="toast-arm-shape" d="M375 566 L391 521 L416 481 L447 450 L490 432 L535 411 L559 385 L572 348 L574 247 L564 194 L568 150 L575 124 L598 110 L605 58 L710 54 L711 88 L742 88 L774 100 L797 131 L800 174 L800 242 L786 273 L785 385 L771 425 L747 451 L733 486 L713 538 L703 566 Z"/>
     <clipPath id="toast-arm-clip"><use href="#toast-arm-shape"/></clipPath>
     <mask id="toast-body-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="800" height="566">
       <rect width="800" height="566" fill="white"/><use href="#toast-arm-shape" fill="black"/>
     </mask>
-    <path id="toast-cap-shape" d="M611 63 Q655 52 698 61 L706 67 L709 97 Q708 105 700 108 L621 117 Q613 113 611 106 L607 75 Q606 67 611 63 Z"/>
+    <path id="toast-cap-shape" d="M611 63 Q655 52 698 61 L703 66 L704 92 Q689 97 671 102 L638 108 L615 111 L609 102 L607 75 Q606 67 611 63 Z"/>
     <mask id="toast-cap-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="800" height="566">
       <rect width="800" height="566" fill="white"/><use href="#toast-cap-shape" fill="black"/>
     </mask>
