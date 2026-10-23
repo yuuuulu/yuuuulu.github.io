@@ -17,6 +17,9 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 <tr><td>2026-09-01</td><td><a href="#final-year-project">A Brand New Semester and also last year at XJTLU</a></td></tr>
 <tr><td>2026-08-17</td><td><a href="#seminar">Three years of stat & public-health seminars</a></td></tr>
 <tr><td>2026-07-15</td><td><a href="#jcsds">The 4th JCSDS and Prof. Jianqing Fan's autograph "Statistics is SURE for you"</a></td></tr>
+<tr><td>2026-03-30</td><td><a href="#warm-help-center-again">Back at the Warm Help Center</a></td></tr>
+<tr><td>2026-03-24</td><td><a href="#zeng-guofan">Zeng Guofan's Six Admonitions</a></td></tr>
+<tr><td>2026-03-20</td><td><a href="#travel-app">Suzhou Smart Travel Maker</a></td></tr>
 <tr><td>2025-12-11</td><td><a href="#warm-help-center">Warm Help Center: learning together</a></td></tr>
 <tr><td>2025-03-22</td><td><a href="#spring-ride">A spring ride by the lake</a></td></tr>
 <tr><td>2024-10-09</td><td><a href="#michael-levitt">A wonderful life in science</a></td></tr>
@@ -52,6 +55,37 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 
 <div class="blog-gallery">
 <figure><img src="/assets/img/blog/jcsds-2026.png" alt="jcsds 2026" loading="lazy"></figure>
+</div>
+</article>
+
+<article class="blog-entry" id="warm-help-center-again">
+<h2>Back at the Warm Help Center</h2>
+<p class="blog-date">2026-03-30</p>
+<p>For another semester, I tutored mathematical analysis and abstract algebra every week. These meetings reminded me how much we can learn from one another by working through difficult ideas together.</p>
+
+<div class="blog-gallery">
+<figure><img src="/assets/img/blog/help-center-again.png" alt="help center again" loading="lazy"></figure>
+</div>
+</article>
+
+<article class="blog-entry" id="zeng-guofan">
+<h2>Zeng Guofan's Six Admonitions</h2>
+<p class="blog-date">2026-03-24</p>
+<p>I am grateful to Dr. He for teaching me not only academic knowledge but also how to conduct myself. He gave me this framed copy of Zeng Guofan's Six Admonitions, which I keep on my dormitory desk as a daily reminder.</p>
+<div class="blog-gallery">
+<figure><img src="/assets/img/blog/zeng-guofan-six-admonitions.jpg" alt="Framed calligraphy of Zeng Guofan's Six Admonitions on my dormitory desk" loading="lazy"></figure>
+</div>
+</article>
+
+<article class="blog-entry" id="travel-app">
+<h2>Suzhou Smart Travel Maker</h2>
+<p class="blog-date">2026-03-20</p>
+<p>With friends, I used operations research algorithms to design a <a href="https://oracle-suzhou-travel.base44.app/">web app</a> for planning a day in Suzhou. The app brings together visitor preferences, time, budget, route feasibility, and an optimization method.</p>
+
+<div class="blog-gallery">
+<figure><img src="/assets/img/blog/travel-app-planner.png" alt="travel app planner" loading="lazy"></figure>
+<figure><img src="/assets/img/blog/travel-app-route.png" alt="travel app route" loading="lazy"></figure>
+<figure><img src="/assets/img/blog/travel-app-method.png" alt="travel app method" loading="lazy"></figure>
 </div>
 </article>
 
@@ -117,29 +151,5 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 
 <div class="blog-gallery">
 <figure><img src="/assets/img/blog/campus-sunset.jpg" alt="campus sunset" loading="lazy"></figure>
-</div>
-</article>
-
-## Other moments
-
-The following memories are undated in my notes.
-
-<article class="blog-entry" id="travel-app">
-<h2>Suzhou Smart Travel Maker</h2>
-<p>With friends, I used operations research algorithms to design a <a href="https://oracle-suzhou-travel.base44.app/">web app</a> for planning a day in Suzhou. The app brings together visitor preferences, time, budget, route feasibility, and an optimization method.</p>
-
-<div class="blog-gallery">
-<figure><img src="/assets/img/blog/travel-app-planner.png" alt="travel app planner" loading="lazy"></figure>
-<figure><img src="/assets/img/blog/travel-app-route.png" alt="travel app route" loading="lazy"></figure>
-<figure><img src="/assets/img/blog/travel-app-method.png" alt="travel app method" loading="lazy"></figure>
-</div>
-</article>
-
-<article class="blog-entry" id="warm-help-center-again">
-<h2>Back at the Warm Help Center</h2>
-<p>For another semester, I tutored mathematical analysis and abstract algebra every week. These meetings reminded me how much we can learn from one another by working through difficult ideas together.</p>
-
-<div class="blog-gallery">
-<figure><img src="/assets/img/blog/help-center-again.png" alt="help center again" loading="lazy"></figure>
 </div>
 </article>
