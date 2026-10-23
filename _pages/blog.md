@@ -11,7 +11,7 @@ description: Dated moments in mathematics, statistics, teaching, and everyday li
 .blog-index {width:100%;border-collapse:collapse;margin:1rem 0 2rem}.blog-index td,.blog-index th{padding:.55rem .7rem;border-bottom:1px solid var(--global-divider-color);vertical-align:top}.blog-index td:first-child{white-space:nowrap;width:8rem}.blog-entry{margin:2.6rem 0 3.5rem;scroll-margin-top:5rem}.blog-entry h2{margin-bottom:.2rem}.blog-date{color:var(--global-text-color-light);font-size:.9rem;margin-bottom:1rem}.blog-gallery{display:flex;flex-wrap:wrap;gap:1rem;margin:1rem 0 1.5rem}.blog-gallery figure{flex:1 1 240px;max-width:440px;margin:0}.blog-gallery img{display:block;max-width:100%;max-height:350px;width:auto;height:auto;object-fit:contain;border-radius:.3rem}.blog-gallery figure:only-child{max-width:560px}
 </style>
 
-Moments in mathematics, statistics, teaching, and everyday life, from newest to oldest.
+I am continually uplifted by those I care for and respect: my parents, teachers, and peers. My parents always tell me that family will always be my safe harbor, and they have guided me through countless bouts of anxiety. My teachers have devoted substantial time to mentoring me, imparting not only knowledge, research intuition, and rigorous methodologies, but also invaluable life lessons. Together with my peers, we grow and progress side by side: we burn the midnight oil over coursework, research projects,  GRE preparation, and graduate application discussions, supporting one another through anxious moments.
 
 <table class="blog-index"><thead><tr><th>Date</th><th>Entry</th></tr></thead><tbody>
 <tr><td>2026-09-01</td><td><a href="#final-year-project">A Brand New Semester and also last year at XJTLU</a></td></tr>
@@ -21,6 +21,7 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 <tr><td>2026-03-24</td><td><a href="#zeng-guofan">Zeng Guofan's Six Admonitions</a></td></tr>
 <tr><td>2026-03-20</td><td><a href="#travel-app">Suzhou Smart Travel Maker</a></td></tr>
 <tr><td>2025-12-11</td><td><a href="#warm-help-center">Warm Help Center: learning together</a></td></tr>
+<tr><td>2025-09-01</td><td><a href="#math-stat-empathy">Math/Stat-related things has empathized me a lot</a></td></tr>
 <tr><td>2025-03-22</td><td><a href="#spring-ride">A spring ride by the lake</a></td></tr>
 <tr><td>2024-10-09</td><td><a href="#michael-levitt">A wonderful life in science</a></td></tr>
 <tr><td>2024-09-25</td><td><a href="#akun">Wednesday mathematics by Prof. Akun</a></td></tr>
@@ -97,6 +98,13 @@ Moments in mathematics, statistics, teaching, and everyday life, from newest to 
 <div class="blog-gallery">
 <figure><img src="/assets/img/blog/help-center-2025.jpg" alt="help center 2025" loading="lazy"></figure>
 </div>
+</article>
+
+<article class="blog-entry" id="math-stat-empathy">
+<h2>Math/Stat-related things has empathized me a lot</h2>
+<p class="blog-date">2025-09-01</p>
+<p>Why do I like mathematical analysis so much? Is it because teachers really sophisticated in it so that tell stories well? Is it because I was always bored in my sophomore year and enjoyed seeking out problems, consulting teachers, and then chatting with them? Is it because I liked to use different counterexamples to view theorems but had to reluctantly accept the fact that I would never be able to come up with counterexamples myself? Is it because I enjoyed thinking about the same problem in various ways and marveled at the charm of scholarship? Is it because during the final exam, the Archimedean Property made 1/n fall within the delta of uniform continuity, and prove the result in the last second of the exam? Is it because I took pride in the intuitive drawing of sequence approximation, which allowed me to see the result at a glance before the proof? Or is it because I was amazed by the simple derivation of the volume of an n-dimensional sphere using recurrence iterated integrals? Is it because I realized that even the historically rigorous differential equations can only approximately describe nature, and thus I gladly accepted my own insignificance? Is it because I admired the teachers who, despite often being confused about the meaning of life, still resolutely pursued the path of applied and pure mathematics? Or is it because I was immersed in the little stories told by teachers that combined mathematical principles with life lessons, such as Minkowski, who, suffering from appendicitis and on his deathbed, lamented that he was dying in an era when the theory of relativity was being developed—compared to these stories, all regrets seemed to vanish.</p>
+<p>Statistics is a beneficial and interesting subject and I feel so lucky to major in BioStatistics.</p>
 </article>
 
 <article class="blog-entry" id="spring-ride">

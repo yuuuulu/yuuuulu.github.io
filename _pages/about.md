@@ -19,6 +19,18 @@ latest_posts:
   <figure style="flex:0 1 400px;max-width:100%;margin:0">{% include biostatistics_toast.liquid %}</figure>
 </div>
 
+My research interests lie in statistical inference and statistical learning in the computer age, motivated by questions arising in clinical trials, epidemiology, and precision medicine. I am particularly drawn to the interplay between flexible computational methods and the theoretical principles that make their conclusions reliable and explainable. My goal is to develop methods that improve efficiency and reveal meaningful structure while providing a rigorous account of uncertainty, assumptions, and limitations.
+
+My current interests include:
+
+- **Survival and longitudinal analysis:** Inference for censored and repeated-measures data, time-varying effects, and clinically prioritized composite endpoints. I am interested in developing methods to mitigate the impacts of model misspecification on estimation, statistical power, and interpretation, with a particular focus on nonparametric approaches.
+
+- **Statistical learning and structured regularization:** Sparse and high-dimensional methods that exploit scientifically meaningful structure. I hope to study the relationship between structural selection, estimation, and valid inference, particularly when signals are weak or sample sizes are limited.
+
+- **Causal inference and precision medicine:** Counterfactual reasoning, identification, heterogeneous treatment effects, and individualized treatment decisions. I am especially interested in causal questions within randomized trials, including treatment switching and other intercurrent events, as well as covariate adjustment (originated from the causal inference literature) for more efficient treatment-effect estimation.
+
+- **Clinical-trial design and adaptive methods:** Power and sample-size calculations under uncertain planning assumptions, information-based designs, and sample-size re-estimation.
+
 # <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjJ5dmhkZXN3bTVzMWZybml6ZjBsZ3F1MnBmbHZkbnNmNDVrYm53aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/b4UHeUnzarvUnjl0fg/giphy.gif" alt="Waving animated character" width="80" style="vertical-align:middle"> 𝙷𝚒! 𝙸' m Yu Lu -- 卢钰
 
 🌱 I am a thorough follower of Thomas Bayes, Pierre-Simon Laplace, Frank Ramsey, and Bruno de Finetti. I am exploring the direction of statistics that I most enjoy.
