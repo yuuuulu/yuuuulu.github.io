@@ -3,7 +3,7 @@ layout: page
 title: Reading
 permalink: /reading/
 nav: true
-nav_order: 4
+nav_order: 5
 description: Books and ideas that shape my learning.
 ---
 

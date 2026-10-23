@@ -31,8 +31,6 @@ Good statisticians could even intuitively guess the result of the simulation. An
 
 I really enjoy chatting with people about math knowledge, reading good books about stat. and prob. But only enjoying is totally not enough---"We want something more than mere theory and preaching now, though." ---Sherlock Holmes 我们不能坐而论道，必须有所作为。
 
-[GitHub](https://github.com/yuuuulu) · [About Me]({{ '/about-me/' | relative_url }}) · [Reading Notes]({{ '/reading/' | relative_url }})
-
 ### *Let's enjoy the world by statistics, analysis, equations, a pounding heart and a burning soul!*
 
 ## Contact Information
@@ -41,7 +39,7 @@ I really enjoy chatting with people about math knowledge, reading good books abo
 |---|---|
 | XJTLU | Applied Statistics (Biostatistics) |
 | Department of Mathematics and Physics | Xi'an Jiaotong-Liverpool University |
-| Suzhou, Jiangsu, China | Hometown: Hebei |
+| Suzhou, Jiangsu, China | Hometown: Shijiazhuang, Hebei |
 | Email | [yuelyulu5206@gmail.com](mailto:yuelyulu5206@gmail.com) |
 
 ![Home illustration]({{ '/assets/img/legacy/dd18f2c44c78cde66a8a30479395ffb.webp' | relative_url }})
