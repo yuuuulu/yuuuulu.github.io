@@ -15,6 +15,7 @@ Selected research and course projects.
 |---|---|
 | [2024 SURF]({{ '/statistics/2024-surf/' | relative_url }}) | Research project notes. |
 | [MIP Algorithm Development]({{ '/statistics/mip-algorithm/' | relative_url }}) | Operations research project. |
+| [Function Approximation: Orthogonal Polynomials, Vandermonde Systems, and the Arnoldi Method]({{ '/assets/pdf/function-approximation-orthogonal-polynomials-vandermonde-arnoldi.pdf' | relative_url }}) | MTH208 Numerical Analysis coursework report (PDF). |
 | [Suzhou Smart Travel Maker](https://oracle-suzhou-travel.base44.app/) | A web app designed with friends using operations research algorithms to plan a one-day trip. |
 | [Mathematical Modeling 2025](https://yuuuulu.github.io/MathematicalModeling2025/) | Project site. |
 | [2025 SURF](https://yuuuulu.github.io/2025SURF/) | Project site. |

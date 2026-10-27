@@ -33,6 +33,7 @@ These notes move among Advanced Linear Algebra, Analysis, PDEs, multivariable ca
 | [Analysis 1]({{ '/math/analysis-1/' | relative_url }}) | Limits, continuity, completeness, and proof. |
 | [Calculus]({{ '/math/calculus/' | relative_url }}) | Multivariable calculus and geometric integration. |
 | [Advanced Linear Algebra]({{ '/math/linear-algebra/' | relative_url }}) | Vector spaces, linear maps, projections, and least squares. |
+| [Numerical Analysis]({{ '/math/numerical-analysis/' | relative_url }}) | Floating-point error, root finding, interpolation, approximation, quadrature, and ODE solvers. |
 | [ODE, PDE, and Fourier Series with codes]({{ '/math/differential-equations/' | relative_url }}) | Differential equations, Fourier methods, and Python examples. |
 
 ### Statistics and Learning
