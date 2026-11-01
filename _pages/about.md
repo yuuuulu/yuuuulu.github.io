@@ -19,7 +19,7 @@ latest_posts:
   <figure style="flex:0 1 400px;max-width:100%;margin:0">{% include biostatistics_toast.liquid %}</figure>
 </div>
 
-My research interests lie in statistical inference and statistical learning in the computer age, motivated by questions arising in clinical trials, epidemiology, and precision medicine. I am particularly drawn to the interplay between flexible computational methods and the theoretical principles that make their conclusions reliable and explainable. My goal is to develop methods that improve efficiency and reveal meaningful structure while providing a rigorous account of uncertainty, assumptions, and limitations.
+My research interests lie in statistical inference and statistical learning in the computer age, motivated by questions arising in clinical trials, epidemiology, and precision medicine. I am particularly drawn to the interplay between flexible computational methods and the theoretical principles that make their conclusions reliable and explainable. My goal is to develop robust, interpretable statistical and AI methods that support reliable and transparent clinical decision-making. At a time when black-box AI poses significant risks in healthcare, I believe this is precisely where biostatistics can lead.
 
 My current interests include:
 

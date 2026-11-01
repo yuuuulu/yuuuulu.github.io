@@ -3,7 +3,7 @@ layout: page
 title: Resources
 permalink: /resources/
 nav: true
-nav_order: 8
+nav_order: 9
 description: Software, learning links, and community resources.
 ---
 
