@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Prob. and Stat."
+title: "Probability and Statistics with R"
 permalink: /math/probability-statistics/
 nav: false
 lecture_note: true

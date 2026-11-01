@@ -20,32 +20,23 @@ The math teachers I have learned from are teaching math in an interesting and so
 
 I want to log the profound and inspiring things that I learned from my math teachers, including notes, philosophy and the like.
 
-These notes move among Advanced Linear Algebra, Analysis, PDEs, multivariable calculus, mathematical modeling, and interesting problems. Choose a course from the navigation above or the collections below.
+These notes move among Advanced Linear Algebra, Analysis, PDEs, multivariable calculus, mathematical modeling, and interesting problems. Choose a course from the list below.
 
-## Collections
-
-<a class="btn btn-outline-primary mr-2 mb-2" href="#mathematical-foundations">Mathematical Foundations</a> <a class="btn btn-outline-primary mb-2" href="#statistics-and-learning">Statistics and Learning</a>
-
-### Mathematical Foundations
+## Lecture Notes
 
 | Lecture note | Topics |
 |---|---|
-| [Analysis 1]({{ '/math/analysis-1/' | relative_url }}) | Limits, continuity, completeness, and proof. |
+| [Survival Analysis]({{ '/assets/pdf/lecture-notes/survival-analysis.pdf' | relative_url }}) | Time-to-event methods, censoring, and regression. |
+| [Advanced Linear Algebra]({{ '/assets/pdf/lecture-notes/advanced-linear-algebra.pdf' | relative_url }}) | Vector spaces, linear maps, projections, and least squares. |
+| [Generalized Linear Models]({{ '/assets/pdf/lecture-notes/generalized-linear-models.pdf' | relative_url }}) | Linear models, generalized linear models, and inference. |
+| [Mathematical Statistics]({{ '/assets/pdf/lecture-notes/mathematical-statistics.pdf' | relative_url }}) | Distribution transformations and estimation. |
+| [Statistical Learning]({{ '/assets/pdf/lecture-notes/statistical-learning.pdf' | relative_url }}) | Regression, regularization, and prediction. |
+| [Probability and Statistics with R]({{ '/assets/pdf/lecture-notes/probability-statistics.pdf' | relative_url }}) | Probability, inference, model selection, and R examples. |
 | [Calculus]({{ '/math/calculus/' | relative_url }}) | Multivariable calculus and geometric integration. |
-| [Advanced Linear Algebra]({{ '/math/linear-algebra/' | relative_url }}) | Vector spaces, linear maps, projections, and least squares. |
-| [Numerical Analysis]({{ '/math/numerical-analysis/' | relative_url }}) | Floating-point error, root finding, interpolation, approximation, quadrature, and ODE solvers. |
-| [ODE, PDE, and Fourier Series with codes]({{ '/math/differential-equations/' | relative_url }}) | Differential equations, Fourier methods, and Python examples. |
-
-### Statistics and Learning
-
-| Lecture note | Topics |
-|---|---|
-| [Prob. and Stat.]({{ '/math/probability-statistics/' | relative_url }}) | Probability, inference, and model selection. |
-| [Statistical Learning]({{ '/math/statistical-learning/' | relative_url }}) | Regression, regularization, and prediction. |
-| [Mathematical Statistics]({{ '/statistics/mathematical-statistics/' | relative_url }}) | Distribution transformations and estimation. |
+| [Differential Equations]({{ '/assets/pdf/lecture-notes/differential-equations.pdf' | relative_url }}) | ODEs, PDEs, Fourier methods, and Python examples. |
+| [Analysis 1]({{ '/assets/pdf/lecture-notes/analysis-1.pdf' | relative_url }}) | Limits, continuity, completeness, and proof. |
+| [Numerical Analysis]({{ '/math/numerical-analysis/' | relative_url }}) | Floating-point error, interpolation, approximation, quadrature, and ODE solvers. |
 | [Survey Sampling]({{ '/statistics/survey-sampling/' | relative_url }}) | Sampling designs, estimation, and survey methods. |
-| [Survival Analysis]({{ '/statistics/survival-analysis/' | relative_url }}) | Time-to-event methods. |
 | [Resampling]({{ '/statistics/resampling/' | relative_url }}) | Bootstrap and related methods. |
-| [Generalized Linear Models]({{ '/statistics/generalized-linear-models/' | relative_url }}) | Models beyond ordinary linear regression. |
 | [Statistics Tips]({{ '/statistics/statistics-tips/' | relative_url }}) | Practical statistical notes. |
 | [Additional Statistics Notes]({{ '/statistics/additional-notes/' | relative_url }}) | Other collected notes. |

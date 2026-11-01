@@ -14,15 +14,15 @@ The volume of an $n$-dimensional ball becomes manageable when I slice it into lo
 
 ## Examples before abstraction
 
-A diagram of an approximating sequence may suggest a limit before I can prove it. A counterexample tests the exact reach of a theorem. The proof then explains why the intuition works and where it stops. See [Analysis 1]({{ '/math/analysis-1/' | relative_url }}).
+A diagram of an approximating sequence may suggest a limit before I can prove it. A counterexample tests the exact reach of a theorem. The proof then explains why the intuition works and where it stops. See [Analysis 1]({{ '/assets/pdf/lecture-notes/analysis-1.pdf' | relative_url }}).
 
 ## Models are approximations
 
-Differential equations describe change with explicit assumptions; statistical models describe uncertainty with theirs. Neither is nature itself. A useful model has to be checked against the phenomenon and the data. See [Differential Equations]({{ '/math/differential-equations/' | relative_url }}) and [Statistical Learning]({{ '/math/statistical-learning/' | relative_url }}).
+Differential equations describe change with explicit assumptions; statistical models describe uncertainty with theirs. Neither is nature itself. A useful model has to be checked against the phenomenon and the data. See [Differential Equations]({{ '/assets/pdf/lecture-notes/differential-equations.pdf' | relative_url }}) and [Statistical Learning]({{ '/assets/pdf/lecture-notes/statistical-learning.pdf' | relative_url }}).
 
 ## Projection and inference
 
-A least-squares projection separates a fitted component from a residual. That simple geometric picture connects linear algebra with regression, while reminding me that unexplained variation remains. See [Advanced Linear Algebra]({{ '/math/linear-algebra/' | relative_url }}) and [Generalized Linear Models]({{ '/statistics/generalized-linear-models/' | relative_url }}).
+A least-squares projection separates a fitted component from a residual. That simple geometric picture connects linear algebra with regression, while reminding me that unexplained variation remains. See [Advanced Linear Algebra]({{ '/assets/pdf/lecture-notes/advanced-linear-algebra.pdf' | relative_url }}) and [Generalized Linear Models]({{ '/assets/pdf/lecture-notes/generalized-linear-models.pdf' | relative_url }}).
 
 ## 从例子走向证明 · From examples to proof
 

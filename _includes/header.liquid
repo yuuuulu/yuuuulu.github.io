@@ -59,20 +59,14 @@
             <li class="nav-item {% if page.permalink == '/math/' %}active{% endif %}">
               <a class="nav-link" href="{{ '/math/' | relative_url }}">Lecture Notes</a>
             </li>
-            {% for group in site.data.lecture_notes %}
-              {% assign group_active = false %}
-              {% for item in group.items %}
-                {% if page.permalink == item.url %}{% assign group_active = true %}{% endif %}
-              {% endfor %}
-              <li class="nav-item dropdown {% if group_active %}active{% endif %}">
-                <a class="nav-link dropdown-toggle" href="#" id="lectureDropdown{{ forloop.index }}" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">{{ group.label }}</a>
-                <div class="dropdown-menu dropdown-menu-right" style="min-width: 19rem; max-height: 70vh; overflow-y: auto;" aria-labelledby="lectureDropdown{{ forloop.index }}">
-                  {% for item in group.items %}
-                    <a class="dropdown-item {% if page.permalink == item.url %}active{% endif %}" style="white-space: normal; text-align: left;" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-                  {% endfor %}
-                </div>
-              </li>
-            {% endfor %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="lectureDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">Courses</a>
+              <div class="dropdown-menu dropdown-menu-right" style="min-width: 19rem; max-height: 70vh; overflow-y: auto;" aria-labelledby="lectureDropdown">
+                {% for item in site.data.lecture_notes %}
+                  <a class="dropdown-item {% if page.permalink == item.url %}active{% endif %}" style="white-space: normal; text-align: left;" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                {% endfor %}
+              </div>
+            </li>
           {% else %}
           <!-- Other pages -->
           {% assign sorted_pages = site.pages | sort: 'nav_order' %}
