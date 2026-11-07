@@ -26,9 +26,9 @@ These notes move among Advanced Linear Algebra, Analysis, PDEs, multivariable ca
 
 | Lecture note | Topics |
 |---|---|
+| [Generalized Linear Models]({{ '/assets/pdf/lecture-notes/generalized-linear-models.pdf' | relative_url }}) | Linear models, generalized linear models, and inference. |
 | [Survival Analysis]({{ '/assets/pdf/lecture-notes/survival-analysis.pdf' | relative_url }}) | Time-to-event methods, censoring, and regression. |
 | [Advanced Linear Algebra]({{ '/assets/pdf/lecture-notes/advanced-linear-algebra.pdf' | relative_url }}) | Vector spaces, linear maps, projections, and least squares. |
-| [Generalized Linear Models]({{ '/assets/pdf/lecture-notes/generalized-linear-models.pdf' | relative_url }}) | Linear models, generalized linear models, and inference. |
 | [Mathematical Statistics]({{ '/assets/pdf/lecture-notes/mathematical-statistics.pdf' | relative_url }}) | Distribution transformations and estimation. |
 | [Statistical Learning]({{ '/assets/pdf/lecture-notes/statistical-learning.pdf' | relative_url }}) | Regression, regularization, and prediction. |
 | [Probability and Statistics with R]({{ '/assets/pdf/lecture-notes/probability-statistics.pdf' | relative_url }}) | Probability, inference, model selection, and R examples. |
