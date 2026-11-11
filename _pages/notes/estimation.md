@@ -10,8 +10,6 @@ toc:
 
 [← Reading]({{ '/reading/' | relative_url }})
 
-# Estimation
-
 Let $X_1,\ldots,X_n$ be independent observations from a model $f(x;\theta)$, where $\theta$ is unknown. Different estimators use different summaries of the data or different criteria for choosing $\theta$.
 
 ## Method of moments
