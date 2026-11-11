@@ -10,110 +10,96 @@ toc:
 
 [← Reading]({{ '/reading/' | relative_url }})
 
-# statistics
+# Estimation
 
-population $f(x;\theta)$ and $\theta$ is unknown
+Let $X_1,\ldots,X_n$ be independent observations from a model $f(x;\theta)$, where $\theta$ is unknown. Different estimators use different summaries of the data or different criteria for choosing $\theta$.
 
+## Method of moments
 
-## old/classical: Bayesian estimation; moment estimation
-
-## Moment estimation
-
-- For the moment estimation, we do not know the density so we could not calculate the expectation directly. Instead, we use LLN to approximate the expectation with sample mean. We then have
+Match theoretical moments to sample moments. For $k$ parameters, solve $k$ equations:
 
 $$
-m_1(\theta) = E[X] \approx \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i
+m_j(\theta)=\mathbb E_\theta[X^j],\qquad
+\widehat m_j=\frac1n\sum_{i=1}^n X_i^j,\qquad
+m_j(\widehat\theta_{\mathrm{MoM}})=\widehat m_j,\qquad j=1,\ldots,k.
 $$
 
-then
-$$
-\hat \theta = m_1^{-1}(\frac{1}{n} \sum_{i=1}^n X_i)
-$$
-
-For the multiple parameter case, we could use multiple moments to estimate the parameters. (k equations to solve k unknown parameters). Here we do not know the precise distribution, so we could not calculate the moments directly. Instead, we use LLN to approximate the moments with sample moments. 
-
-Suppose $X_1, X_2, \ldots, X_n$ are iid samples from the distribution with parameters $f(x;\theta_1, \theta_2, \ldots, \theta_k)$ then by LLM. 
-
-We then have approximatedmoment equation:
+For one parameter, if $m_1$ is invertible,
 
 $$
-E[X^j] = m_j(\theta_1, \theta_2, \ldots, \theta_k) \approx \frac{1}{n} \sum_{i=1}^n X_i^j, j=1,2,\ldots,k
+\widehat\theta_{\mathrm{MoM}}=m_1^{-1}(\overline X).
 $$
 
-then we could solve the equations to get the estimators.
-
-The solution $\hat \theta_1, \hat \theta_2, \ldots, \hat \theta_k$ are the moment estimators of the parameters.
+The law of large numbers explains why $\widehat m_j$ approaches $m_j(\theta)$ when the relevant moment exists. Computing the theoretical moments still requires a specified model.
 
 ## Bayesian estimation
 
-$f(x|\theta)$ is regarded as conditional density and the unknown parameter $\theta$ is the condition. $\theta$ is a random variable with prior distribution $\pi(\theta)$.
-
-$(X, \theta)$ has joint distribution $f(x,\theta)=f(x|\theta)\pi(\theta)$
-
-Then we get the marginal distribution of $X$:
-
-$f_X(x) = \int_{-\infty}^{+\infty} f(x|\theta)\pi(\theta)d\theta=\int_{-\infty}^{+\infty} f(x;\theta)\pi(\theta)d\theta$
-
-
-the Bayesian formula is 
-
-$$ \frac {P(A|C_i)P(C_i)}{\sum_j P(A|C_j)P(C_j)} =P(C_i|A)$$
-
+A prior $\pi(\theta)$ and the likelihood $L(\theta;x)$ give the posterior density
 
 $$
-f(\theta|x)=\frac{f(x|\theta)\pi(\theta)}{f_X(x)} = \frac{f(x;\theta)\pi(\theta)}{\int_{-\infty}^{+\infty} f(x;\theta)\pi(\theta)d\theta}
+L(\theta;x)=\prod_{i=1}^n f(x_i;\theta),\qquad
+\pi(\theta\mid x)=
+\frac{L(\theta;x)\pi(\theta)}
+{\int_\Theta L(t;x)\pi(t)\,dt}.
 $$
 
-Then above we have used Bayes theorem to get the posterior distribution of $\theta$ given $X=x$
-
-This is the updation of your belief or learning.
-
-Bayesian statistics is unclear and ambiguous, but leaving us with no choice but to incorporate the most fundamental knowledge we have （不清不楚，不得不用）. We then update our understanding through experimental data. If it cannot be accomplished in one attempt, we iterate multiple times—eventually, we will gain a solid understanding of the parameters. The learning process is one of repeated iteration; there is no need to expect it to be completed in a single attempt.
-
-When we do not know every knowledge about the model, we could use the prior of uniform distribution to represent our ignorance. That is, everyone is equally likely.
-
-
-for $f(x;\theta)$, we could calculate the expectation ; mode; CI
-
-modern statistics
-
-$L(\theta) = E[R(\theta,X)]$
-
-$\hat \theta = argmin_\theta L(\theta)$
-
-where $R(\theta,X)$ is the loss function
-
-## Fisher: MLE
-
-**Fisher ambitious ： 不想依赖于贝叶斯，选prior的时候不能包含个人的任何认知，那就选客观的uniform分布**
-(Fisher ambitious: Not wanting to rely on Bayesian, when choosing prior, no personal cognition can be included. Then choose the objective uniform distribution)
-
-$\pi (\theta|x) {d\theta}= d\theta$ uniform
-
-$f(\theta|x_1, x_2, \ldots, x_n) = \frac{f(x_1, x_2, \ldots, x_n;\theta)\pi(\theta)}{\int f(x_1, x_2, \ldots, x_n;\theta)\pi(\theta)d\theta}$ = $L(\theta)$
+The posterior updates prior assumptions with observed data. Common summaries include
 
 $$
-= \frac{f(x_1;\theta)f(x_2;\theta)\ldots f(x_n;\theta) }{\int f(x_1;\theta)f(x_2;\theta)\ldots f(x_n;\theta)  d\theta}=L(\theta)
+\widehat\theta_{\mathrm{mean}}=\mathbb E[\theta\mid x],\qquad
+\widehat\theta_{\mathrm{MAP}}=\operatorname*{arg\,max}_{\theta\in\Theta}\pi(\theta\mid x).
 $$
 
-Mode:
+A posterior credible interval is another summary. More generally, a Bayesian action $a$ minimizes posterior expected loss:
 
-Find maximum of $f(\theta|x_1, x_2, \ldots, x_n)$ i.e. L($\theta$)
+$$
+\widehat a=\operatorname*{arg\,min}_{a}\mathbb E[\ell(a,\theta)\mid x].
+$$
 
-$\hat \theta = argmax_\theta L(\theta)=argmax_\theta \frac{f(x_1;\theta)f(x_2;\theta)\ldots f(x_n;\theta)}{f_X(x_1,x_2,..x_n)}$
+For squared-error loss, this action is the posterior mean; for absolute-error loss, a posterior median.
 
-$= argmax_\theta f(x_1;\theta)f(x_2;\theta)\ldots f(x_n;\theta)=argmax_\theta L(\theta)$ this is the likelihood function
+## Fisher, likelihood, and MLE
 
+Maximum likelihood uses the sampling model directly, without assigning a prior probability to $\theta$:
 
+$$
+\widehat\theta_{\mathrm{MLE}}
+=\operatorname*{arg\,max}_{\theta\in\Theta}L(\theta;x)
+=\operatorname*{arg\,max}_{\theta\in\Theta}\ell(\theta;x),
+\qquad
+\ell(\theta;x)=\sum_{i=1}^n\log f(x_i;\theta).
+$$
 
-When Fisher wanted to publish his idea to the Royal Society, he had been harshly commented through the discussion of the Royal Society. This is a good tradition but nowadays' conference does ntot keep this. This means now they just have a presentation but the comments will not appear in the published paper.
+For an interior optimum, a candidate solves the score equation $\partial\ell(\theta;x)/\partial\theta=0$; boundaries and other stationary points must also be checked.
 
+Fisher's early argument used *inverse probability*. In his [1922 account of theoretical statistics](https://digital.library.adelaide.edu.au/items/36b96da4-e256-4e94-9720-eef372935c3a), he acknowledged that starting point and then distinguished **likelihood** from a probability distribution over parameter values. His mature MLE therefore does not depend on choosing a uniform prior.
 
+### When does a uniform prior give the same estimate?
 
-then we could use log likelihood to simplify the calculation of the derivative to get the maximum likelihood estimator.
+If $\Theta=[a,b]$ and $\pi(\theta)=1/(b-a)$ on $\Theta$, with a finite positive normalizing integral, then
 
+$$
+\pi(\theta\mid x)
+=\frac{L(\theta;x)}{\int_a^b L(t;x)\,dt}
+\propto L(\theta;x),\qquad \theta\in[a,b].
+$$
 
+Hence, when the maxima exist,
 
+$$
+\boxed{\widehat\theta_{\mathrm{MAP}}
+=\operatorname*{arg\,max}_{\theta\in[a,b]}L(\theta;x)
+=\widehat\theta_{\mathrm{MLE},[a,b]}.}
+$$
 
+This is an equality of *optimizers on the same parameter space*, not an equality between posterior density and likelihood. It does not turn Fisher's MLE into a Bayesian method.
 
-modern: Loss function
+A flat prior also depends on the parameterization. For $\phi=e^\theta$,
+
+$$
+\pi_\phi(\phi)
+=\pi_\theta(\log\phi)\left|\frac{d\log\phi}{d\phi}\right|
+=\frac{1}{(b-a)\phi},\qquad e^a\leq\phi\leq e^b.
+$$
+
+Thus a prior uniform in $\theta$ is not uniform in $\phi$. The MLE transforms as $\widehat\phi_{\mathrm{MLE}}=e^{\widehat\theta_{\mathrm{MLE}}}$, whereas posterior density modes generally depend on the chosen parameterization.
