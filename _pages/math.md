@@ -30,6 +30,8 @@ These notes move among Advanced Linear Algebra, Analysis, PDEs, multivariable ca
 | [Probability & Statistical distribution Theory]({{ '/assets/pdf/lecture-notes/probability-statistical-distribution-theory.pdf' | relative_url }}) | Probability and statistical distribution theory (MTH206). |
 | [Survival Analysis]({{ '/assets/pdf/lecture-notes/survival-analysis.pdf' | relative_url }}) | Time-to-event methods, censoring, and regression. |
 | [Advanced Linear Algebra]({{ '/assets/pdf/lecture-notes/advanced-linear-algebra.pdf' | relative_url }}) | Vector spaces, linear maps, projections, and least squares. |
+| [Evidence-based medicine and epidemiology notes]({{ '/assets/pdf/lecture-notes/evidence-based-medicine-and-epidemiology.pdf' | relative_url }}) | Study design, causal reasoning, measures of association, and analysis. |
+| [Practical bioinformatics notes]({{ '/assets/pdf/lecture-notes/practical-bioinformatics.pdf' | relative_url }}) | Sequencing, metagenomics, phylogeny, and genome evolution. |
 | [Mathematical Statistics]({{ '/assets/pdf/lecture-notes/mathematical-statistics.pdf' | relative_url }}) | Distribution transformations and estimation. |
 | [Statistical Learning]({{ '/assets/pdf/lecture-notes/statistical-learning.pdf' | relative_url }}) | Regression, regularization, and prediction. |
 | [Calculus]({{ '/math/calculus/' | relative_url }}) | Multivariable calculus and geometric integration. |
